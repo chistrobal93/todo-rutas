@@ -4,14 +4,11 @@
   "description": "Aplicacion bootstrap Todo-rutas",
   "main": "index.html",
   "scripts": {
-    "start": "npm run lite",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lite": "lite-server"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.1.3",
-    "lite-server": "^2.6.1"
+    "bootstrap": "^5.1.3"
   }
 }
