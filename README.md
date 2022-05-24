@@ -1,9 +1,10 @@
 # todo-rutas
 Clonar o descargar desde github: https://github.com/chistrobal93/todo-rutas.git
-Para vscode instalar extensión live-server
 
-Para correr esto sin internet hay que instalar node.
-Con el vscode en la carpeta escribir en consola: npm install
+Para vscode instalar extensión Live Server (Para que actualice los cambios en el código automáticamente) y Live Sass Compiler (Si cambiamos el custom.scss automáticamente modifica el custom.css)
+
+# Para correr esto hay que instalar node
+Después de instalar node en vscode corriendo en la carpeta escribir en consola: npm install (instala bootstrap localmente)
 
 # Correr código
 En vscode derecha abajo hacer clic en Go Live (extensión)
