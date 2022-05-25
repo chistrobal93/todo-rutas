@@ -1,9 +1,20 @@
 $font-family-sans-serif: 'Nunito', sans-serif;
 
 $primary: #00bb4e;
-$secondary: #0b8000;
-$success: #003500;
-$dark: #18202D;
+$secondary: #f0f0f0;
+$success: #004b00;
+$info: #a0a0a0;
+$warning: #0d6efd;
+$danger: #e60000;
+
+
+body {
+  padding-top: 65px;
+}
+
+#logincard {
+  background-color: #007e00;
+}
 
 
 @import "../node_modules/bootstrap/scss/bootstrap";

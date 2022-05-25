@@ -16,7 +16,7 @@
       <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
     -->
 
-    <title>Todo Rutas</title>
+    <title>Parques</title>
 </head>
 <body>
   <!-- NavBar -->
@@ -29,9 +29,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Parques</a>
             </li>
@@ -55,82 +52,101 @@
       </div>
     </nav>
   </header>
-<br><br><br>
   
-  <!-- Recomendados -->
-  <div class="container">
-  
+  <!-- Filtros -->
+  <div class="container mb-3">
     <h3 class="text-dark">Parques</h3>
-	
-	<div>
-	<input type="text">
-	<input type="submit">
-	<select>
-		<option>Ordenar por...</option>
-		<option>Cercanía</option>
-		<option>Precio entrada</option>
-	</select>
-	<label>Parques nacionales</label>
-	<input type="checkbox">
-  <label>Parques independientes</label>
-	<input type="checkbox">
+    <div class="row">
+      <div class="col-12">
+        <input type="text">
+        <input type="submit">
+        <select>
+          <option>Ordenar por...</option>
+          <option>Cercanía</option>
+          <option>Precio entrada</option>
+        </select>
+      </div>
+      <div>
+        <label>Parques nacionales</label>
+        <input type="checkbox">
+        <label>Parques independientes</label>
+        <input type="checkbox">
+      </div>
+    </div>
+	</div>
+
+  <!-- Tarjetas -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+        <article class="card mb-3 bg-secondary">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img src="../images/Cerro-Manquehue.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ms-3">
+                <h4 class="card-title">Cerro Manquehue</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+                <a href="#" class="card-link">Ver mapa</a>
+                <a href="#" class="card-link">Descargar mapa</a>
+                <a href="#" class="card-link">Hacer reserva</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <article class="card mb-3 bg-secondary">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img src="../images/aguas-ramon.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ms-3">
+                <h4 class="card-title">Aguas de Ramón</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+                <a href="#" class="card-link">Ver mapa</a>
+                <a href="#" class="card-link">Descargar mapa</a>
+                <a href="#" class="card-link">Hacer reserva</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <article class="card mb-3 bg-secondary">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img src="../images/torresdel-paine-700x367.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ms-3">
+                <h4 class="card-title">Torres del Paine</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+                <a href="#" class="card-link">Ver mapa</a>
+                <a href="#" class="card-link">Descargar mapa</a>
+                <a href="#" class="card-link">Hacer reserva</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
   </div>
-  <br>
-  <br>
-      <div class="col">
-
-        <div class="col-12 ">
-          <div class="card">
-            <img src="../images/Cerro-Manquehue.jpg" class="card-img-top" alt="..." height="150px">
-            <div class="card-body">
-              <h5 class="card-title">Cerro Manquehue</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-            </div>
-            <div class="card-body">
-              <a href="#" class="card-link">Ver mapa</a>
-              <a href="#" class="card-link">Descargar mapa</a>
-              <a href="#" class="card-link">Hacer reserva</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <div class="card">
-            <img src="../images/aguas-ramon.jpg" class="card-img-top" alt="..." height="150px">
-            <div class="card-body">
-              <h5 class="card-title">Aguas de Ramón</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-            </div>
-            <div class="card-body">
-              <a href="#" class="card-link">Ver mapa</a>
-              <a href="#" class="card-link">Descargar mapa</a>
-              <a href="#" class="card-link">Hacer reserva</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <div class="card">
-            <img src="../images/torresdel-paine-700x367.jpg" class="card-img-top" alt="..." height="150px">
-            <div class="card-body">
-              <h5 class="card-title">Torres del Paine</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-            </div>
-            <div class="card-body">
-              <a href="#" class="card-link">Ver mapa</a>
-              <a href="#" class="card-link">Descargar mapa</a>
-              <a href="#" class="card-link">Hacer reserva</a>
-            </div>
-          </div>
-        </div>
-  </div>
-
-  <br>
 
   <!-- Footer -->
   <footer>
     <!-- Grid container -->
-    <div class="container p-4 bg-secondary text-center text-lg-start">
+    <div class="container p-4 bg-info text-center text-lg-start">
       <!--Grid row-->
       <div class="row">
         <!--Grid column-->
@@ -139,7 +155,7 @@
   
           <ul class="list-unstyled mb-0">
             <li>
-              <a href="./views/login.html" class="text-light">Empleados</a>
+              <a href="login.html" class="text-light">Empleados</a>
             </li>
             <li>
               <a href="#!" class="text-light">Afiliados</a>
