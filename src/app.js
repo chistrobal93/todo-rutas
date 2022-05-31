@@ -15,6 +15,11 @@ app.use('/scripts', express.static('node_modules/bootstrap/dist/js'));
 
 app.use(todorutasRoutes);
 
+// 404 page
+app.use((req, res) => {
+    res.status(404).render('404', { title: '404' });
+  });
+  
 app.listen(app.get('port'), () => {
     console.log('Servidor en puerto', app.get('port'));
 });
