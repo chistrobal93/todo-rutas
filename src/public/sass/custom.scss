@@ -1,0 +1,16 @@
+$font-family-sans-serif: 'Nunito', sans-serif;
+
+$theme-colors: (
+  "primary": #00bb4e,
+  "secondary": #f0f0f0,
+  "custom-login": #009100
+);
+
+
+
+body {
+  padding-top: 65px;
+}
+
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";

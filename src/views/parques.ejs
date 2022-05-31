@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('./partials/head.ejs') %> 
+<body>
+    <%- include('./partials/nav.ejs') %> 
+  
+  <!-- Filtros -->
+  <div class="container mb-3">
+    <h3 class="text-dark">Parques</h3>
+    <div class="row">
+      <div class="col-12">
+        <input type="text">
+        <input type="submit">
+        <select>
+          <option>Ordenar por...</option>
+          <option>Cercanía</option>
+          <option>Precio entrada</option>
+        </select>
+      </div>
+      <div>
+        <label>Parques nacionales</label>
+        <input type="checkbox">
+        <label>Parques independientes</label>
+        <input type="checkbox">
+      </div>
+    </div>
+	</div>
+
+  <!-- Tarjetas -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+        <article class="card mb-3 bg-secondary">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img src="../images/Cerro-Manquehue.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ms-3">
+                <h4 class="card-title">Cerro Manquehue</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+                <a href="#" class="card-link">Ver mapa</a>
+                <a href="#" class="card-link">Descargar mapa</a>
+                <a href="#" class="card-link">Hacer reserva</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <article class="card mb-3 bg-secondary">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img src="../images/aguas-ramon.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ms-3">
+                <h4 class="card-title">Aguas de Ramón</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+                <a href="#" class="card-link">Ver mapa</a>
+                <a href="#" class="card-link">Descargar mapa</a>
+                <a href="#" class="card-link">Hacer reserva</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <article class="card mb-3 bg-secondary">
+          <div class="row g-0 align-items-center">
+            <div class="col-md-4">
+              <img src="../images/torresdel-paine-700x367.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ms-3">
+                <h4 class="card-title">Torres del Paine</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+                <a href="#" class="card-link">Ver mapa</a>
+                <a href="#" class="card-link">Descargar mapa</a>
+                <a href="#" class="card-link">Hacer reserva</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+  </div>
+
+  <%- include('./partials/footer.ejs') %> 
+</body>
+</html>

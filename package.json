@@ -2,13 +2,19 @@
   "name": "todo-rutas",
   "version": "1.0.0",
   "description": "Aplicacion bootstrap Todo-rutas",
-  "main": "index.html",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }
