@@ -13,8 +13,8 @@ body {
 
 
 
-@import "../../../node_modules/bootstrap/scss/_functions";
-@import "../../../node_modules/bootstrap/scss/_variables";
+@import "../../node_modules/bootstrap/scss/_functions";
+@import "../../node_modules/bootstrap/scss/_variables";
 
 $colores-custom: (
   "customlogin": #009100
@@ -35,4 +35,4 @@ $utilities-colors: map-merge(
 $utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
 $utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";

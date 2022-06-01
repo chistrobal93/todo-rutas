@@ -9,7 +9,7 @@ app.set('port', 3000);
 app.set("views","./src/views");
 
 // Hacer publico para la app carpeta public y elementos bootstrap
-app.use(express.static('src/public'));
+app.use(express.static('public'));
 app.use('/scripts', express.static('node_modules/@popperjs/core/dist/umd/'));
 app.use('/scripts', express.static('node_modules/bootstrap/dist/js'));
 
