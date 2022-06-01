@@ -3,7 +3,7 @@ body {
 }
 
 .carousel-item img {
-  height: 400px;
+  max-height: 500px;
 }
 
 /*!
