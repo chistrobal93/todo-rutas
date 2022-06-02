@@ -1,10 +1,9 @@
 {
   "name": "todo-rutas",
   "version": "1.0.0",
-  "description": "Aplicacion bootstrap Todo-rutas",
-  "main": "src/app.js",
+  "description": "Aplicacion Todo Rutas",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon src/app.js"
   },
   "author": "",
@@ -12,7 +11,8 @@
   "dependencies": {
     "bootstrap": "^5.1.3",
     "ejs": "^3.1.8",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "mongoose": "^6.3.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

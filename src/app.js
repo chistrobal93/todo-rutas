@@ -1,8 +1,16 @@
 const express = require('express');
-const app = express();
-const todorutasRoutes = require('./routes/todorutasRoutes');
+const mongoose = require('mongoose');
 
-//Settings
+// Express App
+const app = express();
+
+// Conectar a MongoDB
+const dbURI = 'mongodb+srv://tobal:ABCabc123!!@todorutas.hxl4m.mongodb.net/TodoRutas?retryWrites=true&w=majority';
+mongoose.connect(dbURI)
+  .then((result) => console.log('Conectado a MongoDB'))
+  .catch((err) => console.log(err))
+
+// Settings
 app.set('appName', 'TodoRutas');
 app.set('view engine', 'ejs');
 app.set('port', 3000);
@@ -13,7 +21,8 @@ app.use(express.static('public'));
 app.use('/scripts', express.static('node_modules/@popperjs/core/dist/umd/'));
 app.use('/scripts', express.static('node_modules/bootstrap/dist/js'));
 
-app.use(todorutasRoutes);
+// Rutas
+app.use('/', require('./routes/rutas'));
 
 // 404 page
 app.use((req, res) => {
