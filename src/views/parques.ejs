@@ -13,6 +13,16 @@
         <input class="form-control" type="text" placeholder="Buscar...">
       </div>
       <div class="col-auto">
+        <div class="form-check">
+          <input checked class="form-check-input" type="checkbox" id="cboxNacionales">
+          <label class="form-check-label" for="flexCheckDefault">Parques nacionales</label>
+        </div>
+        <div class="form-check">
+          <input checked class="form-check-input" type="checkbox" id="cboxIndependientes">
+          <label class="form-check-label">Parques independientes</label>
+        </div>
+      </div>
+      <div class="col-auto">
         <button class="btn btn-outline-primary">Filtrar</button>
       </div>
       <div class="col-auto">
@@ -22,21 +32,65 @@
           <option value="2">Precio entrada</option>
         </select>
       </div>
-      <div class="col-auto">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="cboxNacionales">
-          <label class="form-check-label" for="flexCheckDefault">Parques nacionales</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="cboxIndependientes">
-          <label class="form-check-label">Parques independientes</label>
-        </div>
-      </div>
     </form>
 
 
   <!-- Tarjetas -->
   <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <article class="card mb-3 bg-secondary shadow-sm">
+          <div class="row g-0 ">
+            <div class="col-md-4">
+              <img src="images/Cerro-Manquehue.jpg"  class="rounded" alt="..."
+              style="width: 100%; height: auto; vertical-align:top;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body ms-3">
+                <h4 class="card-title">Cerro Manquehue</h4>
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet
+                  aspernatur minima ullam non sunt laboriosam voluptate perferendis!
+                  Numquam iusto illum officiis.
+                  <a  class="card-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Ver más...
+                  </a>
+                  
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                      Some placeholder content for the collapse component.
+                      This panel is hidden by default but revealed when the
+                      user activates the relevant trigger.
+                    </div>
+                    
+                </div>
+                </p>
+                <div style="text-align: right;">
+                  
+                  <a href="#" class="btn btn-primary" style="color: #003123; font-weight: bold;">Ver mapa</a>
+                  <a href="#" class="btn btn-primary" style="color: #003123; font-weight: bold;">Descargar mapa</a>
+                  <a href="#" class="btn btn-primary" style="color: #003123; font-weight: bold;">Hacer reserva</a>
+                </div>
+                
+                
+
+
+
+                
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    
+
+
+
+
+
+
 
     <div class="row">
       <div class="col-12">
@@ -91,9 +145,17 @@
               <div class="card-body ms-3">
                 <h4 class="card-title">Torres del Paine</h4>
                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-                <a href="#" class="card-link">Ver mapa</a>
-                <a href="#" class="card-link">Descargar mapa</a>
-                <a href="#" class="card-link">Hacer reserva</a>
+                
+                
+                
+                <div class="row">
+                  <div class="col"><a href="#" class="card-link">Ver mapa</a></div>
+                  <div class="col"><a href="#" class="card-link">Descargar mapa</a></div>
+                  <div class="col"><a href="#" class="card-link">Hacer reserva</a></div>
+                </div>
+                
+                
+                
               </div>
             </div>
           </div>
