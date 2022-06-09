@@ -1,14 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
 
 // Express App
 const app = express();
-
-// Conectar a MongoDB
-// const dbURI = 'mongodb+srv://tobal:ABCabc123!!@todorutas.hxl4m.mongodb.net/TodoRutas?retryWrites=true&w=majority';
-// mongoose.connect(dbURI)
-//  .then((result) => console.log('Conectado a MongoDB'))
-//  .catch((err) => console.log(err))
 
 // Settings
 app.set('appName', 'TodoRutas');
