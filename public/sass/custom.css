@@ -6,6 +6,8 @@ body {
   max-height: 500px;
 }
 
+
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -3261,9 +3263,11 @@ fieldset:disabled .btn {
 }
 
 .btn-primary {
-  color: #000;
+
   background-color: #00bb4e;
   border-color: #00bb4e;
+  color: #003123;
+  font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -3271,6 +3275,38 @@ fieldset:disabled .btn {
   background-color: #26c569;
   border-color: #1ac260;
 }
+
+.btn-primary-index {
+
+  background-color: #26c569;
+  border-color: #26c569;
+  color: #003123;
+  font-size: 20px;
+  font-family: 'Alatsi' ;
+
+}
+
+.pattern2 {
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.25),
+  rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 6px);
+  background-size: 4px 4px; 
+  border-radius: 0.25rem !important;
+
+}
+
+section{
+  height: 200px;
+  background: #51535f;
+  box-shadow: 0 10px 10px -10px black;
+  border: 1px solid rgba(255,255,255,0.25);
+ 
+  
+  
+}
+
+
+
+
 
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #000;
@@ -7169,13 +7205,24 @@ fieldset:disabled .btn {
 .carousel-caption {
   position: absolute;
   right: 15%;
-  bottom: 1.25rem;
+  bottom: 4rem;
   left: 15%;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   color: #fff;
   text-align: center;
 }
+
+.index-caption {
+
+  
+  padding-top: 1.75rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+}
+
+
 
 .carousel-dark .carousel-control-prev-icon,
 .carousel-dark .carousel-control-next-icon {
