@@ -9,6 +9,10 @@ Después de instalar node en vscode corriendo en la carpeta escribir en consola:
 # Correr código
 ~~En vscode derecha abajo hacer clic en Go Live (extensión)~~
 Para correr el codigo ejecutar comando npm start
+Para terminar proceso: Ctrl + C (en la terminal)
+
+# Conectar a BD
+Modificar credenciales en archivo .env (no está en github)
 
 # Subir el código
 Antes de empezar a modificar el código, hacer un pull para tener la versión más reciente. (git pull)

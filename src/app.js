@@ -1,7 +1,12 @@
 const express = require('express');
+require('dotenv').config();
 
 // Express App
 const app = express();
+
+// Conexión BD
+const ConnectDB = require('./database/mysqlConnect');
+ConnectDB.init();
 
 // Settings
 app.set('appName', 'TodoRutas');
