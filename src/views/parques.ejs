@@ -1,38 +1,37 @@
 <%- layout('layouts/main')  %> 
   
-<div class="container my-3">
-  <h3 class="display-5 text-center my-4 text-uppercase">Parques</h3>
+<h3 class="display-5 text-center my-4 text-uppercase">Parques</h3>
 
-  <!-- Filtros -->
-  <form action="#" class="row g-4 mb-3 justify-content-center">
-    <div class="col-5">
-      <input class="form-control" type="text" placeholder="Buscar...">
+<!-- Filtros -->
+<form action="#" class="row g-4 mb-3 justify-content-center">
+  <div class="col-5">
+    <input class="form-control" type="text" placeholder="Buscar...">
+  </div>
+  <div class="col-auto">
+    <div class="form-check">
+      <input checked class="form-check-input" type="checkbox" id="cboxNacionales">
+      <label class="form-check-label" for="flexCheckDefault">Parques nacionales</label>
     </div>
-    <div class="col-auto">
-      <div class="form-check">
-        <input checked class="form-check-input" type="checkbox" id="cboxNacionales">
-        <label class="form-check-label" for="flexCheckDefault">Parques nacionales</label>
-      </div>
-      <div class="form-check">
-        <input checked class="form-check-input" type="checkbox" id="cboxIndependientes">
-        <label class="form-check-label">Parques independientes</label>
-      </div>
+    <div class="form-check">
+      <input checked class="form-check-input" type="checkbox" id="cboxIndependientes">
+      <label class="form-check-label">Parques independientes</label>
     </div>
-    <div class="col-auto">
-      <button class="btn btn-outline-primary">Filtrar</button>
-    </div>
-    <div class="col-auto">
-      <select class="form-select">
-        <option selected>Ordenar por...</option>
-        <option value="1">Cercanía</option>
-        <option value="2">Precio entrada</option>
-      </select>
-    </div>
-  </form>
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-outline-primary">Filtrar</button>
+  </div>
+  <div class="col-auto">
+    <select class="form-select">
+      <option selected>Ordenar por...</option>
+      <option value="1">Cercanía</option>
+      <option value="2">Precio entrada</option>
+    </select>
+  </div>
+</form>
 
 
 <!-- Tarjetas -->
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-12">
       <article class="card mb-3 bg-secondary shadow-sm">
