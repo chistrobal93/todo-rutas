@@ -18,4 +18,8 @@ router.get('/parques', (req,res) => {
     res.render('parques', { title: 'Parques'});
 })
 
+router.get('/about', (req,res) => {
+    res.render('about', { title: 'About'});
+})
+
 module.exports = router;

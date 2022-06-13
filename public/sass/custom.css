@@ -3286,27 +3286,6 @@ fieldset:disabled .btn {
 
 }
 
-.pattern2 {
-  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255, 0.25),
-  rgba(255,255,255, 0.25) 1px, transparent 1px, transparent 6px);
-  background-size: 4px 4px; 
-  border-radius: 0.25rem !important;
-
-}
-
-section{
-  height: 200px;
-  background: #51535f;
-  box-shadow: 0 10px 10px -10px black;
-  border: 1px solid rgba(255,255,255,0.25);
- 
-  
-  
-}
-
-
-
-
 
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #000;

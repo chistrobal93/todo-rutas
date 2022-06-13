@@ -1,0 +1,4 @@
+HOST=localhost
+TR_USER=root
+TR_PWD=
+TR_DATABASE=todorutas
