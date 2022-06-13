@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();
+const engine = require('ejs-mate');
 const logger = require("./logger");
 const parquesModel = require('./models/parquesModel');
 
@@ -8,19 +9,19 @@ const app = express();
 
 // Settings
 app.set('appName', 'TodoRutas');
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('port', 3000);
 app.set("views","./src/views");
 
 // Hacer publico para la app carpeta public y elementos bootstrap
-app.use(express.static('public'));
-app.use('/scripts', express.static('node_modules/@popperjs/core/dist/umd/'));
-app.use('/scripts', express.static('node_modules/bootstrap/dist/js'));
+app.use('/', express.static('public'));
+app.use('/', express.static('node_modules/@popperjs/core/dist/umd/'));
+app.use('/', express.static('node_modules/bootstrap/dist/js'));
 
 // Rutas
-app.use('/', require('./routes/rutas'));
+app.use('/', require('./routes/indexRoutes'));
 app.use('/mantenedor', require('./routes/mantenedorRoutes'));
-
 
 // 404 page
 app.use((req, res) => {

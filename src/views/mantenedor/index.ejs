@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
-    <%- include('../partials/head.ejs') %> 
-<body>
-    <%- include('../partials/nav.ejs') %> 
-    
-    <div class="container text-center">
-        <h1>Mantenedor</h1>
-    </div>
-    
-    <div class="container">
-      <div class="row">
-        <ol class="col-12 breadcrumb">
-          <li class="breadcrumb-item"><a href="mantenedor/agregar">Agregar Parque</a></li>
-          <li class="breadcrumb-item"><a href="#">Modificar Parque</a></li>
-          <li class="breadcrumb-item"><a href="#">Listar Parques</a></li>
-          <li class="breadcrumb-item"><a href="#">Logout</a></li>
-        </ol>
-      </div>
-    </div>
+<%- layout('layouts/main')  %> 
 
-    <%- include('../partials/footer.ejs') %> 
-</body>
-</html>
+<div class="container text-center">
+    <h1>Mantenedor</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <ol class="col-12 breadcrumb">
+      <li class="breadcrumb-item"><a href="/mantenedor/agregar">Agregar Parque</a></li>
+      <li class="breadcrumb-item"><a href="#">Modificar Parque</a></li>
+      <li class="breadcrumb-item"><a href="#">Listar Parques</a></li>
+      <li class="breadcrumb-item"><a href="#">Logout</a></li>
+    </ol>
+  </div>
+</div>
