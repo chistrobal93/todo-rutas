@@ -5,5 +5,91 @@
 </div>
 
 <div class="container">
-  <!-- formulario -->
+  <form class="row g-3" action="<%=urlForm%>" method="POST">
+    
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" id="idParque" name="idParque" min="1" required>
+      <label for="idParque">ID parque</label>
+    </div>
+
+
+    <!-- Futuro radio button -->
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" id="idTipo" name="idTipo" min="1" max="2" required>
+      <label for="idTipo">ID tipo</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="nombre" name="nombre" maxlength="50" required>
+      <label for="nombre">Nombre del parque</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="direccion" name="direccion" maxlength="50" required>
+      <label for="direccion">Dirección del parque</label>
+    </div>
+    
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="telefono" name="telefono" maxlength="20" required>
+      <label for="telefono">Teléfono del parque</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="email" name="email" maxlength="50" required>
+      <label for="email">Email del parque</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" id="aforo" name="aforo" min="1" required>
+      <label for="aforo">Aforo</label>
+    </div>
+
+    <!-- Futuro radio button -->
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" id="estado" name="estado" min="1" required>
+      <label for="estado">ID Estado</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="horario" name="horario" maxlength="100">
+      <label for="horario">Horario</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="paginaWeb" name="paginaWeb">
+      <label for="paginaWeb">Sitio web</label>
+    </div>
+
+    <!-- if ¿Dispone de reservas? -->
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="urlReserva" name="urlReserva">
+      <label for="urlReserva">URL reserva</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <textarea type="text" class="form-control" id="desc" name="desc" required></textarea>
+      <label for="desc">Descripción</label>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary text-light" type="submit">Agregar parque</button>
+    </div>
+  </form>
 </div>
+
+<script>
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+
+    Array.prototype.slice.call(forms).forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>

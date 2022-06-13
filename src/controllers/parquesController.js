@@ -8,16 +8,17 @@ class controller {
     }
 
     async agregar(req, res) {
-        res.render('mantenedor/agregar', {title: 'Agregar Parque'});
+        res.render('mantenedor/agregar', {title: 'Agregar Parque', urlForm: '/mantenedor/agregar'});
     }
 
     async guardar(req, res) {
-        let {cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva} = req.body;
+        let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva, desc} = req.body;
         try {
-            await parquesModel.guardarParque(cod_parque, cod_tipo, nombre, direccion, telefono, email, aforo, estado, horario, pagina_web,url_reserva);
+            await parquesModel.guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc);
         } catch (error) {
             logger.error(`Ha ocurrido un error al crear parque: ${error}`);
         }
+        return res.redirect('/mantenedor');
     }
 
     async listar(req, res) {

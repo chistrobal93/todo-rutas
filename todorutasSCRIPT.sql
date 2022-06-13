@@ -72,7 +72,7 @@ CREATE TABLE `parque` (
   `horario` varchar(300) NOT NULL,
   `pagina_web` varchar(150),
   `url_reserva` varchar(255),
-  `descripcion` varchar(500)
+  `descripcion` text
 );
 
 CREATE TABLE `tipo_parque` (
