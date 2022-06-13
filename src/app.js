@@ -1,12 +1,9 @@
 const express = require('express');
 require('dotenv').config();
+const parquesModel = require('./models/parquesModel');
 
 // Express App
 const app = express();
-
-// Conexión BD
-const ConnectDB = require('./database/mysqlConnect');
-ConnectDB.init();
 
 // Settings
 app.set('appName', 'TodoRutas');
@@ -30,3 +27,6 @@ app.use((req, res) => {
 app.listen(app.get('port'), () => {
     console.log('Servidor en puerto', app.get('port'));
 });
+
+// Para probar agregar. Tira error foreign key para cod estado. funciona agregando en tipo_parque (1, Publico)
+// parquesModel.guardarParque(1,1,"Torres del paine","Sur","1234","hola.com",11,1,"horario","www.parque.cl","reserva.com");
