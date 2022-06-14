@@ -20,10 +20,13 @@ app.listen(app.get('port'), () => {
 });
 
 // Middleware
+  // Directorios públicos que puede acceder el navegador
 app.use('/', express.static('public'));
 app.use('/', express.static('node_modules/@popperjs/core/dist/umd/'));
 app.use('/', express.static('node_modules/bootstrap/dist/js'));
+  // Para aceptar formularios metodo POST
 app.use(express.urlencoded({ extended: true}));
+
 // app.use((req, res, next) => {
 //   res.locals.path = req.path;
 //   next();

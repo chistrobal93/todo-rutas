@@ -41,13 +41,13 @@
             <div class="collapse navbar-collapse justify-content-end align-center" id="mainNav">
               <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link <% if (title === 'Parques') { %>active<% } %> " aria-current="page" href="/parques">Parques</a>
+                  <a class="nav-link <%= (title === 'Parques')?'active':'' %> " aria-current="page" href="/parques">Parques</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link <% if (title === 'About') { %>active<% } %> " aria-current="page" href="/about">Sobre nosotros</a>
+                  <a class="nav-link <%= (title === 'About')?'active':'' %> " aria-current="page" href="/about">Sobre nosotros</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link <% if (title === 'Ayuda') { %>active<% } %> " aria-current="page" href="/help">Centro de ayuda</a>
+                  <a class="nav-link <%= (title === 'Ayuda')?'active':'' %> " aria-current="page" href="/help">Centro de ayuda</a>
                 </li>
               </ul>
             </div>
