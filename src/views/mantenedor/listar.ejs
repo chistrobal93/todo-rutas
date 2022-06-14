@@ -1,0 +1,56 @@
+<%- layout('layouts/main')  %> 
+
+<div class="row">
+  <h1 class="display-4 text-center">Lista Parques</h1>
+</div>
+
+<%- include('navTabs') %> 
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">Código</th>
+            <th scope="col">Tipo (priv o publ)</th>
+            <th scope="col">Nombre Parque</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Email</th>
+            <th scope="col">Aforo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Pág. Web</th>
+            <th scope="col">Pág. Reserva</th>
+            <th scope="col" colspan="2">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (listado.length > 0) { %>
+            <% let num = 1 %>
+            <% for (let item of listado) { %>
+                <tr class="text-center">
+                    <td><%=num++%></td>
+                    <td><%=item.cod_parque%></td>
+                    <td><%=item.cod_tipo%></td>
+                    <td><%=item.nombre%></td>
+                    <td><%=item.direccion%></td>
+                    <td><%=item.telefono%></td>
+                    <td><%=item.email%></td>
+                    <td><%=item.aforo%></td>
+                    <td><%=item.estado%></td>
+                    <td><%=item.horario%></td>
+                    <td><%=item.pagina_web%></td>
+                    <td><%=item.url_reserva%></td>
+                    <td><a href="/mantenedor/editar/<%=item.cod_parque%>" class="btn btn-success m-1 py-1 px-2">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> </a> 
+                    </td>
+                    <td><a href="/mantenedor/eliminar/<%=item.cod_parque%>" class="btn btn-danger m-1 py-1 px-2">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> </a> 
+                    </td>
+
+                </tr>
+            <% }
+            } %> 
+
+    </tbody>
+</table>

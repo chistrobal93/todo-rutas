@@ -7,16 +7,14 @@ const logger = require("./logger");
 const app = express();
 
 // Settings
+const PORT = process.env.PORT || 3000;
 app.set('appName', 'TodoRutas');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
-app.set('port', 3000);
 app.set("views","./src/views");
 
-app.listen(app.get('port'), () => {
-  logger.info(
-    `Servidor iniciado en puerto ${app.get('port')}`
-  )
+app.listen(PORT, () => {
+  logger.info(`Servidor iniciado en http://localhost:${PORT}`);
 });
 
 // Middleware
