@@ -32,6 +32,54 @@
 
 <!-- Tarjetas -->
 <div class="container mt-5">
+  <% if (listado.length > 0) {
+    for (let item of listado) { %> 
+      <div class="row">
+        <div class="col-12">
+          <article class="card mb-3 bg-secondary shadow-sm">
+            <div class="row g-0 ">
+              <div class="col-md-4">
+                <img src="images/<%= item.cod_parque%>/main.jpg"  class="rounded" alt="Sin imagen: <%= item.nombre %>"
+                style="width: 100%; height: auto; vertical-align:top;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body ms-3">
+                  <h4 class="card-title"><%= item.nombre %></h4>
+                  <p class="card-text"><%= item.nombre %> </p>
+                    <a  class="card-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Ver más...
+                    </a>
+                    
+                    <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                        Some placeholder content for the collapse component.
+                        This panel is hidden by default but revealed when the
+                        user activates the relevant trigger.
+                      </div>
+                      
+                  </div>
+                  <div style="text-align: right;">
+                    
+                    <a href="#" class="btn btn-primary">Ver mapa</a>
+                    <a href="#" class="btn btn-primary">Descargar mapa</a>
+                    <a href="#" class="btn btn-primary">Hacer reserva</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    <% }
+  } else { %>
+    <div class="row">
+      <h1 class="display-4 text-center">No hay parques en este momento</h1>
+    </div>
+  <% } %>
+
+
+
+
   <div class="row">
     <div class="col-12">
       <article class="card mb-3 bg-secondary shadow-sm">

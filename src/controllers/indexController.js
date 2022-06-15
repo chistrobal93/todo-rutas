@@ -1,4 +1,5 @@
 const logger = require('../logger');
+const parquesModel = require('../models/parquesModel');
 
 class controller {
 
@@ -11,7 +12,15 @@ class controller {
     }
 
     async parques(req, res) {
-        res.render('parques', {title: 'Parques'});
+        try {
+            let listado = await parquesModel.listarParques();
+            
+            res.render('parques', {title: 'Parques', listado});
+        } catch (error) {
+            logger.error(`No se pudo listar parques: ${error}`);
+            listado = [];
+            return res.redirect('/');
+        }
     }
 
     async login(req, res) {
