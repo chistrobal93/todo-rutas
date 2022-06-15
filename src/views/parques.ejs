@@ -145,3 +145,26 @@
   </div>
 
 </div>
+
+<script>
+  var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+  };
+
+  function success(pos) {
+    var crd = pos.coords;
+
+    console.log('Posición actual es:');
+    console.log('Latitud : ' + crd.latitude);
+    console.log('Longitud: ' + crd.longitude);
+    console.log('Precisión ±' + crd.accuracy + ' metros.');
+  };
+
+  function error(err) {
+    console.warn('ERROR(' + err.code + '): ' + err.message);
+  };
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
+</script>

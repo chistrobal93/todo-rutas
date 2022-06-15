@@ -24,6 +24,8 @@ app.use('/', express.static('node_modules/@popperjs/core/dist/umd/'));
 app.use('/', express.static('node_modules/bootstrap/dist/js'));
   // Para aceptar formularios metodo POST
 app.use(express.urlencoded({ extended: true}));
+  // Body parser json
+app.use(express.json());
 
 // app.use((req, res, next) => {
 //   res.locals.path = req.path;
@@ -36,6 +38,6 @@ app.use('/mantenedor', require('./routes/mantenedorRoutes'));
 
 // 404 page
 app.use((req, res) => {
-    logger.error(`RUTA NO ENCONTRADA - ruta: ${req.path}`);
-    res.status(404).render('404', { title: '404' });
-  });
+  logger.error(`RUTA NO ENCONTRADA - ruta: ${req.path}`);
+  res.status(404).render('404', { title: '404' });
+});
