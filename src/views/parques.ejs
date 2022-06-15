@@ -39,18 +39,18 @@
           <article class="card mb-3 bg-secondary shadow-sm">
             <div class="row g-0 ">
               <div class="col-md-4">
-                <img src="images/<%= item.cod_parque%>/main.jpg"  class="rounded" alt="Sin imagen: <%= item.nombre %>"
+                <img src="images/parques/<%= item.cod_parque%>/main.jpg"  class="rounded" alt="Sin imagen: <%= item.nombre %>"
                 style="width: 100%; height: auto; vertical-align:top;">
               </div>
               <div class="col-md-8">
                 <div class="card-body ms-3">
                   <h4 class="card-title"><%= item.nombre %></h4>
                   <p class="card-text"><%= item.descripcion %> </p>
-                    <a  class="card-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <a  class="card-link" data-bs-toggle="collapse" href="#collapse<%= item.cod_parque%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                       Ver más...
                     </a>
                     
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapse<%= item.cod_parque%>">
                       <div class="card card-body">
                         Some placeholder content for the collapse component.
                         This panel is hidden by default but revealed when the
@@ -60,9 +60,9 @@
                   </div>
                   <div style="text-align: right;">
                     
-                    <a href="#" class="btn btn-primary">Ver mapa</a>
-                    <a href="#" class="btn btn-primary">Descargar mapa</a>
-                    <a href="#" class="btn btn-primary">Hacer reserva</a>
+                    <a href="#" class="btn btn-primary text-light">Ver mapa</a>
+                    <a href="#" class="btn btn-primary text-light">Descargar mapa</a>
+                    <a href="#" class="btn btn-primary text-light">Hacer reserva</a>
                   </div>
                 </div>
               </div>
