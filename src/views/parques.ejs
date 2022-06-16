@@ -68,9 +68,16 @@
                     
                     <div class="collapse" id="collapse<%= item.cod_parque%>">
                       <div class="card card-body">
-                        Some placeholder content for the collapse component.
-                        This panel is hidden by default but revealed when the
-                        user activates the relevant trigger.
+                        
+                        Horario: <%= item.horario %><br>
+                        Aforo: <%= item.aforo %><br>
+                        Dirección: <%= item.direccion %><br>
+                        Teléfono: <%= item.telefono %><br>
+                        Correo: <%= item.email %><br>
+                        <% if(item.pagina_web !=null && item.pagina_web != ''){ %>
+                          <a href="<%=item.pagina_web%>" target="_blank">Página web</a>
+
+                          <% } %>
                       </div>
                       
                   </div>
