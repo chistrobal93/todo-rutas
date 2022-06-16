@@ -77,8 +77,10 @@
                   <div style="text-align: right;">
                     
                     <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#mapaModal" data-bs-whatever="<%=item.cod_parque%>">Ver mapa</button>
-                    <a href="#" class="btn btn-primary text-light">Descargar mapa</a>
-                    <a href="#" class="btn btn-primary text-light">Hacer reserva</a>
+                    <a href="#" class="btn btn-primary text-light disabled">Descargar mapa</a>
+                    <% if (item.url_reserva != null && item.url_reserva != '') { %>
+                    <a href="<%=item.url_reserva%>" target="_blank" class="btn btn-primary text-light" >Hacer reserva</a>
+                    <% } %>
                   </div>
                 </div>
               </div>
