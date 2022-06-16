@@ -1,0 +1,23 @@
+<!-- Tabs navs -->
+<ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a
+        class="nav-link <%= (title === 'Agregar Parque')?'active':'' %>"
+        data-mdb-toggle="tab"
+        href="/mantenedor/agregar"
+        role="tab"
+        aria-selected="<%= (title === 'Agregar Parque')?'true':'false' %>"
+        >Agregar</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link <%= (title === 'Lista Parques')?'active':'' %>"
+        data-mdb-toggle="tab"
+        href="/mantenedor/listar"
+        role="tab"
+        aria-selected="<%= (title === 'Lista Parques')?'true':'false' %>"
+        >Listar</a
+      >
+    </li>
+</ul>

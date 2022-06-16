@@ -1,32 +1,39 @@
 const express = require('express');
 require('dotenv').config();
-const parquesModel = require('./models/parquesModel');
+const engine = require('ejs-mate');
+const logger = require("./logger");
+const path = require("path");
 
 // Express App
 const app = express();
 
 // Settings
+const PORT = process.env.PORT || 3000;
 app.set('appName', 'TodoRutas');
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
-app.set('port', 3000);
-app.set("views","./src/views");
+app.set("views", path.join(__dirname,'views'));
 
-// Hacer publico para la app carpeta public y elementos bootstrap
-app.use(express.static('public'));
-app.use('/scripts', express.static('node_modules/@popperjs/core/dist/umd/'));
-app.use('/scripts', express.static('node_modules/bootstrap/dist/js'));
-
+// Middleware
+// Directorios públicos que puede acceder el navegador
+app.use('/', express.static('public'));
+app.use('/', express.static('node_modules/@popperjs/core/dist/umd/'));
+app.use('/', express.static('node_modules/bootstrap/dist/js'));
+// Para aceptar formularios metodo POST
+app.use(express.urlencoded({ extended: true}));
+// Body parser json
+app.use(express.json());
+  
 // Rutas
-app.use('/', require('./routes/rutas'));
+app.use('/', require('./routes/indexRoutes'));
+app.use('/mantenedor', require('./routes/mantenedorRoutes'));
 
 // 404 page
 app.use((req, res) => {
-    res.status(404).render('404', { title: '404' });
-  });
-  
-app.listen(app.get('port'), () => {
-    console.log('Servidor en puerto', app.get('port'));
+  logger.error(`RUTA NO ENCONTRADA - ruta: ${req.path}`);
+  res.status(404).render('404', { title: '404' });
 });
 
-// Para probar agregar. Tira error foreign key para cod estado. funciona agregando en tipo_parque (1, Publico)
-// parquesModel.guardarParque(1,1,"Torres del paine","Sur","1234","hola.com",11,1,"horario","www.parque.cl","reserva.com");
+app.listen(PORT, () => {
+  logger.info(`Servidor iniciado en http://localhost:${PORT}`);
+});

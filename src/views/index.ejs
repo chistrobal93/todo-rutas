@@ -1,73 +1,60 @@
-<!DOCTYPE html>
-<html lang="es">
-  <%- include('./partials/head.ejs') %> 
-  <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
-  <body>
-  <%- include('./partials/nav.ejs') %> 
+<%- layout('layouts/main')  %> 
 
-  <!-- Carrusel -->
-  
-  <div class="container my-3 ">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner rounded shadow-lg">
-        <div>
-          <img src="images/index.jpg" class="d-block w-100" alt="CerroManquehue" height="300px" style="filter: brightness(20%)">
-          <div class="carousel-caption">
-            <h2 style="font-size:60px">Todo Rutas</h2>
-            <a class="btn btn-primary-index"  href="./parques">Ver parques</a>            
-          </div>
-        </div>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner rounded shadow-lg">
+    <div>
+      <img src="images/index.jpg" class="d-block w-100" alt="CerroManquehue" height="300px" style="filter: brightness(20%)">
+      <div class="carousel-caption">
+        <h2 style="font-size:60px">Todo Rutas</h2>
+        <a class="btn btn-primary-index"  href="./parques">Ver parques</a>            
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Recomendados -->
-  <div class="container mt-5">
-    <h3 class="h2 text-dark text-center">Recomendados</h3>
+<!-- Recomendados -->
+<div class="container mt-5">
+  <h3 class="h2 text-dark text-center">Recomendados</h3>
 
-    <div class="row mb-5">
-      <div class="col-12 col-md-4">
-        <div class="card bg-secondary shadow">
-          <img src="images/Cerro-Manquehue.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Cerro Manquehue</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-          </div>
-          <div class="card-body">
-            <a href="#" class="card-link">Ver más...</a>
-          </div>
+  <div class="row mb-5">
+    <div class="col-12 col-md-4">
+      <div class="card bg-secondary shadow">
+        <img src="images/Cerro-Manquehue.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Cerro Manquehue</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+        </div>
+        <div class="card-body">
+          <a href="#" class="card-link">Ver más...</a>
         </div>
       </div>
+    </div>
 
-      <div class="col-12 col-md-4">
-        <div class="card bg-secondary shadow">
-          <img src="images/aguas-ramon.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Aguas de Ramón</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-          </div>
-          <div class="card-body">
-            <a href="#" class="card-link">Ver más...</a>
-          </div>
+    <div class="col-12 col-md-4">
+      <div class="card bg-secondary shadow">
+        <img src="images/aguas-ramon.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Aguas de Ramón</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+        </div>
+        <div class="card-body">
+          <a href="#" class="card-link">Ver más...</a>
         </div>
       </div>
+    </div>
 
-      <div class="col-12 col-md-4">
-        <div class="card bg-secondary shadow">
-          <img src="images/torresdel-paine-700x367.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Torres del Paine</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-          </div>
-          <div class="card-body">
-            <a href="#" class="card-link">Ver más...</a>
-          </div>
+    <div class="col-12 col-md-4">
+      <div class="card bg-secondary shadow">
+        <img src="images/torresdel-paine-700x367.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Torres del Paine</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
+        </div>
+        <div class="card-body">
+          <a href="#" class="card-link">Ver más...</a>
         </div>
       </div>
+    </div>
 
-  </div>
-
-
-  <%- include('./partials/footer.ejs') %> 
-</body>
-</html>
+</div>

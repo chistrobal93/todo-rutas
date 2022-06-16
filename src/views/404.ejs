@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<%- include("./partials/head.ejs") %>
+<%- layout('layouts/main')  %> 
 
-<body>
-  <%- include("./partials/nav.ejs") %>
-
-  <div class="container mb-5">
-      <div class="row">
-          <div class="col-3"></div>
-          <div class="col-6">
-              <p class="h1"> OOPS, no se encuentra esta página</p>
-          </div>
-          <div class="col-3"></div>
-      </div>
-  </div>
-
-  <%- include("./partials/footer.ejs") %>
-</body>
-</html>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <p class="h1"> OOPS, no se encuentra esta página</p>
+    </div>
+    <div class="col-3"></div>
+</div>

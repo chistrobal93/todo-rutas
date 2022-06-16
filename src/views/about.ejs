@@ -1,42 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-  <%- include('./partials/head.ejs') %> 
-  <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
-  <body>
-  <%- include('./partials/nav.ejs') %> 
+<%- layout('layouts/main')  %> 
 
-  <div class="container my-3">
-    <div class="row">
-        <div class="card col-sm-6 col-md-5 col-lg-6 border-primary" style="margin: 4px;" >
-            <div class="card-body">
+<h3 class="display-5 text-center my-4 text-uppercase">Sobre nosotros</h3>
+<div class="row">
+    <div class="card col-sm-6 col-md-5 col-lg-6 border-primary" style="margin: 4px;" >
+        <div class="card-body">
 
-              <h5 class="card-title text-success">Contacto</h5>
-              <p class="card-text">
-                    Teléfono de contacto: +562 2145 4578 <br>
-                    Correo de contacto: todorutas.oficial@outlook.cl <br>
-                    Dirección: Dirección Calle 4677
-              </p>
-              <h5 class="card-title text-success">¿Qué es Todorutas?</h5>
-              <p class="card-text ">
-                  Todo Rutas es servicio que almaneca información de los parques afiliados
-                  del país para la comodidad de los usuarios interesados en senderismo, brindando
-                  la capacidad de consultar la información, visualizar y descargar mapas de los
-                  parques y también realizar reservas.                   
-              </p>
-              <a href="/Parques" class="card-link">Ver parques</a>
-            </div>
-        </div>
-        <div class="card col-sm-8 col-md-2 col-lg-5  border-primary" style="margin: 4px;"  >
-            <div class="card-body">
-              <h5 class="card-title text-success">Afiliados</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Conaf</h6>
-              <p class="card-text">Conaf se rige por el Ministerio nacional de agricultura y se
-                  encarga de gestionar los parques nacionales a lo largo del país.</p>
-              <a href="https://www.conaf.cl" class="card-link">Página web de Conaf</a>
-            </div>
+          <h5 class="card-title text-success">Contacto</h5>
+          <p class="card-text">
+                Teléfono de contacto: +562 2145 4578 <br>
+                Correo de contacto: todorutas.oficial@outlook.cl <br>
+                Dirección: Dirección Calle 4677
+          </p>
+          <h5 class="card-title text-success">¿Qué es Todorutas?</h5>
+          <p class="card-text ">
+              Todo Rutas es servicio que almaneca información de los parques afiliados
+              del país para la comodidad de los usuarios interesados en senderismo, brindando
+              la capacidad de consultar la información, visualizar y descargar mapas de los
+              parques y también realizar reservas.                   
+          </p>
+          <a href="/parques" class="card-link">Ver parques</a>
         </div>
     </div>
-  </div>
-  <%- include('./partials/footer.ejs') %> 
-</body>
-</html>
+    <div class="card col-sm-8 col-md-2 col-lg-5  border-primary" style="margin: 4px;"  >
+        <div class="card-body">
+          <h5 class="card-title text-success">Afiliados</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Conaf</h6>
+          <p class="card-text">Conaf se rige por el Ministerio nacional de agricultura y se
+              encarga de gestionar los parques nacionales a lo largo del país.</p>
+          <a href="https://www.conaf.cl" class="card-link">Página web de Conaf</a>
+        </div>
+    </div>
+</div>
