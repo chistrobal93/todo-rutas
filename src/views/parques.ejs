@@ -1,5 +1,20 @@
 <%- layout('layouts/main')  %> 
   
+<div class="modal fade" id="mapaModal" tabindex="-1" aria-labelledby="mapaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="mapaModalLabel">Mapa</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">
+              </button>
+          </div>
+          <div class="modal-body">
+              <img src="images/parques/1/map.jpg" class="img-fluid" alt="Sin imagen:" />
+          </div>
+      </div>
+  </div>
+</div>
+
 <h3 class="display-5 text-center my-4 text-uppercase">Parques</h3>
 
 <!-- Filtros -->
@@ -39,8 +54,7 @@
           <article class="card mb-3 bg-secondary shadow-sm">
             <div class="row g-0 ">
               <div class="col-md-4">
-                <img src="images/parques/<%= item.cod_parque%>/main.jpg"  class="rounded" alt="Sin imagen: <%= item.nombre %>"
-                style="width: 100%; height: auto; vertical-align:top;">
+                <img src="images/parques/<%= item.cod_parque%>/main.jpg"  class="rounded" alt="Sin imagen: <%= item.nombre %>" style="width: 100%; height: auto; vertical-align:top;">
               </div>
               <div class="col-md-8">
                 <div class="card-body ms-3">
@@ -60,7 +74,7 @@
                   </div>
                   <div style="text-align: right;">
                     
-                    <a href="#" class="btn btn-primary text-light">Ver mapa</a>
+                    <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#mapaModal" data-bs-whatever="<%=item.cod_parque%>">Ver mapa</button>
                     <a href="#" class="btn btn-primary text-light">Descargar mapa</a>
                     <a href="#" class="btn btn-primary text-light">Hacer reserva</a>
                   </div>
@@ -77,133 +91,34 @@
     </div>
   <% } %>
 
-
-
-
-  <div class="row">
-    <div class="col-12">
-      <article class="card mb-3 bg-secondary shadow-sm">
-        <div class="row g-0 ">
-          <div class="col-md-4">
-            <img src="images/Cerro-Manquehue.jpg"  class="rounded" alt="..."
-            style="width: 100%; height: auto; vertical-align:top;">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body ms-3">
-              <h4 class="card-title">Cerro Manquehue</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet
-                aspernatur minima ullam non sunt laboriosam voluptate perferendis!
-                Numquam iusto illum officiis.
-                <a  class="card-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Ver más...
-                </a>
-                
-                <div class="collapse" id="collapseExample">
-                  <div class="card card-body">
-                    Some placeholder content for the collapse component.
-                    This panel is hidden by default but revealed when the
-                    user activates the relevant trigger.
-                  </div>
-                  
-              </div>
-              </p>
-              <div style="text-align: right;">
-                
-                <a href="#" class="btn btn-primary">Ver mapa</a>
-                <a href="#" class="btn btn-primary">Descargar mapa</a>
-                <a href="#" class="btn btn-primary">Hacer reserva</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <article class="card mb-3 bg-secondary shadow-sm">
-        <div class="row g-0 align-items-center">
-          <div class="col-md-4">
-            <img src="images/Cerro-Manquehue.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body ms-3">
-              <h4 class="card-title">Cerro Manquehue</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-              <a href="#" class="card-link">Ver mapa</a>
-              <a href="#" class="card-link">Descargar mapa</a>
-              <a href="#" class="card-link">Hacer reserva</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <article class="card mb-3 bg-secondary shadow-sm">
-        <div class="row g-0 align-items-center">
-          <div class="col-md-4">
-            <img src="images/aguas-ramon.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body ms-3">
-              <h4 class="card-title">Aguas de Ramón</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-              <a href="#" class="card-link">Ver mapa</a>
-              <a href="#" class="card-link">Descargar mapa</a>
-              <a href="#" class="card-link">Hacer reserva</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <article class="card mb-3 bg-secondary shadow-sm">
-        <div class="row g-0 align-items-center">
-          <div class="col-md-4">
-            <img src="images/torresdel-paine-700x367.jpg" class="rounded" alt="..." style="width: 100%; height: auto">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body ms-3">
-              <h4 class="card-title">Torres del Paine</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ea hic molestias animi, illum dicta, id consequuntur amet aspernatur minima ullam non sunt laboriosam voluptate perferendis! Numquam iusto illum officiis.<p>
-              
-              
-              
-              <div class="row">
-                <div class="col"><a href="#" class="card-link">Ver mapa</a></div>
-                <div class="col"><a href="#" class="card-link">Descargar mapa</a></div>
-                <div class="col"><a href="#" class="card-link">Hacer reserva</a></div>
-              </div>
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-
 </div>
 
+
+
+
 <script>
+  var mapaModal = document.getElementById('mapaModal');
+  mapaModal.addEventListener('show.bs.modal', function (event) {
+    // Boton que gatilla el modal
+    var button = event.relatedTarget;
+    // Extraer info de atributos de data-bs-*
+    var recipient = button.getAttribute('data-bs-whatever');
+    // Actualizar el contenido del modal
+    var modalBodyImg = mapaModal.querySelector('.modal-body img');
+    console.log(recipient);
+    modalBodyImg.src = `images/parques/${recipient}/map.jpg`;
+  });
+
   var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
+    // Propiedades de ubicacion
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
   };
 
   function success(pos) {
     var crd = pos.coords;
-
+    // Imprimir por consola la posición
     console.log('Posición actual es:');
     console.log('Latitud : ' + crd.latitude);
     console.log('Longitud: ' + crd.longitude);
