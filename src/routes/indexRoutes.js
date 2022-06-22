@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const indexController = require('../controllers/indexController');
+import { Router } from 'express';
+import { index, login, parques, about } from '../controllers/indexController.js';
+
+const router = Router();
 
 // Todas las rutas en la raiz de pagina
-router.get('/', indexController.index);
-router.get('/login', indexController.login);
-router.get('/parques', indexController.parques);
-router.get('/about', indexController.about);
+router.get('/', index);
+router.get('/login', login);
+router.get('/parques', parques);
+router.get('/about', about);
 
-module.exports = router;
+export default router;

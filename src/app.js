@@ -1,22 +1,27 @@
-const express = require('express');
-require('dotenv').config();
-const engine = require('ejs-mate');
-const logger = require("./logger");
-const path = require("path");
+import express from 'express';
+import engine from 'ejs-mate';
+import { dirname, join} from 'path';
+import { fileURLToPath } from 'url';
+
+import logger from './logger.js';
+import { PORT } from './config.js';
+import indexRoutes from './routes/indexRoutes.js';
+import mantenedorRoutes from './routes/mantenedorRoutes.js';
+
 
 // Express App
 const app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Settings
-const PORT = process.env.PORT || 3000;
 app.set('appName', 'TodoRutas');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
-app.set("views", path.join(__dirname,'views'));
+app.set("views", join(__dirname,'views'));
 
 // Middleware
 // Directorios públicos que puede acceder el navegador
-app.use('/', express.static('public'));
+app.use('/', express.static(join(__dirname,'public')));
 app.use('/', express.static('node_modules/@popperjs/core/dist/umd/'));
 app.use('/', express.static('node_modules/bootstrap/dist/js'));
 // Para aceptar formularios metodo POST
@@ -25,8 +30,8 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
   
 // Rutas
-app.use('/', require('./routes/indexRoutes'));
-app.use('/mantenedor', require('./routes/mantenedorRoutes'));
+app.use('/', indexRoutes);
+app.use('/mantenedor', mantenedorRoutes);
 
 // 404 page
 app.use((req, res) => {

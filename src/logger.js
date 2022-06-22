@@ -1,5 +1,6 @@
-const pino = require('pino');
-const logger = pino({
+import pino from 'pino'
+
+export const logger = pino({
     name: "todo-rutas",
     level: 'info',
     sync: false,
@@ -11,6 +12,5 @@ const logger = pino({
       }
     }
   });
-  
 
-module.exports = logger;
+  export default logger;
