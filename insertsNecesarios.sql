@@ -16,7 +16,9 @@ INSERT INTO `parque` VALUES ('4','1','Parque Nacional Río Clarillo','Reserva Na
 INSERT INTO `parque` VALUES ('5','1','Reserva Nacional Alacalufes', 'Reserva Nacional Alacalufes Magallanes y la Antártica Chilena', '+566 1241 1438', 'magallanes.oirs@conaf.cl', '100','1', 'Lun-Dom 8-20hrs',null,null, 'La Reserva Nacional Alacalufes (actualmente Parque Nacional Kawésqar) está ubicada en la Región de Magallanes y Antártica Chilena, comprende los archipiélagos occidentales de las provincias de Última Esperanza y Magallanes. Fue creada el 22 de julio de 1969 por D.S. Nº 263 del Ministerio de Agricultura.');
 INSERT INTO `parque` VALUES ('6','1','Reserva Nacional Laguna Torca', 'J790, Caletera Ruta Cinco Sur Ote., San Bernardo, Región Metropolitana', '+567 1222 4461', 'talca.oirs@conaf.cl', '100','1', 'Lun-Dom 7-18hrs',null,null, 'La unidad Laguna Torca está ubicada en la Región del Maule, provincia de Curico, comuna de Vichuquén. Fue creada el día 17 de octubre de 1985 por decreto: n.º 128, del Ministerio de Agricultura.');
 
-INSERT INTO `personal_app_tipo` (`cod_personal_app_tipo`,`descripcion`) VALUES ('1','habilitado');
-INSERT INTO `personal_app_tipo` (`cod_personal_app_tipo`,`descripcion`) VALUES ('2','deshabilitado');
+INSERT INTO `estado` (`cod_estado`,`descripcion`) VALUES ('1','habilitado');
+INSERT INTO `estado` (`cod_estado`,`descripcion`) VALUES ('2','deshabilitado');
+
+INSERT INTO `personal_app_tipo` (`cod_personal_app_tipo`,`descripcion`) VALUES ('1','admin');
 
 INSERT INTO `personal_app` (`cod_personal_app`,`cod_personal_app_tipo`,`cod_estado`,`rut`,`nombres`,`apellidos`,`direccion`,`telefono`,`email`,`password`,`fech_crea`,`fech_mod`) VALUES ('1','1','1','1','ADMIN','ADMIN',NULL,NULL,'admintodorutas@gmail.com','admin123',NULL,NULL);

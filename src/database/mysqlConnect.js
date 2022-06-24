@@ -1,7 +1,6 @@
 'use strict';
-const mysql = require('mysql');
-const { promisify } = require('util');
-const logger = require('../logger');
+import { createPool } from 'mysql2/promise';
+import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER } from '../config.js';
 
 /**
  * Crea pool de conexiones basado en valores definidos por variables de entorno
@@ -12,30 +11,11 @@ const logger = require('../logger');
  * database: nombre de la base de datos
  * poolAlias: nombre del pool
  */
-const pool = mysql.createPool({
+export const pool = createPool({
     connectionLimit: 100,
-    host: process.env.HOST,
-    user:process.env.TR_USER,
-    password: process.env.TR_PWD,
-    database: process.env.TR_DATABASE,
-    poolAlias: 'default',
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_DATABASE,
     debug: false
 });
-
-/**
- * Crea el pool de conexion
- */
-pool.getConnection((err, connection) => {
-    if (err) { logger.error(err); }
-
-    if (connection) {
-        connection.release();
-        logger.info('Conectado a BD');
-    }
-    return;
-});
-
-// Se pueden usar promesas en las querys
-pool.query = promisify(pool.query);
-
-module.exports = pool;

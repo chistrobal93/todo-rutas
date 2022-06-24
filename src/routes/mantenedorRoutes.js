@@ -1,13 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const parquesController = require('../controllers/parquesController');
+import { Router } from 'express';
+import { mantenedorIndex, agregar, guardar, listar, editar, eliminar } from '../controllers/parquesController.js';
+
+const router = Router();
 
 // Todas las rutas del Mantenedor de parques ( /mantenedor/... )
-router.get('/', parquesController.mantenedorIndex);
-router.get('/agregar', parquesController.agregar);
-router.post('/agregar', parquesController.guardar);
-router.get('/listar', parquesController.listar);
-router.get('/editar/:codParque', parquesController.editar);
-router.get('/eliminar/:codParque', parquesController.eliminar);
+router.get('/', mantenedorIndex);
+router.get('/agregar', agregar);
+router.post('/agregar', guardar);
+router.get('/listar', listar);
+router.get('/editar/:codParque', editar);
+router.get('/eliminar/:codParque', eliminar);
 
-module.exports = router;
+export default router;
