@@ -33,10 +33,3 @@ export const parques = async(req, res) => {
     }
 }
 
-/**
- * Renderiza vista login
- */
-export const login = async (req, res) => {
-    res.render('login', {title: 'Login'});
-}
-

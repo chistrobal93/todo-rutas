@@ -58,6 +58,20 @@
         </nav>
     </header>
 
+    <% if (messageSuccess) { %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mx-auto">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <%= messageSuccess %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
     <div class="container my-3">
       <%- body%>
     </div>
@@ -72,10 +86,10 @@
     
             <ul class="list-unstyled mb-0">
                 <li>
-                <a href="/login" class="text-dark">Empleados</a>
+                <a href="/empleados/login" class="text-dark">Empleados</a>
                 </li>
                 <li>
-                <a href="/login" class="text-dark">Afiliados</a>
+                <a href="/afiliados/login" class="text-dark">Afiliados</a>
                 </li>
             </ul>
             </div>

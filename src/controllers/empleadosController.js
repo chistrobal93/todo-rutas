@@ -5,15 +5,15 @@ import { guardarParque, listarParques, obtenerParque, eliminarParque} from '../m
 /**
  * Renderiza vista index del mantenedor de parques
  */
-export const mantenedorIndex = async (req, res) => {
-    res.render('mantenedor/index', {title:'Mantenedor'});
+export const empleadosIndex = async (req, res) => {
+    res.render('empleados/index', {title:'Empleados'});
 }
 
 /**
  * Renderiza vista agregar indicando el action del formulario
  */
 export const agregar = async (req, res) => {
-    res.render('mantenedor/agregar', {title: 'Agregar Parque', urlForm: '/mantenedor/agregar'});
+    res.render('empleados/agregar', {title: 'Agregar Parque', urlForm: '/empleados/agregar'});
 }
 
 /**
@@ -24,10 +24,11 @@ export const guardar = async (req, res) => {
     let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva, desc} = req.body;
     try {
         await guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc);
+        req.flash('messageSuccess', 'Parque guardado correctamente');
     } catch (error) {
         logger.error(`Ha ocurrido un error al crear parque: ${error}`);
     }
-    return res.redirect('/mantenedor/listar');
+    return res.redirect('/empleados/listar');
 }
 
 /**
@@ -39,11 +40,11 @@ export const listar = async(req, res) => {
     try {
         listado = await listarParques();
 
-        res.render('mantenedor/listar', {title:'Lista Parques', listado});
+        res.render('empleados/listar', {title:'Lista Parques', listado});
     } catch (error) {
         logger.error(`No se pudo listar parques: ${error}`);
         listado = [];
-        return res.redirect('/mantenedor');
+        return res.redirect('/empleados');
     }
 }
 
@@ -56,10 +57,10 @@ export const editar = async (req, res) => {
         let codParque = req.params.codParque;
         const result = await obtenerParque(codParque);
         let parque = result[0];
-        res.render(`mantenedor/editar`, {title: 'Editar Parque', urlForm: `/mantenedor/editar/${codParque}`, parque});
+        res.render(`empleados/editar`, {title: 'Editar Parque', urlForm: `/empleados/editar/${codParque}`, parque});
     } catch (error) {
         logger.error(`Ha ocurrido un error al editar parque: ${error}`);
-        return res.redirect("/mantenedor");
+        return res.redirect("/empleados");
     }
 }
 
@@ -71,9 +72,16 @@ export const eliminar = async (req,res) => {
     try {
         let codParque = req.params.codParque;
         await eliminarParque(codParque);
-        res.redirect('/mantenedor/listar');
+        res.redirect('/empleados/listar');
     } catch (error) {
         logger.error(`Ha ocurrido un error al eliminar parque: ${error}`);
-        return res.redirect("/mantenedor/listar");
+        return res.redirect("/empleados/listar");
     }
+}
+
+/**
+ * Renderiza vista login
+ */
+ export const login = async (req, res) => {
+    res.render('empleados/login', {title: 'Login'});
 }
