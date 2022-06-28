@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { empleadosIndex, login, agregar, guardar, listar, editar, eliminar } from '../controllers/empleadosController.js';
+import { parqueIndex, agregar, guardar, listar, editar, eliminar } from '../controllers/parqueController.js';
 
 const router = Router();
 
-// Todas las rutas del Mantenedor de parques para empleados( /empleados/... )
-router.get('/', empleadosIndex);
-router.get('/login', login);
+// Todas las rutas del Mantenedor de parques( /parque/... )
+router.get('/', parqueIndex);
+
 router.get('/agregar', agregar);
 router.post('/agregar', guardar);
 router.get('/listar', listar);

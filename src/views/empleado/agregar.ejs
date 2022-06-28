@@ -1,0 +1,97 @@
+<%- layout('layouts/main')  %> 
+
+
+<div class="row">
+  <h1 class="display-4 text-center">Ingresar Empleado</h1>
+</div>
+
+<%- include('navTabs') %> 
+
+<!-- Ingresar Empleado -->
+<form action="/empleado/agregar" method="POST">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="form-outline">
+        <label class="form-label" for="txtNombres">Nombres</label>
+        <input type="text" name="nombres" id="txtNombres" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="form-outline">
+        <label class="form-label" for="txtApellidos">Apellidos</label>
+        <input type="text" name="apellidos" id="txtApellidos" class="form-control" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="form-outline">
+        <label class="form-label" for="txtRut">Rut</label>
+        <input type="text" name="rut" id="txtRut" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="form-outline mb-4">
+        <label class="form-label" for="txtTel">Teléfono</label>
+        <input type="text" name="tel" id="txtTel" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-4 mb-4">
+      <div class="form-outline mb-4">
+        <label class="form-label" for="txtDir">Dirección</label>
+        <input type="text" name="dir" id="txtDir" class="form-control" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-4 mb-4">
+      <div class="form-outline mb-4">
+        <label class="form-label" for="txtEmail">Email</label>
+        <input type="email" name="email" id="txtEmail" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="form-outline mb-4">
+        <label class="form-label" for="txtPsw">Contraseña</label>
+        <input type="password" name="psw" id="txtPsw" class="form-control" />
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="form-outline mb-4">
+        <label class="form-label" for="txtPsw">Confirme contraseña</label>
+        <input type="password" name="pswCheck" id="txtPswCheck" class="form-control" />
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="row">
+    <!-- Tipo empleado -->
+    <div class="col-md-6 mb-4">
+      <div class="form-check d-flex align-items-center mb-4">
+        <label class="form-label" for="cboTipo">Tipo de personal</label>
+        <select name="tipo" id="cboTipo" class="form-select">
+          <option value="1" selected>Administrador</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Habilitado -->
+    <div class="col-md-6 mb-4 d-flex align-items-center">
+      <div class="form-check mb-4">
+        <label class="form-check-label" for="checkboxEstado"> ¿Empleado habilitado? </label>
+        <input class="form-check-input me-2" type="checkbox" value="1" id="checkboxEstado" checked />
+      </div>
+    </div>
+      
+  </div>
+  
+  <div class="form-group text-center">
+    <button type="submit" class="btn btn-primary text-light mb-4">Agregar empleado</button>
+  </div>
+
+</div>
+</form>

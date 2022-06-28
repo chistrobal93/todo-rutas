@@ -24,7 +24,7 @@ export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,es
         return result;
     } catch (error) {
         logger.error(`CREAR PARQUE - BD: ${error}`);
-        throw Error(error);
+        throw (error);
     }
 }
 
@@ -39,7 +39,7 @@ export const listarParques = async () => {
         return rows;
     } catch (error) {
         logger.error(`LISTAR PARQUES - BD: ${error}`);
-        throw Error(error);
+        throw (error);
     }
 }
 
@@ -55,7 +55,7 @@ export const obtenerParque = async (codParque) => {
         return rows;
     } catch (error) {
         logger.error(`OBTENER PARQUE - BD: ${error}`);
-        throw Error(error);
+        throw (error);
     }
 }
 
@@ -71,6 +71,6 @@ export const eliminarParque = async (codParque) => {
         return result;
     } catch (error) {
         logger.error(`ELIMINAR PARQUE - BD: ${error}`);
-        throw Error(error);
+        throw (error);
     }
 }

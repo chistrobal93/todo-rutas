@@ -3,8 +3,12 @@ import { Strategy as LocalStrategy} from 'passport-local';
 
 passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'password',
+    passwordField: 'psw',
     passReqToCallback: true
-}, (req, email, password, done) => {
-    
+}, async (req, email, password, done) => {
+    console.log(req.body);
 }));
+
+// passport.serializeUser((usr, done) => {
+
+// });

@@ -1,5 +1,5 @@
 import logger from '../logger.js';
-import { listarParques } from '../models/parquesModel.js';
+import { listarParques } from '../models/parqueModel.js';
 
 
 /**
@@ -33,3 +33,9 @@ export const parques = async(req, res) => {
     }
 }
 
+/**
+ * Renderiza vista login
+ */
+ export const loginEmpleados = async (req, res) => {
+    res.render('loginEmpleados', {title: 'Login'});
+}

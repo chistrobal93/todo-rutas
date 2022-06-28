@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { index, parques, about } from '../controllers/indexController.js';
+import { index, parques, about, loginEmpleados } from '../controllers/indexController.js';
 
 const router = Router();
 
@@ -7,5 +7,6 @@ const router = Router();
 router.get('/', index);
 router.get('/parques', parques);
 router.get('/about', about);
+router.get('/loginEmpleados', loginEmpleados);
 
 export default router;

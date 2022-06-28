@@ -49,21 +49,46 @@
                 <li class="nav-item">
                   <a class="nav-link <%= (title === 'About')?'active':'' %> " aria-current="page" href="/about">Contacto</a>
                 </li>
-                <li class="nav-item button">
-                  <a class="btn btn-dark  nav-link" aria-current="page" href="#">Dar ubicación</a>
-                </li>
               </ul>
             </div>
           </div>
         </nav>
     </header>
 
-    <% if (messageSuccess) { %>
+    <% if (messageSuccess != '') { %>
       <div class="container">
         <div class="row">
           <div class="col-md-4 mx-auto">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               <%= messageSuccess %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <% if (messageWarning != '') { %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mx-auto">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <%= messageWarning %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <% if (messageError != '') { %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mx-auto">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <%= messageError %>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar">
               </button>
             </div>
@@ -86,10 +111,10 @@
     
             <ul class="list-unstyled mb-0">
                 <li>
-                <a href="/empleados/login" class="text-dark">Empleados</a>
+                <a href="/loginEmpleados" class="text-dark">Empleados</a>
                 </li>
                 <li>
-                <a href="/afiliados/login" class="text-dark">Afiliados</a>
+                <a href="/loginAfiliados" class="text-dark">Afiliados</a>
                 </li>
             </ul>
             </div>
