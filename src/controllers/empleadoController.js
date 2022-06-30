@@ -1,4 +1,4 @@
-import * as passport from '../passport/local-auth.js';
+import passport from 'passport';
 /**
  * Renderiza vista signup
  */
@@ -10,7 +10,7 @@ import * as passport from '../passport/local-auth.js';
  * Renderiza vista signup
  */
  export const agregarEmpleado = async (req, res) => {
-    passport.authenticate('local-signup', {
+    passport.authenticate('local.signup', {
         successRedirect: '/parque',
         failureRedirect: '/empleado/agregar',
         failureFlash: true
