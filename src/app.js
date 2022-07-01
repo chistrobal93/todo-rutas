@@ -12,6 +12,7 @@ import indexRoutes from './routes/indexRoutes.js';
 import parqueRoutes from './routes/parqueRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
 import passportConfig from './passport/local-auth.js';
+import { isLoggedIn } from './tools/auth.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -40,6 +41,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Mensajes alertas en vistas
 app.use(flash());
 // Variables globales
@@ -47,16 +52,16 @@ app.use((req, res, next)=>{
   app.locals.messageSuccess = req.flash('messageSuccess');
   app.locals.messageWarning = req.flash('messageWarning');
   app.locals.messageError = req.flash('messageError');
+  app.locals.user = req.user;
   next();
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
+
   
 // Routes
 app.use('/', indexRoutes);
-app.use('/parque', parqueRoutes);
-app.use('/empleado', empleadoRoutes);
+app.use('/parque', isLoggedIn, parqueRoutes);
+app.use('/empleado', isLoggedIn, empleadoRoutes);
 
 // 404 page
 app.use((req, res) => {

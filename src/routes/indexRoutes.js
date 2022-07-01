@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { index, parques, about, loginEmpleados, authEmpleado } from '../controllers/indexController.js';
+import { isntLoggedIn } from '../tools/auth.js';
 
 const router = Router();
 
@@ -7,7 +8,7 @@ const router = Router();
 router.get('/', index);
 router.get('/parques', parques);
 router.get('/about', about);
-router.get('/loginEmpleados', loginEmpleados);
-router.post('/loginEmpleados', authEmpleado);
+router.get('/loginEmpleados', isntLoggedIn, loginEmpleados);
+router.post('/loginEmpleados', isntLoggedIn, authEmpleado);
 
 export default router;

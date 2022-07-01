@@ -36,7 +36,7 @@ export const listar = async(req, res) => {
 
         res.render('parque/listar', {title:'Lista Parques', listado});
     } catch (error) {
-        logger.error(`No se pudo listar parques: ${error}`);
+        req.flash('messageError', `Error al listar parques: ${error}`);
         listado = [];
         return res.redirect('/parque');
     }
@@ -53,7 +53,7 @@ export const editar = async (req, res) => {
         let parque = result[0];
         res.render(`parque/editar`, {title: 'Editar Parque', urlForm: `/parque/editar/${codParque}`, parque});
     } catch (error) {
-        logger.error(`Ha ocurrido un error al editar parque: ${error}`);
+        req.flash('messageError', `Error al listar parque: ${error}`);
         return res.redirect("/parque");
     }
 }

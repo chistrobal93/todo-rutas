@@ -1,8 +1,10 @@
-<%- layout('layouts/empleado')  %> 
+<%- layout('layouts/main')  %> 
 
 
 <div class="row">
-  <h1 class="display-4 text-center">Portal Empleado</h1>
+  <h1 class="display-4 text-center">Portal Empleados</h1>
 </div>
 
-<%- include('navTabs') %> 
+<div class="row">
+  <h1>Bienvenido <%= user.nombres %></h1>
+</div>

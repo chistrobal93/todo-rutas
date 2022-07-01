@@ -11,43 +11,19 @@ export default (passport) => {
         passReqToCallback: true
     }, async (req, username, password, done) => {
         try {
-            console.log(username);
             const [rows] = await pool.query(`SELECT * FROM personal_app WHERE email = '${username}'`);
-            if (rows.length > 0) { 
-                const user = rows[0];
-                if (password == user.password) { 
-                    done(null, user, req.flash('messageSuccess','Bienvenido' + user.nombres));
-                } else {
-                    done(null, false, req.flash('messageError','Contraseña incorrecta'));
-                }
-            } else {
+            if (rows.length <= 0) {
                 return done(null, false, req.flash('messageWarning','Email no existe'));
             }
-        } catch (error) {
-            done(error, null);
-        }
-    }));
-
-    passport.use('local.signup', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'psw',
-        passReqToCallback: true
-    }, async (req, email, psw, done) => {
-        const {codEmpleado, nombres, apellidos, rut, tel, dir, tipo} = req.body;
-        const newUser = {
-            codEmpleado,
-            nombres,
-            apellidos,
-            rut,
-            tel,
-            dir,
-            email,
-            psw,
-            tipo
-        }
-        try {
-            const result = await guardarEmpleado(codEmpleado,tipo,1,rut,nombres,apellidos,dir,tel,email,psw);
-            return done(null, newUser);
+            const user = rows[0];
+            if (password != user.password) {
+                return done(null, false, req.flash('messageError','Contraseña incorrecta'));
+            }
+            if (user.cod_estado != 1) {
+                return done(null, false, req.flash('messageWarning','Usuario no está habilitado'));
+            } else {
+                return done(null, user, req.flash('messageSuccess','Bienvenido' + user.nombres));
+            }
         } catch (error) {
             done(error, null);
         }
@@ -60,6 +36,7 @@ export default (passport) => {
 
     passport.deserializeUser(async (email, done) => {
         const rows = await obtenerEmpleadoAuth(email);
-        done(null, rows[0]);
+        const user = rows[0];
+        done(null, user);
     });
 }

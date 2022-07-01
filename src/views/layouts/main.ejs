@@ -38,11 +38,31 @@
               <span class="navbar-toggler-icon"></span>
             </button>
     
-            <!-- Links -->
             <div class="collapse navbar-collapse justify-content-end align-center" id="mainNav">
               <ul class="navbar-nav mb-2 mb-lg-0">
+                <!-- Links -->
+                <% if(user) { %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Empleado
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="/empleado/listar">Listar</a></li>
+                      <li><a class="dropdown-item" href="/empleado/agregar">Agregar</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Parque
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="/parque/listar">Listar</a></li>
+                      <li><a class="dropdown-item" href="/parque/agregar">Agregar</a></li>
+                  </ul>
+                </li>
+                <% } %>
                 <li class="nav-item">
-                  <a class="nav-link <%= (title === 'Inicio')?'active':'' %> " aria-current="page" href="/">Inicio</a>
+                  <a class="nav-link <%= (title === 'Todo Rutas')?'active':'' %> " aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link <%= (title === 'Parques')?'active':'' %> " aria-current="page" href="/parques">Parques</a>
@@ -50,6 +70,11 @@
                 <li class="nav-item">
                   <a class="nav-link <%= (title === 'About')?'active':'' %> " aria-current="page" href="/about">Contacto</a>
                 </li>
+                <% if(user) { %>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/empleado/logout">Cerrar Sesión</a>
+                </li>
+                <% } %>
               </ul>
             </div>
           </div>
@@ -127,9 +152,6 @@
             <ul class="list-unstyled">
                 <li>
                 <a href="/parques" class="text-dark">Ver Parques</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-dark">Dar ubicación</a>
                 </li>
                 <li>
                   <a href="/" class="text-dark">Parques recomendados</a>

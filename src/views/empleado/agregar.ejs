@@ -1,4 +1,4 @@
-<%- layout('layouts/empleado')  %> 
+<%- layout('layouts/main')  %> 
 
 
 <div class="row">
@@ -8,7 +8,7 @@
 <%- include('navTabs') %> 
 
 <!-- Ingresar Empleado -->
-<form action="/empleado/agregar" method="POST">
+<form action="<%=urlForm%>" method="POST">
 <div class="container">
 
   <div class="row">

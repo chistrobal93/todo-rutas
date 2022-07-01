@@ -18,7 +18,7 @@ import logger from '../logger.js';
  */
 export const guardarEmpleado = async (codEmpleado,codTipo,codEstado,rut,nombres,apellidos,dir,telefono,email,password) => {
     try{
-        let sql = `INSERT INTO personal_app(cod_personal_app,cod_personal_app_tipo,cod_estado,rut,nombres,apellidos,direccion,telefono,email,password,fech_crea) VALUES ('${codEmpleado}','${codTipo}','${codEstado}','${rut}','${nombres}','${apellidos}','${dir}','${telefono}','${email}','${password}','CURDATE()')`;
+        let sql = `INSERT INTO personal_app(cod_personal_app,cod_personal_app_tipo,cod_estado,rut,nombres,apellidos,direccion,telefono,email,password,fech_crea) VALUES ('${codEmpleado}','${codTipo}','${codEstado}','${rut}','${nombres}','${apellidos}','${dir}','${telefono}','${email}','${password}',CURDATE())`;
         const [result] = await pool.query(sql);
         return result;
     } catch (error) {
