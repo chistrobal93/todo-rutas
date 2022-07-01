@@ -49,6 +49,17 @@ export const obtenerEmpleado = async (codEmpleado) => {
     }
 }
 
+export const obtenerEmpleadoAuth = async (email) => {
+    try {
+        let sql = `SELECT * FROM personal_app WHERE email = ?`;
+        let [rows] = await pool.query(sql, [email]);
+        return rows;
+    } catch (error) {
+        logger.error(`OBTENER EMPLEADO AUTH - BD: ${error}`);
+        throw (error);
+    }
+}
+
 export const cambiarEstadoEmpleado = async(codEmpleado,codEstado) => {
     try {
         let sql = `UPDATE personal_app SET cod_estado=${codEstado} WHERE cod_personal_app=${codEmpleado}`;

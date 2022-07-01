@@ -11,13 +11,13 @@ import { HOST, PORT } from './config.js';
 import indexRoutes from './routes/indexRoutes.js';
 import parqueRoutes from './routes/parqueRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
-import * as authentication from './passport/local-auth.js';
+import passportConfig from './passport/local-auth.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Inicialización
 const app = express();
-
+passportConfig(passport);
 
 // Settings
 app.set('appName', 'TodoRutas');

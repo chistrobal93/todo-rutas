@@ -10,6 +10,15 @@
 <!-- Ingresar Empleado -->
 <form action="/empleado/agregar" method="POST">
 <div class="container">
+
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="form-outline">
+        <label class="form-label" for="numCod">Código</label>
+        <input type="number" name="codEmpleado" id="numCod" class="form-control" />
+      </div>
+    </div>
+
   <div class="row">
     <div class="col-md-6 mb-4">
       <div class="form-outline">
@@ -49,20 +58,20 @@
   <div class="row">
     <div class="col-md-12 col-lg-4 mb-4">
       <div class="form-outline mb-4">
-        <label class="form-label" for="txtEmail">Email</label>
-        <input type="email" name="email" id="txtEmail" class="form-control" />
+        <label class="form-label" for="emlEmail">Email</label>
+        <input type="email" name="email" id="emlEmail" class="form-control" />
       </div>
     </div>
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="form-outline mb-4">
-        <label class="form-label" for="txtPsw">Contraseña</label>
-        <input type="password" name="psw" id="txtPsw" class="form-control" />
+        <label class="form-label" for="passPsw">Contraseña</label>
+        <input type="password" name="psw" id="passPsw" class="form-control" />
       </div>
     </div>
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="form-outline mb-4">
-        <label class="form-label" for="txtPsw">Confirme contraseña</label>
-        <input type="password" name="pswCheck" id="txtPswCheck" class="form-control" />
+        <label class="form-label" for="passPsw">Confirme contraseña</label>
+        <input type="password" name="pswCheck" id="passPswCheck" class="form-control" />
       </div>
     </div>
   </div>
@@ -95,3 +104,19 @@
 
 </div>
 </form>
+
+<script>
+  var clave = document.getElementById("passPsw")
+  , confirm_clave = document.getElementById("passPswCheck");
+
+  function validarClave(){
+    if(clave.value != confirm_clave.value) {
+      confirm_clave.setCustomValidity("Las contraseñas no coinciden");
+    } else {
+      confirm_clave.setCustomValidity('');
+    }
+  }
+
+  clave.onchange = validarClave;
+  confirm_clave.onkeyup = validarClave;
+</script>

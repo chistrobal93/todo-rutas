@@ -6,7 +6,7 @@ const router = Router();
 // Todas las rutas del Mantenedor de empleados ( /empleado/... )
 router.get('/', index);
 router.get('/agregar', ingresarEmpleado);
-router.post('/agregar', agregarEmpleado, listar);
+router.post('/agregar', agregarEmpleado);
 router.get('/listar', listar);
 //router.get('/editar/:codEmpleado', editar);
 router.get('/cambiarEstado/:codEmpleado/:codEstado', cambiarEstado);

@@ -9,18 +9,20 @@ export const index = async (req, res) => {
 /**
  * Renderiza vista signup
  */
- export const ingresarEmpleado = async (req, res) => {
+export const ingresarEmpleado = async (req, res) => {
     res.render('empleado/agregar', {title: 'Agregar Empleado'});
 }
 
 /**
  * Renderiza vista signup
  */
- export const agregarEmpleado = passport.authenticate('local.signup', {
+export const agregarEmpleado = async (req, res, next) => {
+    passport.authenticate('local.signup', {
         successRedirect: '/empleado/listar',
         failureRedirect: '/empleado/agregar',
         failureFlash: true
-    });
+    })(req, res, next);
+}
 
 export const listar = async (req, res) => {
     let listado;

@@ -1,3 +1,4 @@
+import passport from 'passport';
 import logger from '../logger.js';
 import { listarParques } from '../models/parqueModel.js';
 
@@ -36,6 +37,14 @@ export const parques = async(req, res) => {
 /**
  * Renderiza vista login
  */
- export const loginEmpleados = async (req, res) => {
+export const loginEmpleados = async (req, res) => {
     res.render('loginEmpleados', {title: 'Login'});
+}
+
+export const authEmpleado = async (req, res, next) => {
+    passport.authenticate('local.signin', {
+        successRedirect: '/empleado/',
+        failureRedirect: '/loginEmpleados',
+        failureFlash: true
+    })(req, res, next);
 }
