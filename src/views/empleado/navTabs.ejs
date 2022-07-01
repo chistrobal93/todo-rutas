@@ -2,12 +2,22 @@
 <ul class="nav nav-tabs mb-3">
   <li class="nav-item">
     <a
-      class="nav-link <%= (title === 'Signup')?'active':'' %>"
+      class="nav-link <%= (title === 'Agregar Empleado')?'active':'' %>"
       data-mdb-toggle="tab"
       href="/empleado/agregar"
       role="tab"
-      aria-selected="<%= (title === 'Signup')?'true':'false' %>"
-      >Agregar empleado</a
+      aria-selected="<%= (title === 'Agregar Empleado')?'true':'false' %>"
+      >Agregar</a
+    >
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link <%= (title === 'Lista Empleados')?'active':'' %>"
+      data-mdb-toggle="tab"
+      href="/empleado/listar"
+      role="tab"
+      aria-selected="<%= (title === 'Lista Empleados')?'true':'false' %>"
+      >Listar</a
     >
   </li>
 </ul>

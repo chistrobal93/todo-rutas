@@ -50,7 +50,8 @@
 <!-- Tarjetas -->
 <div class="container mt-5">
   <% if (listado.length > 0) {
-    for (let item of listado) { %> 
+    for (let item of listado) { 
+      if (item.estado == 1) { %> 
       <div class="row">
         <div class="col-12">
           <article class="card mb-3 bg-secondary shadow-sm">
@@ -96,6 +97,7 @@
         </div>
       </div>
     <% }
+  }
   } else { %>
     <div class="row">
       <h1 class="display-4 text-center">No hay parques en este momento</h1>

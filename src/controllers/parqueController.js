@@ -1,13 +1,7 @@
 import logger from '../logger.js';
-import { guardarParque, listarParques, obtenerParque, eliminarParque} from '../models/parqueModel.js';
+import { guardarParque, listarParques, obtenerParque, cambiarEstadoParque} from '../models/parqueModel.js';
 
 
-/**
- * Renderiza vista index del mantenedor de parques
- */
-export const parqueIndex = async (req, res) => {
-    res.render('parque/index', {title:'Mantenedor Parques'});
-}
 
 /**
  * Renderiza vista agregar indicando el action del formulario
@@ -65,17 +59,18 @@ export const editar = async (req, res) => {
 }
 
 /**
- * Recibe id parque por metodo GET para eliminar parque de base de datos
+ * Recibe id parque por metodo GET para cambiar estado de parque de base de datos
  * @returns Vista lista de parque
  */
-export const eliminar = async (req,res) => {
+export const cambiarEstado = async (req,res) => {
     try {
         let codParque = req.params.codParque;
-        await eliminarParque(codParque);
-        req.flash('messageWarning', 'Parque eliminado correctamente');
+        let codEstado = req.params.codEstado;
+        await cambiarEstadoParque(codParque,codEstado);
+        req.flash('messageWarning', 'Parque cambió su estado correctamente');
         res.redirect('/parque/listar');
     } catch (error) {
-        req.flash('messageError', `Error al eliminar el parque: ${error}`);
+        req.flash('messageError', `Error al cambiar el estado del parque: ${error}`);
         return res.redirect("/parque/listar");
     }
 }

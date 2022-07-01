@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { ingresarEmpleado, agregarEmpleado } from '../controllers/empleadoController.js';
+import { index, ingresarEmpleado, agregarEmpleado, listar, cambiarEstado } from '../controllers/empleadoController.js';
 
 const router = Router();
 
 // Todas las rutas del Mantenedor de empleados ( /empleado/... )
-router.get('/', ingresarEmpleado);
+router.get('/', index);
 router.get('/agregar', ingresarEmpleado);
-router.post('/agregar', agregarEmpleado);
-//router.get('/listar', listar);
+router.post('/agregar', agregarEmpleado, listar);
+router.get('/listar', listar);
 //router.get('/editar/:codEmpleado', editar);
-//router.get('/eliminar/:codEmpleado', eliminar);
+router.get('/cambiarEstado/:codEmpleado/:codEstado', cambiarEstado);
 
 export default router;

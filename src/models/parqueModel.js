@@ -1,5 +1,5 @@
-import { pool } from '../database/mysqlConnect.js'
-import logger from '../logger.js'
+import { pool } from '../database/mysqlConnect.js';
+import logger from '../logger.js';
 
 /**
  * Realiza insercion de parque en tabla 'parque' de la base de datos
@@ -34,7 +34,7 @@ export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,es
  */
 export const listarParques = async () => {
     try {
-        let sql = `SELECT * FROM parque`;
+        let sql = `SELECT * FROM parque ORDER BY estado ASC`;
         let [rows] = await pool.query(sql);
         return rows;
     } catch (error) {
@@ -64,13 +64,13 @@ export const obtenerParque = async (codParque) => {
  * @param {Number} codParque Codigo unico del parque
  * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
  */
-export const eliminarParque = async (codParque) => {
+export const cambiarEstadoParque = async (codParque,codEstado) => {
     try {
-        let sql = `DELETE FROM parque WHERE cod_parque=${codParque}`;
+        let sql = `UPDATE parque SET estado=${codEstado} WHERE cod_parque=${codParque}`;
         let [result] = await pool.query(sql);
         return result;
     } catch (error) {
-        logger.error(`ELIMINAR PARQUE - BD: ${error}`);
+        logger.error(`CAMBIAR ESTADO PARQUE - BD: ${error}`);
         throw (error);
     }
 }

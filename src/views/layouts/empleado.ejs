@@ -31,7 +31,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
           <div class="container container-fluid">
-            <a class="navbar-brand" href="/">Todo Rutas</a>
+            <a class="navbar-brand" href="/empleado">Portal Empleados</a>
             
             <!-- Toggle button para movil -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,14 +41,23 @@
             <!-- Links -->
             <div class="collapse navbar-collapse justify-content-end align-center" id="mainNav">
               <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link <%= (title === 'Inicio')?'active':'' %> " aria-current="page" href="/">Inicio</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Empleado
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/empleado/listar">Listar</a></li>
+                        <li><a class="dropdown-item" href="/empleado/agregar">Agregar</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link <%= (title === 'Parques')?'active':'' %> " aria-current="page" href="/parques">Parques</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link <%= (title === 'About')?'active':'' %> " aria-current="page" href="/about">Contacto</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Parque
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/parque/listar">Listar</a></li>
+                        <li><a class="dropdown-item" href="/parque/agregar">Agregar</a></li>
+                    </ul>
                 </li>
               </ul>
             </div>
@@ -127,9 +136,6 @@
             <ul class="list-unstyled">
                 <li>
                 <a href="/parques" class="text-dark">Ver Parques</a>
-                </li>
-                <li>
-                  <a href="#!" class="text-dark">Dar ubicación</a>
                 </li>
                 <li>
                   <a href="/" class="text-dark">Parques recomendados</a>
