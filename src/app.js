@@ -2,16 +2,23 @@ import express from 'express';
 import engine from 'ejs-mate';
 import { dirname, join} from 'path';
 import { fileURLToPath } from 'url';
+import session from 'express-session';
+import flash from 'connect-flash';
+import passport from 'passport';
 
 import logger from './logger.js';
-import { PORT } from './config.js';
+import { HOST, PORT } from './config.js';
 import indexRoutes from './routes/indexRoutes.js';
-import mantenedorRoutes from './routes/mantenedorRoutes.js';
+import parqueRoutes from './routes/parqueRoutes.js';
+import empleadoRoutes from './routes/empleadoRoutes.js';
+import passportConfig from './passport/local-auth.js';
+import { isLoggedIn } from './tools/auth.js';
 
-
-// Express App
-const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Inicialización
+const app = express();
+passportConfig(passport);
 
 // Settings
 app.set('appName', 'TodoRutas');
@@ -24,14 +31,37 @@ app.set("views", join(__dirname,'views'));
 app.use('/', express.static(join(__dirname,'public')));
 app.use('/', express.static('node_modules/@popperjs/core/dist/umd/'));
 app.use('/', express.static('node_modules/bootstrap/dist/js'));
-// Para aceptar formularios metodo POST
-app.use(express.urlencoded({ extended: true}));
 // Body parser json
 app.use(express.json());
+// Para acceder a body en formularios método POST
+app.use(express.urlencoded({ extended: true}));
+// Definición de sesiones
+app.use(session({
+  secret: 'todorutas-session',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Mensajes alertas en vistas
+app.use(flash());
+// Variables globales
+app.use((req, res, next)=>{
+  app.locals.messageSuccess = req.flash('messageSuccess');
+  app.locals.messageWarning = req.flash('messageWarning');
+  app.locals.messageError = req.flash('messageError');
+  app.locals.user = req.user;
+  next();
+});
+
+
   
-// Rutas
+// Routes
 app.use('/', indexRoutes);
-app.use('/mantenedor', mantenedorRoutes);
+app.use('/parque', isLoggedIn, parqueRoutes);
+app.use('/empleado', isLoggedIn, empleadoRoutes);
 
 // 404 page
 app.use((req, res) => {
@@ -40,5 +70,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  logger.info(`Servidor iniciado en http://localhost:${PORT}`);
+  logger.info(`Servidor iniciado en http://${HOST}:${PORT}`);
 });

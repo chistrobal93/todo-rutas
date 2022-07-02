@@ -1,19 +1,13 @@
 import logger from '../logger.js';
-import { guardarParque, listarParques, obtenerParque, eliminarParque} from '../models/parquesModel.js';
+import { guardarParque, listarParques, obtenerParque, cambiarEstadoParque} from '../models/parqueModel.js';
 
 
-/**
- * Renderiza vista index del mantenedor de parques
- */
-export const mantenedorIndex = async (req, res) => {
-    res.render('mantenedor/index', {title:'Mantenedor'});
-}
 
 /**
  * Renderiza vista agregar indicando el action del formulario
  */
 export const agregar = async (req, res) => {
-    res.render('mantenedor/agregar', {title: 'Agregar Parque', urlForm: '/mantenedor/agregar'});
+    res.render('parque/agregar', {title: 'Agregar Parque', urlForm: '/parque/agregar'});
 }
 
 /**
@@ -24,10 +18,11 @@ export const guardar = async (req, res) => {
     let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva, desc} = req.body;
     try {
         await guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc);
+        req.flash('messageSuccess', 'Parque guardado correctamente');
     } catch (error) {
-        logger.error(`Ha ocurrido un error al crear parque: ${error}`);
+        req.flash('messageError', `Error al guardar parque: ${error}`);
     }
-    return res.redirect('/mantenedor/listar');
+    return res.redirect('/parque/listar');
 }
 
 /**
@@ -39,11 +34,11 @@ export const listar = async(req, res) => {
     try {
         listado = await listarParques();
 
-        res.render('mantenedor/listar', {title:'Lista Parques', listado});
+        res.render('parque/listar', {title:'Lista Parques', listado});
     } catch (error) {
-        logger.error(`No se pudo listar parques: ${error}`);
+        req.flash('messageError', `Error al listar parques: ${error}`);
         listado = [];
-        return res.redirect('/mantenedor');
+        return res.redirect('/parque');
     }
 }
 
@@ -56,24 +51,26 @@ export const editar = async (req, res) => {
         let codParque = req.params.codParque;
         const result = await obtenerParque(codParque);
         let parque = result[0];
-        res.render(`mantenedor/editar`, {title: 'Editar Parque', urlForm: `/mantenedor/editar/${codParque}`, parque});
+        res.render(`parque/editar`, {title: 'Editar Parque', urlForm: `/parque/editar/${codParque}`, parque});
     } catch (error) {
-        logger.error(`Ha ocurrido un error al editar parque: ${error}`);
-        return res.redirect("/mantenedor");
+        req.flash('messageError', `Error al listar parque: ${error}`);
+        return res.redirect("/parque");
     }
 }
 
 /**
- * Recibe id parque por metodo GET para eliminar parque de base de datos
+ * Recibe id parque por metodo GET para cambiar estado de parque de base de datos
  * @returns Vista lista de parque
  */
-export const eliminar = async (req,res) => {
+export const cambiarEstado = async (req,res) => {
     try {
         let codParque = req.params.codParque;
-        await eliminarParque(codParque);
-        res.redirect('/mantenedor/listar');
+        let codEstado = req.params.codEstado;
+        await cambiarEstadoParque(codParque,codEstado);
+        req.flash('messageWarning', 'Parque cambió su estado correctamente');
+        res.redirect('/parque/listar');
     } catch (error) {
-        logger.error(`Ha ocurrido un error al eliminar parque: ${error}`);
-        return res.redirect("/mantenedor/listar");
+        req.flash('messageError', `Error al cambiar el estado del parque: ${error}`);
+        return res.redirect("/parque/listar");
     }
 }

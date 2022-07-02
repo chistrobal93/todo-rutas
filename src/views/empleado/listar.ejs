@@ -1,0 +1,56 @@
+<%- layout('layouts/main')  %> 
+
+<div class="row">
+  <h1 class="display-4 text-center">Lista Empleados</h1>
+</div>
+
+<%- include('navTabs') %> 
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">Código</th>
+            <th scope="col">Tipo (privilegios)</th>
+            <th scope="col">RUT</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Tel.</th>
+            <th scope="col">email</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (listado.length > 0) { %>
+            <% let num = 1 %>
+            <% for (let item of listado) { %>
+                <tr <% if(item.cod_estado == 2){%>style="opacity: 0.5;"<%}%> class="text-center">
+                    <td><%=num++%></td>
+                    <td><%=item.cod_personal_app%></td>
+                    <td><%=item.cod_personal_app_tipo%></td>
+                    <td><%=item.rut%></td>
+                    <td><%=item.nombres%></td>
+                    <td><%=item.apellidos%></td>
+                    <td><%=item.telefono%></td>
+                    <td><%=item.email%></td>
+                    <td><a href="/empleado/editar/<%=item.cod_personal_app%>" class="btn btn-success m-1 py-1 px-2">
+                        <i class="fa fa-pencil fa-2xs" aria-hidden="true"></i> </a> 
+                        <% if(item.cod_estado == 2) { %> 
+                            <a href="javascript:estado(<%=item.cod_personal_app%>,1)" class="btn m-1 py-1 px-2"><i class="fa fa-2x fa-toggle-off" aria-hidden="true"></i></a>
+                        <% } else { %>
+                            <a href="javascript:estado(<%=item.cod_personal_app%>,2)" class="btn m-1 py-1 px-2"><i class="fa fa-2x fa-toggle-on"></i></a>
+                        <% } %>
+                    </td>
+
+                </tr>
+            <% }
+            } %> 
+
+    </tbody>
+</table>
+
+<script>
+    function estado(codEmpleado,codEstado) {
+        location.replace(`cambiarEstado/${codEmpleado}/${codEstado}`);
+    }
+</script>

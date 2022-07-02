@@ -17,18 +17,17 @@
             <th scope="col">Teléfono</th>
             <th scope="col">Email</th>
             <th scope="col">Aforo</th>
-            <th scope="col">Estado</th>
             <th scope="col">Horario</th>
             <th scope="col">Pág. Web</th>
             <th scope="col">Pág. Reserva</th>
-            <th scope="col" colspan="2">Acciones</th>
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
         <% if (listado.length > 0) { %>
             <% let num = 1 %>
             <% for (let item of listado) { %>
-                <tr class="text-center">
+                <tr <% if(item.estado == 2){%>style="opacity: 0.5;"<%}%> class="text-center">
                     <td><%=num++%></td>
                     <td><%=item.cod_parque%></td>
                     <td><%=item.cod_tipo%></td>
@@ -37,15 +36,16 @@
                     <td><%=item.telefono%></td>
                     <td><%=item.email%></td>
                     <td><%=item.aforo%></td>
-                    <td><%=item.estado%></td>
                     <td><%=item.horario%></td>
                     <td><%=item.pagina_web%></td>
                     <td><%=item.url_reserva%></td>
-                    <td><a href="/mantenedor/editar/<%=item.cod_parque%>" class="btn btn-success m-1 py-1 px-2">
-                        <i class="fa fa-pencil" aria-hidden="true"></i> </a> 
-                    </td>
-                    <td><a href="/mantenedor/eliminar/<%=item.cod_parque%>" class="btn btn-danger m-1 py-1 px-2">
-                        <i class="fa fa-pencil" aria-hidden="true"></i> </a> 
+                    <td><a href="/parque/editar/<%=item.cod_parque%>" class="btn btn-success m-1 py-1 px-2">
+                        <i class="fa fa-pencil fa-2xs" aria-hidden="true"></i> </a> 
+                        <% if(item.estado == 2) { %> 
+                            <a href="javascript:estado(<%=item.cod_parque%>,1)" class="btn m-1 py-1 px-2"><i class="fa fa-2x fa-toggle-off" aria-hidden="true"></i></a>
+                        <% } else { %>
+                            <a href="javascript:estado(<%=item.cod_parque%>,2)" class="btn m-1 py-1 px-2"><i class="fa fa-2x fa-toggle-on"></i></a>
+                        <% } %>
                     </td>
 
                 </tr>
@@ -54,3 +54,9 @@
 
     </tbody>
 </table>
+
+<script>
+    function estado(codParque,codEstado) {
+        location.replace(`cambiarEstado/${codParque}/${codEstado}`);
+    }
+</script>
