@@ -38,22 +38,6 @@ export function obtenerIp(req) {
     return ip;
 }
 
-/**
- * Función que valida el formato de un email
- * @param {String} cadena Correo electronico completo
- * @returns true: si cumple el formato de un email || false: si no cumple
- */
-export function validaFormatoCorreo(cadena) {
-    if(null != cadena) {
-        cadena = cadena.toLowerCase();
-    }
-    
-    if (!(/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.exec(cadena))) {
-        logger.error("Valida formato correo: " + cadena);
-        return false;
-    }
-    return true;
-}
 
 /**
  * Función que valida dígito verificador de un rut
