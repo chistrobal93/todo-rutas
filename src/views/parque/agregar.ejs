@@ -17,7 +17,13 @@
 
     <!-- Futuro radio button -->
     <div class="form-floating">
-      <input type="number" class="form-control" id="idTipo" name="idTipo" min="1" max="2" required>
+
+      <select class="form-control" id="idTipo" name="idTipo" required>
+        <option value="1">Nacional</option>
+        <option value="2">Independiente</option>
+      </select>
+      
+      <!--<input type="number" class="form-control" id="idTipo" name="idTipo" min="1" max="2" required>-->
       <label for="idTipo">ID tipo</label>
     </div>
 
@@ -46,9 +52,14 @@
       <label for="aforo">Aforo</label>
     </div>
 
-    <!-- Futuro radio button -->
+    <!-- Futuro radio button  <input type="number"  min="1" required>-->
     <div class="form-floating">
-      <input type="number" class="form-control" id="estado" name="estado" min="1" required>
+      
+
+      <select class="form-control" id="estado" name="estado" required>
+        <option value = "1">Activado</option>
+        <option value = "2">Desactivado</option>
+      </select>
       <label for="estado">ID Estado</label>
     </div>
 
