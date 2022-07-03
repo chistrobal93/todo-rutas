@@ -1,6 +1,6 @@
 import passport from 'passport';
 import logger from '../logger.js';
-import { listarParques } from '../models/parqueModel.js';
+import { listarParques, buscarParques } from '../models/parqueModel.js';
 
 
 /**
@@ -26,7 +26,27 @@ export const parques = async(req, res) => {
     try {
         listado = await listarParques();
         
-        res.render('parques', {title: 'Parques', listado});
+        res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
+    } catch (error) {
+        logger.error(`No se pudo listar parques: ${error}`);
+        listado = [];
+        return res.redirect('/');
+    }
+}
+
+export const parquesFiltrados = async(req, res) => {
+    let listado;
+    let {nombre, nacional, independiente, orden, lat, long} = req.body;
+    nombre = nombre.trim();
+
+    if (lat == 'error' || long == 'error') {
+        //Error al obtener ubicacion, no ordenar por cercanía
+    }
+    
+    try {
+        let criterios = { nombre, nacional, independiente, orden}
+        listado = await buscarParques(criterios);
+        res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
     } catch (error) {
         logger.error(`No se pudo listar parques: ${error}`);
         listado = [];

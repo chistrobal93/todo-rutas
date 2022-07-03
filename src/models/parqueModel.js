@@ -43,6 +43,27 @@ export const listarParques = async () => {
     }
 }
 
+export const buscarParques = async (criterios) => {
+    try {
+        let sqlNombre = '';
+        let sqlTipo = 'AND cod_tipo IN (1,2)';
+        if(criterios.nombre != '') { sqlNombre = `nombre LIKE '%${criterios.nombre}%' AND `; }
+        if (criterios.nacional == undefined && criterios.independiente == undefined) {
+            sqlTipo = '';
+        } else if(criterios.nacional == 'on' && criterios.independiente == undefined) {
+            sqlTipo = 'AND cod_tipo=1';
+        } else if(criterios.nacional == undefined && criterios.independiente == 'on') {
+            sqlTipo = 'AND cod_tipo=2';
+        }
+        let sql = `SELECT * FROM parque WHERE ${sqlNombre}estado=1 ${sqlTipo} ORDER BY cod_parque ASC`;
+        let [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        logger.error(`BUSCAR PARQUE - BD: ${error}`);
+        throw (error);
+    }
+}
+
 /**
  * Realiza consulta por toda la informacion de un unico parque por id
  * @param {Number} codParque Codigo unico del parque

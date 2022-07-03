@@ -20,30 +20,33 @@
 <h3 class="display-5 text-center my-4 text-uppercase">Parques</h3>
 
 <!-- Filtros -->
-<form action="#" class="row g-4 mb-3 justify-content-center">
+<form id="filterForm" action="<%=urlForm%>" method="POST" class="row g-4 mb-3 justify-content-center">
   <div class="col-5">
-    <input class="form-control" type="text" placeholder="Buscar...">
+    <input class="form-control" type="text" name="nombre" placeholder="Buscar...">
   </div>
   <div class="col-auto">
     <div class="form-check">
-      <input checked class="form-check-input" type="checkbox" id="cboxNacionales">
-      <label class="form-check-label" for="flexCheckDefault">Parques nacionales</label>
+      <input class="form-check-input" type="checkbox" name="nacional" id="cboxNacionales" checked>
+      <label class="form-check-label" for="cboxNacionales">Parques nacionales</label>
     </div>
     <div class="form-check">
-      <input checked class="form-check-input" type="checkbox" id="cboxIndependientes">
-      <label class="form-check-label">Parques independientes</label>
+      <input class="form-check-input" type="checkbox" name="independiente" id="cboxIndependientes" checked>
+      <label class="form-check-label" for="cboxIndependientes">Parques independientes</label>
     </div>
   </div>
   <div class="col-auto">
-    <button class="btn btn-outline-primary">Filtrar</button>
+    <input type="button" onclick="enviarForm()" class="btn btn-outline-primary" value="Filtrar" />
   </div>
   <div class="col-auto">
-    <select class="form-select">
-      <option selected>Ordenar por...</option>
+    <select class="form-select" name="orden">
+      <option value="" selected>Ordenar por...</option>
       <option value="1">Cercanía</option>
-      <option value="2">Precio entrada</option>
+      <!-- <option value="2">Precio entrada</option> -->
     </select>
   </div>
+
+  <input type="hidden" id="hddnLat" name="lat">
+  <input type="hidden" id="hddnLong" name="long">
 </form>
 
 
@@ -109,7 +112,7 @@
 
 
 
-<script>
+<script type="text/javascript">
   var mapaModal = document.getElementById('mapaModal');
   mapaModal.addEventListener('show.bs.modal', function (event) {
     // Boton que gatilla el modal
@@ -118,29 +121,22 @@
     var recipient = button.getAttribute('data-bs-whatever');
     // Actualizar el contenido del modal
     var modalBodyImg = mapaModal.querySelector('.modal-body img');
-    console.log(recipient);
     modalBodyImg.src = `images/parques/${recipient}/map.jpg`;
   });
 
-  var options = {
-    // Propiedades de ubicacion
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
+  function enviarForm() {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
 
   function success(pos) {
     var crd = pos.coords;
-    // Imprimir por consola la posición
-    console.log('Posición actual es:');
-    console.log('Latitud : ' + crd.latitude);
-    console.log('Longitud: ' + crd.longitude);
-    console.log('Precisión ±' + crd.accuracy + ' metros.');
+    document.getElementById('hddnLat').value = crd.latitude;
+    document.getElementById('hddnLong').value = crd.longitude;
+    document.getElementById("filterForm").submit();
   };
-
   function error(err) {
-    console.warn('ERROR(' + err.code + '): ' + err.message);
+    document.getElementById('hddnLat').value = 'error';
+    document.getElementById('hddnLong').value = 'error';
+    document.getElementById("filterForm").submit();
   };
-
-  navigator.geolocation.getCurrentPosition(success, error, options);
 </script>
