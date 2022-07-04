@@ -28,7 +28,7 @@ export const parques = async(req, res) => {
         
         res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
     } catch (error) {
-        logger.error(`No se pudo listar parques: ${error}`);
+        logger.error(`No se pudo listar parques: ${error.message}`);
         listado = [];
         return res.redirect('/');
     }
@@ -48,7 +48,7 @@ export const parquesFiltrados = async(req, res) => {
         listado = await buscarParques(criterios);
         res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
     } catch (error) {
-        logger.error(`No se pudo listar parques: ${error}`);
+        logger.error(`No se pudo listar parques: ${error.message}`);
         listado = [];
         return res.redirect('/');
     }

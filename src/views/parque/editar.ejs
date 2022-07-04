@@ -5,5 +5,108 @@
 </div>
 
 <%- include('navTabs') %> 
+<% if (typeof parque == 'undefined') { %>
+  <h1 class="display-4 text-center"><%='No se obtuvieron datos se parque, debe seleccionar un parque desde la lista'%></h1>
+<% } else { %>
 
-<h1 class="display-4">Parque a editar: <%=parque.nombre%></h1>
+<h1 class="display-4 text-center"><%=parque.nombre%></h1>
+
+<div class="container col-12 col-xl-9 col-xxl-7 mt-4 bg-secondary">
+  <form class="row justify-content-center g-3 py-4" action="<%=urlForm%>" method="POST">
+    <div class="row">
+      <div class="col-md-4 my-2 form-floating">
+        <input type="number" class="form-control" value="<%= parque.cod_parque %>"
+         id="idParque" name="idParque" min="1" max="99999" readonly>
+        <label for="idParque">ID parque</label>
+      </div>
+      
+      <div class="col-md-8 my-2 form-floating">
+        <select class="form-control" id="idTipo" name="idTipo" required>
+          <option value=""></option>
+          <option value="1" <%= (parque.cod_tipo == 1)?'selected':'' %>>Nacional</option>
+          <option value="2" <%= (parque.cod_tipo == 2)?'selected':'' %>>Independiente</option>
+        </select>
+        <label for="idTipo">Tipo de parque</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 my-2 form-floating">
+        <input type="text" class="form-control" value="<%= parque.nombre %>"
+         id="nombre" name="nombre" maxlength="100" required>
+        <label for="nombre">Nombre del parque</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 my-2 form-floating">
+        <input type="text" class="form-control" value="<%= parque.direccion %>"
+        id="direccion" name="direccion" maxlength="50" required>
+        <label for="direccion">Dirección del parque</label>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4 my-1 form-floating">
+        <input type="text" class="form-control" value="<%= parque.telefono %>"
+        id="telefono" name="telefono" maxlength="20" required>
+        <label for="telefono">Teléfono del parque</label>
+      </div>
+  
+      <div class="col-md-8 my-1 form-floating">
+        <input type="email" class="form-control" value="<%= parque.email %>"
+        id="email" name="email" maxlength="100" required>
+        <label for="email">Email del parque</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4  my-1 form-floating">
+        <input type="number" class="form-control" value="<%= parque.aforo %>"
+        id="aforo" name="aforo" min="1" required>
+        <label for="aforo">Aforo</label>
+      </div>
+      <div class="col-md-8 my-1 form-floating">
+        <input type="text" class="form-control" value="<%= parque.horario %>"
+        id="horario" name="horario" maxlength="100">
+        <label for="horario">Horario</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 my-1 form-floating">
+        <input type="text" class="form-control" value="<%= parque.pagina_web %>"
+        id="paginaWeb" name="paginaWeb">
+        <label for="paginaWeb">Sitio web</label>
+      </div>
+  
+      <div class="col-md-7 my-1 form-floating">
+        <input type="text" class="form-control" value="<%= parque.url_reserva %>"
+        id="urlReserva" name="urlReserva">
+        <label for="urlReserva">URL reserva</label>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12 my-1 form-floating">
+        <textarea class="form-control" id="desc" name="desc"
+        style="height: 120px" required> <%= parque.descripcion%> </textarea>
+        <label for="desc">Descripción</label>
+      </div>
+    </div>
+
+    <div class="col-12 my-1 form">
+      <label for="subirImagenes" class="form-label">Actualizar imagen de parque <i>(deshabilitado)</i></label>
+      <input class="form-control" type="file" id="subirMapa" disabled>
+    </div>
+
+    <div class="col-12 my-1 form">
+      <label for="subirMapa" class="form-label">Actualizar mapa <i>(deshabilitado)</i></label>
+      <input class="form-control" type="file" id="subirMapa" disabled>
+    </div>
+
+    <div class="col-12 text-center">
+      <button class="btn btn-primary text-light" type="submit">Actualizar parque</button>
+    </div>
+  </form>
+</div>
+<% } %>

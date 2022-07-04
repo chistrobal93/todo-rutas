@@ -80,6 +80,18 @@ export const obtenerParque = async (codParque) => {
     }
 }
 
+export const actualizarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,horario,pagWeb,pagReserva,desc) => {
+    try {
+        let sql = `UPDATE parque SET cod_tipo=${codTipo},nombre='${nom}',direccion='${dir}',telefono='${tel}',email='${email}',aforo=${aforo},horario='${horario}',pagina_web='${pagWeb}',url_reserva='${pagReserva}',descripcion='${desc}' WHERE cod_parque=${codParque}`;
+        console.log(sql);
+        const [result] = await pool.query(sql);
+        return result;
+    } catch (error) {
+        logger.error(`ACTUALIZAR PARQUE - BD: ${error.message}`);
+        throw (error);
+    }
+}
+
 /**
  * Realiza query para eliminar un parque de la tabla 'parque' de la base de datos por id
  * @param {Number} codParque Codigo unico del parque

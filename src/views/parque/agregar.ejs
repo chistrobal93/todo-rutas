@@ -6,95 +6,100 @@
 
 <%- include('navTabs') %> 
 
-<div class="container col-7 mt-4 bg-secondary">
-  <form class="row justify-content-center g-3" action="<%=urlForm%>" method="POST">
-    
-    <div class="form-floating">
-      <input type="number" class="form-control" id="idParque" name="idParque" min="1" required>
-      <label for="idParque">ID parque</label>
-    </div>
-
-
-    <!-- Futuro radio button -->
-    <div class="form-floating">
-
-      <select class="form-control" id="idTipo" name="idTipo" required>
-        <option value="1">Nacional</option>
-        <option value="2">Independiente</option>
-      </select>
+<div class="container col-12 col-xl-9 col-xxl-7 mt-4 bg-secondary">
+  <form class="row justify-content-center g-3 py-4" action="<%=urlForm%>" method="POST">
+    <div class="row">
+      <div class="col-md-4 my-2 form-floating">
+        <input type="number" class="form-control" id="idParque" name="idParque" min="1" max="99999" required>
+        <label for="idParque">ID parque</label>
+      </div>
       
-      <!--<input type="number" class="form-control" id="idTipo" name="idTipo" min="1" max="2" required>-->
-      <label for="idTipo">ID tipo</label>
+      <div class="col-md-8 my-2 form-floating">
+        <select class="form-control" id="idTipo" name="idTipo" required>
+          <option value=""></option>
+          <option value="1">Nacional</option>
+          <option value="2">Independiente</option>
+        </select>
+        <label for="idTipo">Tipo de parque</label>
+      </div>
     </div>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="nombre" name="nombre" maxlength="50" required>
-      <label for="nombre">Nombre del parque</label>
+    <div class="row">
+      <div class="col-12 my-2 form-floating">
+        <input type="text" class="form-control" id="nombre" name="nombre" maxlength="60" required>
+        <label for="nombre">Nombre del parque</label>
+      </div>
     </div>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="direccion" name="direccion" maxlength="50" required>
-      <label for="direccion">Dirección del parque</label>
+
+    <div class="row">
+      <div class="col-12 my-2 form-floating">
+        <input type="text" class="form-control" id="direccion" name="direccion" maxlength="50" required>
+        <label for="direccion">Dirección del parque</label>
+      </div>
     </div>
     
-    <div class="form-floating">
-      <input type="text" class="form-control" id="telefono" name="telefono" maxlength="20" required>
-      <label for="telefono">Teléfono del parque</label>
+    <div class="row">
+      <div class="col-md-4 my-1 form-floating">
+        <input type="text" class="form-control" id="telefono" name="telefono" maxlength="20" required>
+        <label for="telefono">Teléfono del parque</label>
+      </div>
+  
+      <div class="col-md-8 my-1 form-floating">
+        <input type="email" class="form-control" id="email" name="email" maxlength="100" required>
+        <label for="email">Email del parque</label>
+      </div>
     </div>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" id="email" name="email" maxlength="50" required>
-      <label for="email">Email del parque</label>
+    <div class="row">
+      <div class="col-sm-4 col-lg-2  my-1 form-floating">
+        <input type="number" class="form-control" id="aforo" name="aforo" min="1" required>
+        <label for="aforo">Aforo</label>
+      </div>
+  
+      <div class="col-sm-8 col-lg-4 my-1 form-floating">
+        <select class="form-control" id="estado" name="estado" required>
+          <option value = "1">Activado</option>
+          <option value = "2">Desactivado</option>
+        </select>
+        <label for="estado">Estado parque</label>
+      </div>
+      <div class="col-12 col-lg-6 my-1 form-floating">
+        <input type="text" class="form-control" id="horario" name="horario" maxlength="100">
+        <label for="horario">Horario</label>
+      </div>
     </div>
 
-    <div class="form-floating">
-      <input type="number" class="form-control" id="aforo" name="aforo" min="1" required>
-      <label for="aforo">Aforo</label>
+
+    <div class="row">
+      <div class="col-md-5 my-1 form-floating">
+        <input type="text" class="form-control" id="paginaWeb" name="paginaWeb">
+        <label for="paginaWeb">Sitio web</label>
+      </div>
+  
+      <div class="col-md-7 my-1 form-floating">
+        <input type="text" class="form-control" id="urlReserva" name="urlReserva">
+        <label for="urlReserva">URL reserva</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 my-1 form-floating">
+        <textarea type="text" rows="4" class="form-control" id="desc" name="desc" style="height: 100px" required></textarea>
+        <label for="desc">Descripción</label>
+      </div>
     </div>
 
-    <!-- Futuro radio button  <input type="number"  min="1" required>-->
-    <div class="form-floating">
-      
-
-      <select class="form-control" id="estado" name="estado" required>
-        <option value = "1">Activado</option>
-        <option value = "2">Desactivado</option>
-      </select>
-      <label for="estado">ID Estado</label>
+    <div class="col-12 my-1 form">
+      <label for="subirImagenes" class="form-label">Subir imagen de parque <i>(deshabilitado)</i></label>
+      <input class="form-control" type="file" id="subirMapa" disabled>
     </div>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="horario" name="horario" maxlength="100">
-      <label for="horario">Horario</label>
-    </div>
-
-    <div class="form-floating">
-      <input type="text" class="form-control" id="paginaWeb" name="paginaWeb">
-      <label for="paginaWeb">Sitio web</label>
-    </div>
-
-    <!-- if ¿Dispone de reservas? -->
-    <div class="form-floating">
-      <input type="text" class="form-control" id="urlReserva" name="urlReserva">
-      <label for="urlReserva">URL reserva</label>
-    </div>
-
-    <div class="form-floating">
-      <textarea type="text" rows="4" class="form-control" id="desc" name="desc" required></textarea>
-      <label for="desc">Descripción</label>
-    </div>
-
-    <div>
-      <label for="subirImagenes" class="form-label">Subir imágenes <i>(deshabilitado)</i></label>
-      <input class="form-control" type="file" id="subirMapa" multiple disabled>
-    </div>
-
-    <div>
+    <div class="col-12 my-1 form">
       <label for="subirMapa" class="form-label">Subir mapa <i>(deshabilitado)</i></label>
       <input class="form-control" type="file" id="subirMapa" disabled>
     </div>
 
-    <div class="col-12">
+    <div class="col-12 text-center">
       <button class="btn btn-primary text-light" type="submit">Agregar parque</button>
     </div>
   </form>

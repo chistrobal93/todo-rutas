@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { agregar, guardar, listar, editar, cambiarEstado } from '../controllers/parqueController.js';
+import { agregar, guardar, listar, editar, actualizar, cambiarEstado } from '../controllers/parqueController.js';
 
 const router = Router();
 
@@ -10,6 +10,7 @@ router.get('/agregar', agregar);
 router.post('/agregar', guardar);
 router.get('/listar', listar);
 router.get('/editar/:codParque', editar);
+router.post('/editar/:codParque', actualizar);
 router.get('/cambiarEstado/:codParque/:codEstado', cambiarEstado);
 
 export default router;
