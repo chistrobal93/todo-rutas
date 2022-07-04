@@ -61,8 +61,13 @@ app.use((req, res, next)=>{
 
 // Routes
 app.use('/', indexRoutes);
-app.use('/parque', isLoggedIn, parqueRoutes);
-app.use('/empleado', isLoggedIn, empleadoRoutes);
+if (NODE_ENV == 'dev' || NODE_ENV == 'development') {
+  app.use('/parque', parqueRoutes);
+  app.use('/empleado', empleadoRoutes);
+} else {
+  app.use('/parque', isLoggedIn, parqueRoutes);
+  app.use('/empleado', isLoggedIn, empleadoRoutes);
+}
 
 // 404 page
 app.use((req, res) => {
