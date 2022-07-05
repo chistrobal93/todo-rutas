@@ -20,7 +20,7 @@ const uploadImgMap = multer({
     fileFilter: (req, file, cb) => {
         const fileTypes = /jpeg|jpg|png/;
         const mimeType = fileTypes.test(file.mimetype);
-        const extName = fileTypes.test(path.extname(file.originalname));
+        const extName = fileTypes.test(path.extname(file.originalname).toLocaleLowerCase());
         if (mimeType && extName) {
             return cb(null, true);
         }
@@ -28,12 +28,13 @@ const uploadImgMap = multer({
     }
 }).fields([{name:'img'},{name:'mapa'}]);
 
-export const uploadFiles = (req,res) => {
+export const uploadFiles = (req, res, next) => {
     uploadImgMap(req, res, (err) => {
         if (err) {
-            logger.error('Error al subir archivos: '+err.message)
+            logger.error('Error al subir archivos: '+err.message);
             req.flash('messageError', `Error al subir archivo parque: ${err.message}`);
             return res.redirect('back');
         }
+        next();
     })
 }

@@ -1,7 +1,11 @@
 import passport from 'passport';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 import logger from '../logger.js';
 import { listarParques, buscarParques } from '../models/parqueModel.js';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * Renderiza vista index
@@ -67,4 +71,10 @@ export const authEmpleado = async (req, res, next) => {
         failureRedirect: '/loginEmpleados',
         failureFlash: true
     })(req, res, next);
+}
+
+export const downloadMap =  (req, res) => {
+    const imgMapa = req.params.mapa;
+    const directory = path.join(__dirname, '../public/images', imgMapa);
+    res.download(directory);
 }
