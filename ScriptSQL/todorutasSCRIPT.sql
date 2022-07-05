@@ -64,7 +64,7 @@ CREATE TABLE `parque` (
   `cod_parque` int PRIMARY KEY AUTO_INCREMENT,
   `cod_tipo` int,
   `nombre` varchar(100) NOT NULL,
-  `direccion` varchar(50) NOT NULL,
+  `direccion` varchar(50),
   `telefono` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `aforo` int NOT NULL,
@@ -72,7 +72,11 @@ CREATE TABLE `parque` (
   `horario` varchar(300) NOT NULL,
   `pagina_web` varchar(150),
   `url_reserva` varchar(255),
-  `descripcion` text
+  `descripcion` text,
+  `img` varchar(255),
+  `mapa` varchar(255),
+  `lat` varchar(255) NOT NULL,
+  `long` varchar(255) NOT NULL
 );
 
 CREATE TABLE `tipo_parque` (

@@ -9,9 +9,9 @@
   <h1 class="display-4 text-center"><%='No se obtuvieron datos se parque, debe seleccionar un parque desde la lista'%></h1>
 <% } else { %>
 
-<h1 class="display-4 text-center"><%=parque.nombre%></h1>
+<h1 class="text-center fw-bold text-capitalize"><%=parque.nombre%></h1>
 
-<div class="container col-12 col-xl-9 col-xxl-7 mt-4 bg-secondary">
+<div class="container col-12 col-xl-9 col-xxl-8 mt-4 bg-secondary">
   <form class="row justify-content-center g-3 py-4" action="<%=urlForm%>" method="POST">
     <div class="row">
       <div class="col-md-4 my-2 form-floating">

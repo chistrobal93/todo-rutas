@@ -6,8 +6,8 @@
 
 <%- include('navTabs') %> 
 
-<div class="container col-12 col-xl-9 col-xxl-7 mt-4 bg-secondary">
-  <form class="row justify-content-center g-3 py-4" action="<%=urlForm%>" method="POST">
+<div class="container col-12 col-xl-9 col-xxl-8 mt-4 bg-secondary">
+  <form class="row justify-content-center g-3 py-4" action="<%=urlForm%>" method="POST" enctype="multipart/form-data">
     <div class="row">
       <div class="col-md-4 my-2 form-floating">
         <input type="number" class="form-control" id="idParque" name="idParque" min="1" max="99999" required>
@@ -90,13 +90,13 @@
     </div>
 
     <div class="col-12 my-1 form">
-      <label for="subirImagenes" class="form-label">Subir imagen de parque <i>(deshabilitado)</i></label>
-      <input class="form-control" type="file" id="subirMapa" disabled>
+      <label for="subirImagenes" class="form-label">Subir imagen de parque: <i>(2MB máx)</i></label>
+      <input class="form-control" type="file" accept="image/jpg,image/png,image/jpeg" id="subirMapa" name="img" required>
     </div>
 
     <div class="col-12 my-1 form">
-      <label for="subirMapa" class="form-label">Subir mapa <i>(deshabilitado)</i></label>
-      <input class="form-control" type="file" id="subirMapa" disabled>
+      <label for="subirMapa" class="form-label">Subir mapa: <i>(2MB máx)</i></label>
+      <input class="form-control" type="file" accept="image/jpg,image/png,image/jpeg" id="subirMapa" name="mapa" required>
     </div>
 
     <div class="col-12 text-center">

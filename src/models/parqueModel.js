@@ -17,9 +17,9 @@ import logger from '../logger.js';
  * @param {String} [desc] Texto descriptivo del parque
  * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
  */
-export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,estado,horario,pagWeb,pagReserva,desc) => {
+export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,estado,horario,pagWeb,pagReserva,desc,img,mapa) => {
     try {
-        let sql = `INSERT INTO parque(cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion) VALUES (${codParque},${codTipo},'${nom}','${dir}','${tel}','${email}',${aforo},${estado},'${horario}','${pagWeb}','${pagReserva}','${desc}')`;
+        let sql = `INSERT INTO parque(cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa) VALUES (${codParque},${codTipo},'${nom}','${dir}','${tel}','${email}',${aforo},${estado},'${horario}','${pagWeb}','${pagReserva}','${desc}','${img}','${mapa}')`;
         const [result] = await pool.query(sql);
         return result;
     } catch (error) {
@@ -83,7 +83,6 @@ export const obtenerParque = async (codParque) => {
 export const actualizarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,horario,pagWeb,pagReserva,desc) => {
     try {
         let sql = `UPDATE parque SET cod_tipo=${codTipo},nombre='${nom}',direccion='${dir}',telefono='${tel}',email='${email}',aforo=${aforo},horario='${horario}',pagina_web='${pagWeb}',url_reserva='${pagReserva}',descripcion='${desc}' WHERE cod_parque=${codParque}`;
-        console.log(sql);
         const [result] = await pool.query(sql);
         return result;
     } catch (error) {

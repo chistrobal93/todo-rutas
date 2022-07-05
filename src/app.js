@@ -78,8 +78,8 @@ app.use((req, res) => {
 // Iniciar servidor
 app.listen(PORT, () => {
   if (NODE_ENV == 'dev' || NODE_ENV == 'development') {
-    logger.info(`Servidor iniciado en @${hostname()} http://localhost:${PORT}`);
+    logger.info(`Servidor iniciado en http://localhost:${PORT}/parque/agregar`);
   } else {
-    logger.info(`Servidor iniciado en ${NODE_ENV} @${hostname()} en puerto: ${PORT}`);
+    logger.info(`Servidor iniciado en ${NODE_ENV} en puerto: ${PORT}`);
   }
 });
