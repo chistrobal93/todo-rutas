@@ -75,8 +75,8 @@ CREATE TABLE `parque` (
   `descripcion` text,
   `img` varchar(255),
   `mapa` varchar(255),
-  `lat` varchar(255) NOT NULL,
-  `long` varchar(255) NOT NULL
+  `lat` varchar(255),
+  `long` varchar(255)
 );
 
 CREATE TABLE `tipo_parque` (
