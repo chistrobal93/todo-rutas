@@ -13,4 +13,10 @@ router.get('/loginEmpleados', isntLoggedIn, loginEmpleados);
 router.post('/loginEmpleados', isntLoggedIn, authEmpleado);
 router.get('/download/:mapa', downloadMap);
 
+// fetch post devuelve coordenadas a la vista en un json
+router.post('/ruta', (req,res) => {
+    const coordenadas = req.body;
+    res.json(coordenadas);
+});
+
 export default router;

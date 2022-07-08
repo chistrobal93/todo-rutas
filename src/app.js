@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import flash from 'connect-flash';
 import passport from 'passport';
-import { hostname } from 'os';
 
 import logger from './logger.js';
 import { NODE_ENV, PORT } from './config.js';
