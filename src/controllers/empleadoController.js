@@ -21,7 +21,7 @@ export const guardar = async (req, res) => {
         await guardarEmpleado(codEmpleado,tipo,1,rut,nombres,apellidos,dir,tel,email,psw);
         req.flash('messageSuccess', 'Empleado guardado correctamente');
     } catch (error) {
-        req.flash('messageError', `Error al guardar parque: ${error}`);
+        req.flash('messageError', `Error al guardar parque: ${error.message}`);
     }
     return res.redirect('/empleado/listar');
 }
@@ -33,7 +33,7 @@ export const listar = async (req, res) => {
 
         res.render('empleado/listar', {title:'Lista Empleados', listado});
     } catch (error) {
-        req.flash('messageError', `Error al listar empleados: ${error}`);
+        req.flash('messageError', `Error al listar empleados: ${error.message}`);
         listado = [];
         return res.redirect('/empleado');
     }
@@ -48,7 +48,7 @@ export const cambiarEstado = async (req, res) => {
         req.flash('messageWarning', 'Empleado cambió su estado correctamente');
         res.redirect('/empleado/listar');
     } catch (error) {
-        req.flash('messageError', `Error al cambiar el estado del empleado: ${error}`);
+        req.flash('messageError', `Error al cambiar el estado del empleado: ${error.message}`);
         return res.redirect("/empleado/listar");
     }
 }
@@ -60,7 +60,7 @@ export const logout = async (req, res) => {
             res.redirect('/');
           });
     } catch (error) {
-        req.flash('messageError', `Error al cerrar sesión: ${error}`);
+        req.flash('messageError', `Error al cerrar sesión: ${error.message}`);
         return res.redirect('/');
     }
 }

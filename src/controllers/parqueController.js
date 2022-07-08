@@ -1,6 +1,5 @@
-import logger from '../logger.js';
-import { guardarParque, listarParques, obtenerParque, cambiarEstadoParque} from '../models/parqueModel.js';
-
+import fs from 'fs';
+import { guardarParque, listarParques, obtenerParque, actualizarParque, cambiarEstadoParque} from '../models/parqueModel.js';
 
 
 /**
@@ -15,12 +14,28 @@ export const agregar = async (req, res) => {
  * @returns Vista de Lista de parques
  */
 export const guardar = async (req, res) => {
-    let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva, desc} = req.body;
+    let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva,desc} = req.body;
+    let img = req.files.img[0];
+    let mapa = req.files.mapa[0];
     try {
-        await guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc);
+        await guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc, img.filename, mapa.filename);
         req.flash('messageSuccess', 'Parque guardado correctamente');
     } catch (error) {
-        req.flash('messageError', `Error al guardar parque: ${error}`);
+        if(img != undefined) {
+            fs.unlink(img.path, (err) => {
+                if (err) {
+                    logger.error("Ha ocurrido un error al eliminar imagen: " + err);
+                }
+            });
+        }
+        if(mapa != undefined) {
+            fs.unlink(mapa.path, (err) => {
+                if (err) {
+                    logger.error("Ha ocurrido un error al eliminar mapa: " + err);
+                }
+            });
+        }
+        req.flash('messageError', `Error al guardar parque: ${error.message}`);
     }
     return res.redirect('/parque/listar');
 }
@@ -36,7 +51,7 @@ export const listar = async(req, res) => {
 
         res.render('parque/listar', {title:'Lista Parques', listado});
     } catch (error) {
-        req.flash('messageError', `Error al listar parques: ${error}`);
+        req.flash('messageError', `Error al listar parques: ${error.message}`);
         listado = [];
         return res.redirect('/parque');
     }
@@ -53,9 +68,20 @@ export const editar = async (req, res) => {
         let parque = result[0];
         res.render(`parque/editar`, {title: 'Editar Parque', urlForm: `/parque/editar/${codParque}`, parque});
     } catch (error) {
-        req.flash('messageError', `Error al listar parque: ${error}`);
+        req.flash('messageError', `Error al listar parque: ${error.message}`);
         return res.redirect("/parque");
     }
+}
+
+export const actualizar = async (req, res) => {
+    let {idParque,idTipo,nombre,direccion,telefono,email,aforo,horario,paginaWeb,urlReserva,desc} = req.body;
+    try {
+        await actualizarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, horario, paginaWeb, urlReserva, desc);
+        req.flash('messageSuccess', 'Parque actualizado correctamente');
+    } catch (error) {
+        req.flash('messageError', `Error al actualizar parque: ${error.message}`);
+    }
+    return res.redirect('/parque/listar');
 }
 
 /**
@@ -70,7 +96,7 @@ export const cambiarEstado = async (req,res) => {
         req.flash('messageWarning', 'Parque cambió su estado correctamente');
         res.redirect('/parque/listar');
     } catch (error) {
-        req.flash('messageError', `Error al cambiar el estado del parque: ${error}`);
+        req.flash('messageError', `Error al cambiar el estado del parque: ${error.message}`);
         return res.redirect("/parque/listar");
     }
 }

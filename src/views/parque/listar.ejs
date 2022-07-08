@@ -1,7 +1,7 @@
 <%- layout('layouts/main')  %> 
 
 <div class="row">
-  <h1 class="display-4 text-center">Lista Parques</h1>
+  <h2 class="display-4 text-center">Lista Parques</h1>
 </div>
 
 <%- include('navTabs') %> 
@@ -9,10 +9,8 @@
 <table class="table table-striped table-hover">
     <thead class="thead-dark">
         <tr class="text-center">
-            <th scope="col">#</th>
-            <th scope="col">Código</th>
-            <th scope="col">Tipo (priv o publ)</th>
             <th scope="col">Nombre Parque</th>
+            <th scope="col">Tipo</th>
             <th scope="col">Dirección</th>
             <th scope="col">Teléfono</th>
             <th scope="col">Email</th>
@@ -28,10 +26,15 @@
             <% let num = 1 %>
             <% for (let item of listado) { %>
                 <tr <% if(item.estado == 2){%>style="opacity: 0.5;"<%}%> class="text-center">
-                    <td><%=num++%></td>
-                    <td><%=item.cod_parque%></td>
-                    <td><%=item.cod_tipo%></td>
                     <td><%=item.nombre%></td>
+                    <td>
+                        <% let tipoParque = "null";
+                         if(item.cod_tipo == 1){
+                            tipoParque = "Nacional";
+                         }else if(item.cod_tipo == 2){
+                            tipoParque = "Indepen.";
+                         }
+                        %><%=tipoParque%></td>
                     <td><%=item.direccion%></td>
                     <td><%=item.telefono%></td>
                     <td><%=item.email%></td>

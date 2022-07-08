@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { agregar, guardar, listar, editar, cambiarEstado } from '../controllers/parqueController.js';
+import { agregar, guardar, listar, editar, actualizar, cambiarEstado } from '../controllers/parqueController.js';
+import { uploadFiles } from '../tools/multerUpload.js';
 
 const router = Router();
 
@@ -7,9 +8,10 @@ const router = Router();
 router.get('/', listar);
 
 router.get('/agregar', agregar);
-router.post('/agregar', guardar);
+router.post('/agregar', uploadFiles, guardar);
 router.get('/listar', listar);
 router.get('/editar/:codParque', editar);
+router.post('/editar/:codParque', actualizar);
 router.get('/cambiarEstado/:codParque/:codEstado', cambiarEstado);
 
 export default router;

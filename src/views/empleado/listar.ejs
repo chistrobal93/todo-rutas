@@ -9,9 +9,8 @@
 <table class="table table-striped table-hover">
     <thead class="thead-dark">
         <tr class="text-center">
-            <th scope="col">#</th>
             <th scope="col">Código</th>
-            <th scope="col">Tipo (privilegios)</th>
+            <th scope="col">Privilegios</th>
             <th scope="col">RUT</th>
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
@@ -22,12 +21,14 @@
     </thead>
     <tbody>
         <% if (listado.length > 0) { %>
-            <% let num = 1 %>
             <% for (let item of listado) { %>
                 <tr <% if(item.cod_estado == 2){%>style="opacity: 0.5;"<%}%> class="text-center">
-                    <td><%=num++%></td>
                     <td><%=item.cod_personal_app%></td>
-                    <td><%=item.cod_personal_app_tipo%></td>
+                    <%  let tipo_personal = null;
+                        if(item.cod_personal_app_tipo == 1){
+                            tipo_personal = "Administrador"
+                    }%>
+                    <td><%=tipo_personal%></td>
                     <td><%=item.rut%></td>
                     <td><%=item.nombres%></td>
                     <td><%=item.apellidos%></td>

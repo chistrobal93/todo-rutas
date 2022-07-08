@@ -1,5 +1,32 @@
 <%- layout('layouts/main')  %> 
 
+<script>
+  if('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(async position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      console.log(lat);
+      console.log(lon);
+      document.getElementById('hddnLat').value = lat;
+      document.getElementById('hddnLong').value = lon;
+
+      const coordenadas = { lat, lon };
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(coordenadas)
+      };
+      const response = await fetch('/ruta', options);
+      const json = await response.json();
+      console.log(json);
+    });
+  } else {
+    alert('Geolocalización no está disponible en su navegador');
+  }
+</script>
+
 <!-- Modal de mapas -->
 <div class="modal fade" id="mapaModal" tabindex="-1" aria-labelledby="mapaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
@@ -20,30 +47,33 @@
 <h3 class="display-5 text-center my-4 text-uppercase">Parques</h3>
 
 <!-- Filtros -->
-<form action="#" class="row g-4 mb-3 justify-content-center">
+<form id="filterForm" action="<%=urlForm%>" method="POST" class="row g-4 mb-3 justify-content-center">
   <div class="col-5">
-    <input class="form-control" type="text" placeholder="Buscar...">
+    <input class="form-control" type="text" name="nombre" placeholder="Buscar...">
   </div>
   <div class="col-auto">
     <div class="form-check">
-      <input checked class="form-check-input" type="checkbox" id="cboxNacionales">
-      <label class="form-check-label" for="flexCheckDefault">Parques nacionales</label>
+      <input class="form-check-input" type="checkbox" name="nacional" id="cboxNacionales" checked>
+      <label class="form-check-label" for="cboxNacionales">Parques nacionales</label>
     </div>
     <div class="form-check">
-      <input checked class="form-check-input" type="checkbox" id="cboxIndependientes">
-      <label class="form-check-label">Parques independientes</label>
+      <input class="form-check-input" type="checkbox" name="independiente" id="cboxIndependientes" checked>
+      <label class="form-check-label" for="cboxIndependientes">Parques independientes</label>
     </div>
   </div>
   <div class="col-auto">
-    <button class="btn btn-outline-primary">Filtrar</button>
+    <input type="button" onclick="enviarForm()" class="btn btn-outline-primary" value="Filtrar" />
   </div>
   <div class="col-auto">
-    <select class="form-select">
-      <option selected>Ordenar por...</option>
+    <select class="form-select" name="orden">
+      <option value="" selected>Ordenar por...</option>
       <option value="1">Cercanía</option>
-      <option value="2">Precio entrada</option>
+      <!-- <option value="2">Precio entrada</option> -->
     </select>
   </div>
+
+  <input type="hidden" id="hddnLat" name="lat">
+  <input type="hidden" id="hddnLong" name="long">
 </form>
 
 
@@ -57,7 +87,7 @@
           <article class="card mb-3 bg-secondary shadow-sm">
             <div class="row g-0 ">
               <div class="col-md-4">
-                <img src="images/parques/<%= item.cod_parque%>/main.jpg"  class="rounded" alt="Sin imagen: <%= item.nombre %>" style="width: 100%; height: auto; vertical-align:top;">
+                <img src="images/<%= item.img%>"  class="rounded" alt="Sin imagen: <%= item.nombre %>" style="width: 100%; height: auto; vertical-align:top;">
               </div>
               <div class="col-md-8">
                 <div class="card-body ms-3">
@@ -84,8 +114,8 @@
                   </div>
                   <div style="text-align: right;">
                     
-                    <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#mapaModal" data-bs-whatever="<%=item.cod_parque%>">Ver mapa</button>
-                    <a href="#" class="btn btn-primary text-light disabled">Descargar mapa</a>
+                    <button type="button" class="btn btn-primary text-light" data-bs-toggle="modal" data-bs-target="#mapaModal" data-bs-whatever="<%=item.mapa%>">Ver mapa</button>
+                    <a href="/download/<%=item.mapa%>" class="btn btn-primary text-light">Descargar mapa</a>
                     <% if (item.url_reserva != null && item.url_reserva != '') { %>
                     <a href="<%=item.url_reserva%>" target="_blank" class="btn btn-primary text-light" >Hacer reserva</a>
                     <% } %>
@@ -109,7 +139,7 @@
 
 
 
-<script>
+<script type="text/javascript">
   var mapaModal = document.getElementById('mapaModal');
   mapaModal.addEventListener('show.bs.modal', function (event) {
     // Boton que gatilla el modal
@@ -118,29 +148,22 @@
     var recipient = button.getAttribute('data-bs-whatever');
     // Actualizar el contenido del modal
     var modalBodyImg = mapaModal.querySelector('.modal-body img');
-    console.log(recipient);
-    modalBodyImg.src = `images/parques/${recipient}/map.jpg`;
+    modalBodyImg.src = `images/${recipient}`;
   });
 
-  var options = {
-    // Propiedades de ubicacion
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
+  function enviarForm() {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
 
   function success(pos) {
     var crd = pos.coords;
-    // Imprimir por consola la posición
-    console.log('Posición actual es:');
-    console.log('Latitud : ' + crd.latitude);
-    console.log('Longitud: ' + crd.longitude);
-    console.log('Precisión ±' + crd.accuracy + ' metros.');
+    document.getElementById('hddnLat').value = crd.latitude;
+    document.getElementById('hddnLong').value = crd.longitude;
+    document.getElementById("filterForm").submit();
   };
-
   function error(err) {
-    console.warn('ERROR(' + err.code + '): ' + err.message);
+    document.getElementById('hddnLat').value = 'error';
+    document.getElementById('hddnLong').value = 'error';
+    document.getElementById("filterForm").submit();
   };
-
-  navigator.geolocation.getCurrentPosition(success, error, options);
 </script>

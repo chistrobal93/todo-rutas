@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 config();
 
-export const HOST = process.env.HOST || 'localhost';
+export const NODE_ENV = process.env.NODE_ENV || 'development';
 export const PORT = process.env.PORT || 3000;
 
 // Credenciales Base de datos
