@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { API_KEY_GOOGLE } from '../config.js';
 import { guardarParque, listarParques, obtenerParque, actualizarParque, cambiarEstadoParque} from '../models/parqueModel.js';
 
 
@@ -6,7 +7,7 @@ import { guardarParque, listarParques, obtenerParque, actualizarParque, cambiarE
  * Renderiza vista agregar indicando el action del formulario
  */
 export const agregar = async (req, res) => {
-    res.render('parque/agregar', {title: 'Agregar Parque', urlForm: '/parque/agregar'});
+    res.render('parque/agregar', {title: 'Agregar Parque', urlForm: '/parque/agregar', apiKeyGoogle: API_KEY_GOOGLE});
 }
 
 /**

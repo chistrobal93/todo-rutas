@@ -10,3 +10,5 @@ export const DB_USER = process.env.DB_USER || "root";
 export const DB_PASSWORD = process.env.DB_PASSWORD || "";
 export const DB_DATABASE = process.env.DB_DATABASE || "todorutas";
 export const DB_PORT = process.env.DB_PORT || 3306;
+
+export const API_KEY_GOOGLE = process.env.API_KEY;

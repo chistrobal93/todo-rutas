@@ -5,9 +5,10 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import flash from 'connect-flash';
 import passport from 'passport';
+import MySQLStore from 'express-mysql-session';
 
 import logger from './logger.js';
-import { NODE_ENV, PORT } from './config.js';
+import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, NODE_ENV, PORT } from './config.js';
 import indexRoutes from './routes/indexRoutes.js';
 import parqueRoutes from './routes/parqueRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
@@ -39,7 +40,8 @@ app.use(express.urlencoded({ extended: true}));
 app.use(session({
   secret: 'todorutas-session',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MySQLStore({host:DB_HOST, user:DB_USER, password:DB_PASSWORD, database:DB_DATABASE})
 }));
 // Inicializar passport y usar sesión
 app.use(passport.initialize());
@@ -60,13 +62,8 @@ app.use((req, res, next)=>{
 
 // Routes
 app.use('/', indexRoutes);
-if (NODE_ENV == 'dev' || NODE_ENV == 'development') {
-  app.use('/parque', parqueRoutes);
-  app.use('/empleado', empleadoRoutes);
-} else {
-  app.use('/parque', isLoggedIn, parqueRoutes);
-  app.use('/empleado', isLoggedIn, empleadoRoutes);
-}
+app.use('/parque', isLoggedIn, parqueRoutes);
+app.use('/empleado', isLoggedIn, empleadoRoutes);
 
 // 404 page
 app.use((req, res) => {
