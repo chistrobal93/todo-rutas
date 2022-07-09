@@ -1,8 +1,8 @@
 <%- layout('layouts/main')  %> 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&sensor=false&libraries=places"></script>
-<script type="text/javascript" src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>
+<!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=(typeof apiKeyGoogle!='undefined')?apiKeyGoogle:''%>&libraries=places"></script>
+<!--<script type="text/javascript" src="https://rawgit.com/Logicify/jquery-locationpicker-plugin/master/dist/locationpicker.jquery.js"></script>-->
 
 <div class="row">
   <h1 class="display-4 text-center">Agregar Parque</h1>
@@ -44,10 +44,16 @@
     </div>
 
     <div class="row">
-      Location: <input type="text" id="location" style="width: 200px"/>
-      Lat <input type="text" id="lat" style="width: 200px"/>
-      Long: <input type="text" id="lng" style="width: 200px"/>
-      <div id="us2" style="width: 500px; height: 400px;"></div> 
+      <div class="col-sm-4 col-lg-3  my-1 form-floating">
+        <input type="text" class="form-control" id="lat" name="lat" disabled>
+        <label for="lat">Latitud</label>
+      </div>
+      <div class="col-sm-4 col-lg-3  my-1 form-floating">
+        <input type="text" class="form-control" id="lon" name="lon" disabled>
+        <label for="lon">Longitud</label>
+      </div>
+      <!--Location: <input type="text" id="location" style="width: 200px"/>-->
+      <div id="map" style="width: 400px; height: 200px;"></div> 
     </div>
     
     <div class="row">
@@ -117,19 +123,24 @@
 </div>
 
 <script>
-  $(function() {
-    $('#us2').locationpicker({
-        location: {latitude: -33.4513, longitude: -70.6653},   
-        radius: 0,
-        inputBinding: {
-          latitudeInput: $('#lat'),
-          longitudeInput: $('#lng'),
-          locationNameInput: $('#location')
-        },
-        enableAutocomplete: true,
-        onchanged: function(currentLocation, radius, isMarkerDropped) {
-          alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
-        }
-    });
- });
+//   $(function() {
+//     $('#us2').locationpicker({
+//         location: {latitude: -33.4513, longitude: -70.6653},   
+//         radius: 0,
+//         inputBinding: {
+//           latitudeInput: $('#lat'),
+//           longitudeInput: $('#lng'),
+//           locationNameInput: $('#location')
+//         },
+//         enableAutocomplete: true,
+//         onchanged: function(currentLocation, radius, isMarkerDropped) {
+//           alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+//         }
+//     });
+//  });
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: -33.4513, lng: -70.6653},
+  zoom: 8
+});
 </script>
