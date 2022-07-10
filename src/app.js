@@ -5,10 +5,9 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import flash from 'connect-flash';
 import passport from 'passport';
-import expressMySqlSession from 'express-mysql-session';
 
 import logger from './logger.js';
-import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, NODE_ENV, PORT } from './config.js';
+import { NODE_ENV, PORT } from './config.js';
 import indexRoutes from './routes/indexRoutes.js';
 import parqueRoutes from './routes/parqueRoutes.js';
 import empleadoRoutes from './routes/empleadoRoutes.js';
@@ -19,7 +18,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Inicialización
 const app = express();
-const MySQLStore = expressMySqlSession(session);
 passportConfig(passport);
 
 // Settings
@@ -27,6 +25,16 @@ app.set('appName', 'TodoRutas');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views", join(__dirname,'views'));
+
+var sess = {
+  secret: 'todorutas-session',
+  resave: false,
+  saveUninitialized: true,
+}
+if (NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+  sess.cookie.secure = true;
+}
 
 // Middleware
 // Directorios públicos que puede acceder el navegador
@@ -38,12 +46,7 @@ app.use(express.json());
 // Para acceder a body en formularios método POST
 app.use(express.urlencoded({ extended: true}));
 // Definición de sesiones
-app.use(session({
-  secret: 'todorutas-session',
-  resave: false,
-  saveUninitialized: false,
-  store: new MySQLStore({host:DB_HOST, user:DB_USER, password:DB_PASSWORD, database:DB_DATABASE})
-}));
+app.use(session(sess));
 // Inicializar passport y usar sesión
 app.use(passport.initialize());
 app.use(passport.session());
