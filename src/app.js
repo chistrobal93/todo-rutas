@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import flash from 'connect-flash';
 import passport from 'passport';
-import MySQLStore from 'express-mysql-session';
+import expressMySqlSession from 'express-mysql-session';
 
 import logger from './logger.js';
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USER, NODE_ENV, PORT } from './config.js';
@@ -19,6 +19,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Inicialización
 const app = express();
+const MySQLStore = expressMySqlSession(session);
 passportConfig(passport);
 
 // Settings

@@ -1,5 +1,29 @@
 <%- layout('layouts/main')  %> 
 
+<script>
+  if('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(async position => {
+      const lat = position.coords.latitude;
+      const long = position.coords.longitude;
+      console.log(long);
+      console.log(lat);
+
+      const coordenadas = { long, lat };
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(coordenadas)
+      };
+      const response = await fetch('/guardarCoords', options);
+      //const json = await response.json();
+      //console.log(json);
+    });
+  } else {
+    alert('Geolocalización no está disponible en su navegador');
+  }
+</script>
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner rounded shadow-lg">
