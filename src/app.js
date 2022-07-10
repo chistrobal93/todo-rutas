@@ -26,14 +26,14 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set("views", join(__dirname,'views'));
 
-var sess = {
+let sess = {
   secret: 'todorutas-session',
   resave: false,
   saveUninitialized: true,
 }
 if (NODE_ENV == 'production') {
   app.set('trust proxy', 1);
-  sess.cookie.secure = true;
+  sess.cookie = { secure: true };
 }
 
 // Middleware
