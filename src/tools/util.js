@@ -79,7 +79,9 @@ export function validaRut(rut) {
 
 /**
  * Función que valida coordenadas geográficas
- * @param {Object} coords Objeto con atributos long y lat
+ * Valida si longitud está entre -180º y 180º, y latitud entre -90º y 90º
+ * @param {number} long Longitud
+ * @param {number} lat Latitud
  * @returns Si coordenadas son válidas, devuelve 'true', de lo contrario retorna 'false'
  */
 export function coordenadasValidas(long, lat) {

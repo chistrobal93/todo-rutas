@@ -5,27 +5,29 @@ import { coordenadasValidas } from '../tools/util.js';
 
 
 /**
- * Renderiza vista agregar indicando el action del formulario
+ * Controlador para renderizar vista agregar indicando el action del formulario y api key de Google
+ * @param {Object} req Requerimiento de cargar vista agregar parque.
+ * @param {Object} res Respuesta de cargar vista agregar parque.
  */
 export const agregar = async (req, res) => {
     res.render('parque/agregar', {title: 'Agregar Parque', urlForm: '/parque/agregar', apiKeyGoogle: API_KEY_GOOGLE});
 }
 
 /**
- * Recibe formulario POST mediante body, para luego guardar parque en la base de datos 
- * @returns Vista de Lista de parques
+ * Controlador para guardar parque
+ * @param {Object} req Requerimiento de guardar. Los elementos vienen en body, ya que vienen por POST
+ * @param {Object} res Respuesta de guardar. Siempre redirige a vista listar parques con mensaje alert de respuesta
+ * @returns La respuesta de redirigir hacia lista de parques
  */
 export const guardar = async (req, res) => {
     let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva,desc,long,lat} = req.body;
     let img = req.files.img[0];
     let mapa = req.files.mapa[0];
-    // Si coordenadas son inválidas
-    if(!coordenadasValidas(long, lat)) {
-        req.flash('messageError', `Coordenas inválidas`);
-        return res.redirect('back');
-    }
-    let coords = { long, lat }
     try {
+        if(!coordenadasValidas(long, lat)) {
+            throw Error('Coordenas inválidas');
+        }
+        let coords = { long, lat }
         await guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc, img.filename, mapa.filename, coords);
         req.flash('messageSuccess', 'Parque guardado correctamente');
     } catch (error) {
@@ -49,7 +51,10 @@ export const guardar = async (req, res) => {
 }
 
 /**
- * Obtiene el listado de parques y renderiza la vista de Lista de parques
+ * Controlador que obtiene el listado de parques y renderiza la vista de Lista de parques
+ * @param {Object} req Requerimiento de cargar vista Listar parques.
+ * @param {Object} res Respuesta de listar parques. Si pudo obtener los datos de los parques, renderiza vista listar,
+ * si no, redirige a vista index con mensaje alert de respuesta
  * @returns Vista lista de parques
  */
 export const listar = async(req, res) => {
@@ -61,13 +66,15 @@ export const listar = async(req, res) => {
     } catch (error) {
         req.flash('messageError', `Error al listar parques: ${error.message}`);
         listado = [];
-        return res.redirect('/parque');
+        return res.redirect('/');
     }
 }
 
 /**
- * Recibe id parque por metodo GET para renderizar vista de edicion para el parque
- * @returns Vista editar de parque
+ * Controlador para cargar datos en vista editar parque
+ * @param {Object} req Requerimiento de cargar vista editar. El id del parque viene en params, ya que viene por GET
+ * @param {Object} res Respuesta de cargar vista editar. Si pudo obtener los datos del parque a editar, renderiza vista editar,
+ * si no, redirige a vista listar parques con mensaje alert de respuesta
  */
 export const editar = async (req, res) => {
     try {
@@ -81,6 +88,12 @@ export const editar = async (req, res) => {
     }
 }
 
+/**
+ * Controlador para actualizar parque
+ * @param {Object} req Requerimiento de actualizar. Los elementos vienen en body, ya que vienen por POST
+ * @param {Object} res Respuesta de actualizar. Siempre redirige a vista listar parques con mensaje alert de respuesta
+ * @returns La respuesta de redirigir hacia lista de parques
+ */
 export const actualizar = async (req, res) => {
     let {idParque,idTipo,nombre,direccion,telefono,email,aforo,horario,paginaWeb,urlReserva,desc} = req.body;
     try {
@@ -93,8 +106,10 @@ export const actualizar = async (req, res) => {
 }
 
 /**
- * Recibe id parque por metodo GET para cambiar estado de parque de base de datos
- * @returns Vista lista de parque
+ * Controlador para cambiar estado de un parque (activo o inactivo)
+ * @param {Object} req Requerimiento de cambiar estado. El id del parque y el estado al que quiere cambiar vienen en params, ya que vienen por GET
+ * @param {Object} res Respuesta de cambiar estado. Siempre redirige a vista listar parques con mensaje alert de respuesta
+ * @returns La respuesta de redirigir hacia lista de parques
  */
 export const cambiarEstado = async (req,res) => {
     try {
@@ -102,9 +117,8 @@ export const cambiarEstado = async (req,res) => {
         let codEstado = req.params.codEstado;
         await cambiarEstadoParque(codParque,codEstado);
         req.flash('messageWarning', 'Parque cambió su estado correctamente');
-        res.redirect('/parque/listar');
     } catch (error) {
         req.flash('messageError', `Error al cambiar el estado del parque: ${error.message}`);
-        return res.redirect("/parque/listar");
     }
+    return res.redirect("/parque/listar");
 }

@@ -28,7 +28,7 @@ export const about = async (req, res) => {
  */
 export const parques = async(req, res) => {
     let listado;
-    // Si no se ha obtenido la ubicacion
+    // Si no se ha obtenido la ubicacion desde archivo coords.js
     if (Object.keys(ubicacionActual).length === 0) {
         try {
             listado = await listarParques();
@@ -39,7 +39,7 @@ export const parques = async(req, res) => {
             listado = [];
             return res.redirect('/');
         }
-    } else {
+    } else { // Si se obtuvo la ubicación
         try {
             listado = await listarParquesUbicacion(ubicacionActual);
             
@@ -54,34 +54,21 @@ export const parques = async(req, res) => {
 
 export const parquesFiltrados = async(req, res) => {
     let listado;
-    let {nombre, nacional, independiente, orden, long, lat} = req.body;
+    let {nombre, nacional, independiente, orden} = req.body;
     nombre = nombre.trim();
     let criterios = { nombre, nacional, independiente, orden}
-
-    if (long == 'error' || lat == 'error') {
-        // No ordena por cercania
-        try {
-            listado = await buscarParques(criterios);
-            res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
-        } catch (error) {
-            logger.error(`No se pudo listar parques: ${error.message}`);
-            listado = [];
-            return res.redirect('/');
+    criterios.ubicacion = ubicacionActual;
+    try {
+        listado = await buscarParques(criterios);
+        if(criterios.orden=='1' && Object.keys(criterios.ubicacion).length === 0) {
+            req.flash('messageWarning', `Debe activar ubicacion en su dispositivo`);
         }
-    } else { // Ordena por distancia
-        try {
-            criterios.long;
-            criterios.lat;
-            listado = await buscarParques(criterios);
-            res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
-        } catch (error) {
-            logger.error(`No se pudo listar parques: ${error.message}`);
-            listado = [];
-            return res.redirect('/');
-        }
+        res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
+    } catch (error) {
+        logger.error(`No se pudo listar parques: ${error.message}`);
+        listado = [];
+        return res.redirect('/');
     }
-    
-    
 }
 
 /**
