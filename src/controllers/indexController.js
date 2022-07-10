@@ -85,7 +85,7 @@ export const parquesFiltrados = async(req, res) => {
 }
 
 /**
- * Renderiza vista login
+ * Renderiza vista login Empleados
  */
 export const loginEmpleados = async (req, res) => {
     res.render('loginEmpleados', {title: 'Login'});
@@ -97,6 +97,13 @@ export const authEmpleado = async (req, res, next) => {
         failureRedirect: '/loginEmpleados',
         failureFlash: true
     })(req, res, next);
+}
+
+/**
+ * Renderiza vista login Afiliados
+ */
+ export const loginAfiliados = async (req, res) => {
+    res.render('loginAfiliados', {title: 'Login'});
 }
 
 export const downloadMap =  (req, res) => {
