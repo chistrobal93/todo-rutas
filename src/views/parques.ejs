@@ -1,32 +1,5 @@
 <%- layout('layouts/main')  %> 
 
-<script>
-  if('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(async position => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      console.log(lat);
-      console.log(lon);
-      document.getElementById('hddnLat').value = lat;
-      document.getElementById('hddnLong').value = lon;
-
-      const coordenadas = { lat, lon };
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(coordenadas)
-      };
-      const response = await fetch('/ruta', options);
-      const json = await response.json();
-      console.log(json);
-    });
-  } else {
-    alert('Geolocalización no está disponible en su navegador');
-  }
-</script>
-
 <!-- Modal de mapas -->
 <div class="modal fade" id="mapaModal" tabindex="-1" aria-labelledby="mapaModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
@@ -91,12 +64,16 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body ms-3">
+                  <% if((typeof item.km) != 'undefined') { %>
+                    <div class="text-end">
+                      <h1 class="h4">A <%=item.km.toFixed(1)%> kms de distancia! </h1>
+                    </div>
+                  <% } %>
                   <h4 class="card-title"><%= item.nombre %></h4>
                   <p class="card-text"><%= item.descripcion %> </p>
                     <a  class="card-link" data-bs-toggle="collapse" href="#collapse<%= item.cod_parque%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                       Ver más...
                     </a>
-                    
                     <div class="collapse" id="collapse<%= item.cod_parque%>">
                       <div class="card card-body">
                         

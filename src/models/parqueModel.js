@@ -43,6 +43,17 @@ export const listarParques = async () => {
     }
 }
 
+export const listarParquesUbicacion = async (ubicacion) => {
+    try {
+        let sql = `SELECT cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa, ubicacion, ST_Distance_Sphere(POINT(${ubicacion.long}, ${ubicacion.lat}), ubicacion)/1000 AS 'km' FROM parque ORDER BY km ASC`;
+        let [rows] = await pool.query(sql);
+        return rows;
+    } catch (error) {
+        logger.error(`LISTAR PARQUES CON UBICACION - BD: ${error}`);
+        throw (error);
+    }
+}
+
 export const buscarParques = async (criterios) => {
     try {
         let sqlNombre = '';
