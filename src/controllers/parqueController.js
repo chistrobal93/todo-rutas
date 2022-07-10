@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { API_KEY_GOOGLE } from '../config.js';
 import { guardarParque, listarParques, obtenerParque, actualizarParque, cambiarEstadoParque} from '../models/parqueModel.js';
+import { coordenadasValidas } from '../tools/util.js';
 
 
 /**
@@ -15,11 +16,17 @@ export const agregar = async (req, res) => {
  * @returns Vista de Lista de parques
  */
 export const guardar = async (req, res) => {
-    let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva,desc} = req.body;
+    let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva,desc,long,lat} = req.body;
     let img = req.files.img[0];
     let mapa = req.files.mapa[0];
+    // Si coordenadas son inválidas
+    if(!coordenadasValidas(long, lat)) {
+        req.flash('messageError', `Coordenas inválidas`);
+        return res.redirect('back');
+    }
+    let coords = { long, lat }
     try {
-        await guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc, img.filename, mapa.filename);
+        await guardarParque(idParque, idTipo, nombre, direccion, telefono, email, aforo, estado, horario, paginaWeb, urlReserva, desc, img.filename, mapa.filename, coords);
         req.flash('messageSuccess', 'Parque guardado correctamente');
     } catch (error) {
         if(img != undefined) {

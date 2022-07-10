@@ -64,7 +64,7 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body ms-3">
-                  <% if((typeof item.km) != 'undefined') { %>
+                  <% if((typeof item.km) != 'undefined' && item.km != null) { %>
                     <div class="text-end">
                       <h1 class="h4">A <%=item.km.toFixed(1)%> kms de distancia! </h1>
                     </div>

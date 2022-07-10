@@ -68,6 +68,7 @@ app.use((req, res, next)=>{
 app.use('/', indexRoutes);
 app.use('/parque', isLoggedIn, parqueRoutes);
 app.use('/empleado', isLoggedIn, empleadoRoutes);
+  
 
 // 404 page
 app.use((req, res) => {

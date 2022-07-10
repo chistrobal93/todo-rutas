@@ -5,8 +5,6 @@
     navigator.geolocation.getCurrentPosition(async position => {
       const lat = position.coords.latitude;
       const long = position.coords.longitude;
-      console.log(long);
-      console.log(lat);
 
       const coordenadas = { long, lat };
       const options = {

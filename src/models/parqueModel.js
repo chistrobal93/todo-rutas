@@ -17,9 +17,9 @@ import logger from '../logger.js';
  * @param {String} [desc] Texto descriptivo del parque
  * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
  */
-export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,estado,horario,pagWeb,pagReserva,desc,img,mapa) => {
+export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,estado,horario,pagWeb,pagReserva,desc,img,mapa,coords) => {
     try {
-        let sql = `INSERT INTO parque(cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa) VALUES (${codParque},${codTipo},'${nom}','${dir}','${tel}','${email}',${aforo},${estado},'${horario}','${pagWeb}','${pagReserva}','${desc}','${img}','${mapa}')`;
+        let sql = `INSERT INTO parque(cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa,ubicacion) VALUES (${codParque},${codTipo},'${nom}','${dir}','${tel}','${email}',${aforo},${estado},'${horario}','${pagWeb}','${pagReserva}','${desc}','${img}','${mapa}',ST_GeomFromText('POINT(${coords.long} ${coords.lat})'))`;
         const [result] = await pool.query(sql);
         return result;
     } catch (error) {
@@ -45,7 +45,7 @@ export const listarParques = async () => {
 
 export const listarParquesUbicacion = async (ubicacion) => {
     try {
-        let sql = `SELECT cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa, ubicacion, ST_Distance_Sphere(POINT(${ubicacion.long}, ${ubicacion.lat}), ubicacion)/1000 AS 'km' FROM parque ORDER BY km ASC`;
+        let sql = `SELECT cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa, ubicacion, ST_Distance_Sphere(POINT(${ubicacion.long}, ${ubicacion.lat}), ubicacion)/1000 AS 'km' FROM parque ORDER BY -km DESC`;
         let [rows] = await pool.query(sql);
         return rows;
     } catch (error) {
