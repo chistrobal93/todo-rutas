@@ -15,7 +15,7 @@ router.get('/loginEmpleados', isntLoggedIn, loginEmpleados);
 router.post('/loginEmpleados', isntLoggedIn, authEmpleado);
 router.get('/download/:mapa', downloadMap);
 
-// fetch post devuelve coordenadas a la vista en un json
+// fetch post guarda coordenadas en archivo coords
 router.post('/guardarCoords', (req,res) => {
     var coordenadas = req.body;
     ubicacionActual.long = coordenadas.long;

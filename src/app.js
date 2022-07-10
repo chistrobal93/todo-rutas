@@ -66,8 +66,14 @@ app.use((req, res, next)=>{
 
 // Routes
 app.use('/', indexRoutes);
-app.use('/parque', isLoggedIn, parqueRoutes);
-app.use('/empleado', isLoggedIn, empleadoRoutes);
+if (NODE_ENV == 'dev' || NODE_ENV == 'development') {
+  app.use('/parque', parqueRoutes);
+  app.use('/empleado', empleadoRoutes);
+} else {
+  app.use('/parque', isLoggedIn, parqueRoutes);
+  app.use('/empleado', isLoggedIn, empleadoRoutes);
+}
+  
 
 // 404 page
 app.use((req, res) => {
@@ -78,7 +84,7 @@ app.use((req, res) => {
 // Iniciar servidor
 app.listen(PORT, () => {
   if (NODE_ENV == 'dev' || NODE_ENV == 'development') {
-    logger.info(`Servidor iniciado en http://localhost:${PORT}/`);
+    logger.info(`Servidor iniciado en http://localhost:${PORT}/parque/agregar`);
   } else {
     logger.info(`Servidor iniciado en ${NODE_ENV} en puerto: ${PORT}`);
   }

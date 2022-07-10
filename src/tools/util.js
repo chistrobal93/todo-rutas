@@ -76,3 +76,17 @@ export function validaRut(rut) {
         return false;
     }
 }
+
+/**
+ * Función que valida coordenadas geográficas
+ * @param {Object} coords Objeto con atributos long y lat
+ * @returns Si coordenadas son válidas, devuelve 'true', de lo contrario retorna 'false'
+ */
+export function coordenadasValidas(long, lat) {
+    try {
+        if(long>-180 && long<180 && lat>-90 && lat<90) { return true; }
+        return false;
+    } catch (error) {
+        logger.error(`Ha ocurrido un error al validar coordenadas: ${error}`);
+    }
+}
