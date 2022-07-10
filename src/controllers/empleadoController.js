@@ -43,7 +43,7 @@ export const cambiarEstado = async (req, res) => {
     try {
         let codEmpleado = req.params.codEmpleado;
         let codEstado = req.params.codEstado;
-        if (codEmpleado == 1) { throw ('Admin no puede ser modificado'); }
+        if (codEmpleado == 1) { throw Error('Admin no puede ser modificado'); }
         await cambiarEstadoEmpleado(codEmpleado,codEstado);
         req.flash('messageWarning', 'Empleado cambió su estado correctamente');
         res.redirect('/empleado/listar');

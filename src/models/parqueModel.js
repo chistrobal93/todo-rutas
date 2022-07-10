@@ -56,9 +56,18 @@ export const listarParquesUbicacion = async (ubicacion) => {
 
 export const buscarParques = async (criterios) => {
     try {
+        let elementosSelect = '*';
         let sqlNombre = '';
         let sqlTipo = 'AND cod_tipo IN (1,2)';
-        if(criterios.nombre != '') { sqlNombre = `nombre LIKE '%${criterios.nombre}%' AND `; }
+        // Si ubicación está definida y contiene coordenadas
+        if (criterios.ubicacion != undefined && Object.keys(criterios.ubicacion).length !== 0) {
+            const ubicacion = criterios.ubicacion;
+            elementosSelect = `cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa, ubicacion, ST_Distance_Sphere(POINT(${ubicacion.long}, ${ubicacion.lat}), ubicacion)/1000 AS 'km'`;
+            if (criterios.orden == '1') {
+                var orderBy = '-km DESC';
+            }
+        }
+        if (criterios.nombre != '') { sqlNombre = `nombre LIKE '%${criterios.nombre}%' AND `; }
         if (criterios.nacional == undefined && criterios.independiente == undefined) {
             sqlTipo = '';
         } else if(criterios.nacional == 'on' && criterios.independiente == undefined) {
@@ -66,7 +75,15 @@ export const buscarParques = async (criterios) => {
         } else if(criterios.nacional == undefined && criterios.independiente == 'on') {
             sqlTipo = 'AND cod_tipo=2';
         }
-        let sql = `SELECT * FROM parque WHERE ${sqlNombre}estado=1 ${sqlTipo} ORDER BY cod_parque ASC`;
+        // Orden por relevancia
+        //if (criterios.orden == '2') {
+        //    orderBy = '-rel DESC';
+        //}
+        if (typeof orderBy == 'undefined') {
+            var orderBy = 'cod_parque ASC';
+        } else { orderBy += ', cod_parque ASC'; }
+
+        let sql = `SELECT ${elementosSelect} FROM parque WHERE ${sqlNombre}estado=1 ${sqlTipo} ORDER BY ${orderBy}`;
         let [rows] = await pool.query(sql);
         return rows;
     } catch (error) {
