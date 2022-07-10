@@ -31,7 +31,7 @@ var sess = {
   resave: false,
   saveUninitialized: true,
 }
-if (NODE_ENV === 'production') {
+if (NODE_ENV == 'production') {
   app.set('trust proxy', 1);
   sess.cookie.secure = true;
 }
