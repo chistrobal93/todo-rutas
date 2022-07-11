@@ -2,9 +2,7 @@ import passport from 'passport';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import logger from '../logger.js';
-import { listarParques, buscarParques, listarParquesUbicacion } from '../models/parqueModel.js';
-import { ubicacionActual } from '../coords.js';
+import { listarParques, buscarParques } from '../models/parqueModel.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -28,44 +26,42 @@ export const about = async (req, res) => {
  */
 export const parques = async(req, res) => {
     let listado;
-    // Si no se ha obtenido la ubicacion desde archivo coords.js
-    if (Object.keys(ubicacionActual).length === 0) {
-        try {
-            listado = await listarParques();
-            
-            res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
-        } catch (error) {
-            logger.error(`No se pudo listar parques: ${error.message}`);
-            listado = [];
-            return res.redirect('/');
-        }
-    } else { // Si se obtuvo la ubicación
-        try {
-            listado = await listarParquesUbicacion(ubicacionActual);
-            
-            res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
-        } catch (error) {
-            logger.error(`No se pudo listar parques: ${error.message}`);
-            listado = [];
-            return res.redirect('/');
-        }
+    try {
+        listado = await listarParques();
+        
+        res.render('parques', {title: 'Parques', listado, urlForm: '/parques'});
+    } catch (error) {
+        req.flash('messageError', `Error al listar parques: ${error.message}`);
+        listado = [];
+        return res.redirect('/');
     }
 }
 
+/**
+ * Obtiene listado de parques con filtro de búsqueda aplicado.
+ * @param {Object} req Requerimiento POST de listar parques con criterios de búsqueda, los elementos vienen en body.
+  * @param {Object} res Respuesta de listar parques filtrados. Si pudo obtener los datos de los parques, renderiza vista listar,
+ * si no, redirige a vista index con mensaje alert de respuesta
+ * @returns Vista lista de parques filtrados
+ */
 export const parquesFiltrados = async(req, res) => {
     let listado;
-    let {nombre, nacional, independiente, orden} = req.body;
+    let {nombre, nacional, independiente, orden, long, lat} = req.body;
     nombre = nombre.trim();
-    let criterios = { nombre, nacional, independiente, orden}
-    criterios.ubicacion = ubicacionActual;
+    let criterios = { nombre, nacional, independiente, orden };
+    // Si llegaron las coordenadas
+    if ((typeof long != 'undefined') && (long != '') && (typeof lat != 'undefined') && (lat != '')) {
+        criterios.ubicacion = { long, lat };
+    }
     try {
         listado = await buscarParques(criterios);
-        if(criterios.orden=='1' && Object.keys(criterios.ubicacion).length === 0) {
+        if(criterios.orden=='1' && (typeof criterios.ubicacion == 'undefined')) {
             req.flash('messageWarning', `Debe activar ubicacion en su dispositivo`);
+            return res.redirect('back');
         }
-        res.render('parques', {title: 'Parques', listado, urlForm: '/parquesFiltrados'});
+        res.render('parques', {title: 'Parques', listado, urlForm: '/parques'});
     } catch (error) {
-        logger.error(`No se pudo listar parques: ${error.message}`);
+        req.flash('messageError', `Error al listar parques: ${error.message}`);
         listado = [];
         return res.redirect('/');
     }

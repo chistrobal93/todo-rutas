@@ -7,16 +7,8 @@
       const long = position.coords.longitude;
 
       const coordenadas = { long, lat };
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(coordenadas)
-      };
-      const response = await fetch('/guardarCoords', options);
-      //const json = await response.json();
-      //console.log(json);
+      document.getElementById('hddnLong').value = long;
+      document.getElementById('hddnLat').value = lat;
     });
   } else {
     alert('Geolocalización no está disponible en su navegador');
@@ -58,18 +50,18 @@
     </div>
   </div>
   <div class="col-auto">
-    <input type="button" onclick="enviarForm()" class="btn btn-outline-primary" value="Filtrar" />
+    <input type="submit" class="btn btn-outline-primary" value="Filtrar" />
   </div>
   <div class="col-auto">
     <select class="form-select" name="orden">
       <option value="" selected>Ordenar por...</option>
       <option value="1">Cercanía</option>
-      <!-- <option value="2">Precio entrada</option> -->
+      <option value="2" disabled>Relevancia</option>
     </select>
   </div>
 
-  <input type="hidden" id="hddnLat" name="lat">
   <input type="hidden" id="hddnLong" name="long">
+  <input type="hidden" id="hddnLat" name="lat">
 </form>
 
 
@@ -150,20 +142,4 @@
     var modalBodyImg = mapaModal.querySelector('.modal-body img');
     modalBodyImg.src = `images/${recipient}`;
   });
-
-  function enviarForm() {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
-
-  function success(pos) {
-    var crd = pos.coords;
-    document.getElementById('hddnLat').value = crd.latitude;
-    document.getElementById('hddnLong').value = crd.longitude;
-    document.getElementById("filterForm").submit();
-  };
-  function error(err) {
-    document.getElementById('hddnLat').value = 'error';
-    document.getElementById('hddnLong').value = 'error';
-    document.getElementById("filterForm").submit();
-  };
 </script>
