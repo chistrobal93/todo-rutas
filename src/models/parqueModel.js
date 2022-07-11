@@ -59,8 +59,8 @@ export const buscarParques = async (criterios) => {
         let elementosSelect = '*';
         let sqlNombre = '';
         let sqlTipo = 'AND cod_tipo IN (1,2)';
-        // Si ubicación está definida y contiene coordenadas
-        if (criterios.ubicacion != undefined && Object.keys(criterios.ubicacion).length !== 0) {
+        // Si ubicación está definida
+        if (criterios.ubicacion != undefined) {
             const ubicacion = criterios.ubicacion;
             elementosSelect = `cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa, ubicacion, ST_Distance_Sphere(POINT(${ubicacion.long}, ${ubicacion.lat}), ubicacion)/1000 AS 'km'`;
             if (criterios.orden == '1') {
