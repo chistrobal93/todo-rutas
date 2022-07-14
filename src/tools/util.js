@@ -78,6 +78,19 @@ export function validaRut(rut) {
 }
 
 /**
+ * Función que calcula el dígito verificador (DV) de un Rut
+ * @param {number} rut Rut a calcular DV
+ * @returns El DV de rut
+ */
+export function obtenerDigitoVerificador(rut){  
+    var M=0,S=1;
+    for(;rut;rut=Math.floor(rut/10))
+    S=(S+rut%10*(9-M++%6))%11;
+    
+    return S?S-1:'k';
+}
+
+/**
  * Función que valida coordenadas geográficas
  * Valida si longitud está entre -180º y 180º, y latitud entre -90º y 90º
  * @param {number} long Longitud

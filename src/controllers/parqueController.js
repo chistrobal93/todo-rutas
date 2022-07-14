@@ -101,6 +101,7 @@ export const actualizar = async (req, res) => {
         req.flash('messageSuccess', 'Parque actualizado correctamente');
     } catch (error) {
         req.flash('messageError', `Error al actualizar parque: ${error.message}`);
+        return res.redirect('back');
     }
     return res.redirect('/parque/listar');
 }

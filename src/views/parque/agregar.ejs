@@ -13,105 +13,107 @@
 <div class="container col-12 col-xl-9 col-xxl-8 mt-4 bg-secondary">
   <form class="row justify-content-center g-3 py-4" action="<%=urlForm%>" method="POST" enctype="multipart/form-data">
     <div class="row">
-      <div class="col-md-4 my-2 form-floating">
+      <div class="col-md-4 my-2">
+        <label for="idParque" class="form-label">ID parque</label>
         <input type="number" class="form-control" id="idParque" name="idParque" min="1" max="99999" required>
-        <label for="idParque">ID parque</label>
       </div>
       
-      <div class="col-md-8 my-2 form-floating">
+      <div class="col-md-8 my-2">
+        <label for="idTipo" class="form-label">Tipo de parque</label>
         <select class="form-control" id="idTipo" name="idTipo" required>
           <option value=""></option>
           <option value="1">Nacional</option>
           <option value="2">Independiente</option>
         </select>
-        <label for="idTipo">Tipo de parque</label>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-12 my-2 form-floating">
+      <div class="col-12 my-2">
+        <label for="nombre" class="form-label">Nombre del parque</label>
         <input type="text" class="form-control" id="nombre" name="nombre" maxlength="60" required>
-        <label for="nombre">Nombre del parque</label>
       </div>
     </div>
 
 
     <div class="row">
-      <div class="col-12 my-2 form-floating">
+      <div class="col-12 my-2">
+        <label for="direccion" class="form-label">Dirección del parque</label>
         <input type="text" class="form-control" id="direccion" name="direccion" maxlength="50" required>
-        <label for="direccion">Dirección del parque</label>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-4 col-lg-3  my-1 form-floating">
-        <input type="number" class="form-control" id="long" step="any" min="-180" max="180" name="long">
-        <label for="long">Longitud</label>
+      <div class="col-sm-4 col-lg-3 my-1">
+        <label for="long" class="form-label">Longitud</label>
+        <input type="number" class="form-control" id="long" step="any" min="-180" max="180" name="long" placeholder="-180 a 180">
       </div>
-      <div class="col-sm-4 col-lg-3  my-1 form-floating">
-        <input type="number" class="form-control" id="lat" step="any" min="-90" max="90" name="lat">
-        <label for="lat">Latitud</label>
+      <div class="col-sm-4 col-lg-3 my-1">
+        <label for="lat" class="form-label">Latitud</label>
+        <input type="number" class="form-control" id="lat" step="any" min="-90" max="90" name="lat" placeholder="-180 a 180">
       </div>
       <!--Location: <input type="text" id="location" style="width: 200px"/>-->
       <div id="map" style="width: 400px; height: 200px;"></div> 
     </div>
     
     <div class="row">
-      <div class="col-md-4 my-1 form-floating">
-        <input type="text" class="form-control" id="telefono" name="telefono" maxlength="20" required>
-        <label for="telefono">Teléfono del parque</label>
+      <div class="col-md-4 my-1">
+        <label for="telefono" class="form-label">Teléfono del parque</label>
+        <input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
+        title="Ingrese un teléfono válido" class="form-control" id="telefono" name="telefono" maxlength="20" required>
       </div>
   
-      <div class="col-md-8 my-1 form-floating">
-        <input type="email" class="form-control" id="email" name="email" maxlength="100" required>
-        <label for="email">Email del parque</label>
+      <div class="col-md-8 my-1">
+        <label for="email" class="form-label">Email del parque</label>
+        <input type="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        title="Ingrese un email válido" class="form-control" id="email" name="email" maxlength="100" required>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-4 col-lg-2  my-1 form-floating">
+      <div class="col-sm-4 col-lg-2  my-1">
+        <label for="aforo" class="form-label">Aforo</label>
         <input type="number" class="form-control" id="aforo" name="aforo" min="1" required>
-        <label for="aforo">Aforo</label>
       </div>
   
-      <div class="col-sm-8 col-lg-4 my-1 form-floating">
+      <div class="col-sm-8 col-lg-4 my-1">
+        <label for="estado" class="form-label">Estado parque</label>
         <select class="form-control" id="estado" name="estado" required>
           <option value = "1">Activado</option>
           <option value = "2">Desactivado</option>
         </select>
-        <label for="estado">Estado parque</label>
       </div>
-      <div class="col-12 col-lg-6 my-1 form-floating">
+      <div class="col-12 col-lg-6 my-1">
+        <label for="horario" class="form-label">Horario</label>
         <input type="text" class="form-control" id="horario" name="horario" maxlength="100">
-        <label for="horario">Horario</label>
       </div>
     </div>
 
 
     <div class="row">
-      <div class="col-md-5 my-1 form-floating">
-        <input type="text" class="form-control" id="paginaWeb" name="paginaWeb">
-        <label for="paginaWeb">Sitio web</label>
+      <div class="col-md-5 my-1">
+        <label for="paginaWeb" class="form-label">Sitio web</label>
+        <input type="url" class="form-control" id="paginaWeb" name="paginaWeb" placeholder="http://www.ejemplo.com/">
       </div>
   
-      <div class="col-md-7 my-1 form-floating">
-        <input type="text" class="form-control" id="urlReserva" name="urlReserva">
-        <label for="urlReserva">URL reserva</label>
+      <div class="col-md-7 my-1">
+        <label for="urlReserva" class="form-label">URL reserva</label>
+        <input type="url" class="form-control" id="urlReserva" name="urlReserva" placeholder="http://www.ejemplo.com/reserva">
       </div>
     </div>
     <div class="row">
-      <div class="col-12 my-1 form-floating">
+      <div class="col-12 my-1">
+        <label for="desc" class="form-label">Descripción</label>
         <textarea type="text" rows="4" class="form-control" id="desc" name="desc" style="height: 100px" required></textarea>
-        <label for="desc">Descripción</label>
       </div>
     </div>
 
-    <div class="col-12 my-1 form">
+    <div class="col-12 my-1">
       <label for="subirImagenes" class="form-label">Subir imagen de parque: <i>(4MB máx)</i></label>
       <input class="form-control" type="file" accept="image/jpg,image/png,image/jpeg" id="subirMapa" name="img" required>
     </div>
 
-    <div class="col-12 my-1 form">
+    <div class="col-12 my-1">
       <label for="subirMapa" class="form-label">Subir mapa: <i>(4MB máx)</i></label>
       <input class="form-control" type="file" accept="image/jpg,image/png,image/jpeg" id="subirMapa" name="mapa" required>
     </div>

@@ -34,8 +34,8 @@
                     <td><%=item.apellidos%></td>
                     <td><%=item.telefono%></td>
                     <td><%=item.email%></td>
-                    <td><a href="/empleado/editar/<%=item.cod_personal_app%>" class="btn btn-success m-1 py-1 px-2">
-                        <i class="fa fa-pencil fa-2xs" aria-hidden="true"></i> </a> 
+                    <td><!--<a href="/empleado/editar/<%=item.cod_personal_app%>" class="btn btn-success m-1 py-1 px-2">
+                        <i class="fa fa-pencil fa-2xs" aria-hidden="true"></i> </a> -->
                         <% if(item.cod_estado == 2) { %> 
                             <a href="javascript:estado(<%=item.cod_personal_app%>,1)" class="btn m-1 py-1 px-2"><i class="fa fa-2x fa-toggle-off" aria-hidden="true"></i></a>
                         <% } else { %>

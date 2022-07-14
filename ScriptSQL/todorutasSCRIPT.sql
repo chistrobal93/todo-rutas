@@ -123,11 +123,13 @@ CREATE TABLE `noticia` (
 
 ALTER TABLE `personal_app` ADD FOREIGN KEY (`cod_personal_app_tipo`) REFERENCES `personal_app_tipo` (`cod_personal_app_tipo`);
 
+ALTER TABLE `personal_app` ADD FOREIGN KEY (`cod_estado`) REFERENCES `estado` (`cod_estado`);
+
+ALTER TABLE `personal_app` ADD UNIQUE (`email`);
+
 ALTER TABLE `registro_llamada` ADD FOREIGN KEY (`cod_personal_app`) REFERENCES `personal_app` (`cod_personal_app`);
 
 ALTER TABLE `registro_correo` ADD FOREIGN KEY (`cod_personal_app`) REFERENCES `personal_app` (`cod_personal_app`);
-
-ALTER TABLE `personal_app` ADD FOREIGN KEY (`cod_estado`) REFERENCES `estado` (`cod_estado`);
 
 ALTER TABLE `personal_parque` ADD FOREIGN KEY (`cod_estado`) REFERENCES `estado` (`cod_estado`);
 
