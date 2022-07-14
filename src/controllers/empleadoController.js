@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { guardarEmpleado, cambiarEstadoEmpleado, listarEmpleados } from '../models/empleadoModel.js';
+import { validaRut } from '../tools/util.js';
 
 export const index = async (req, res) => {
     res.render('empleado/index', {title: 'Portal Empleados'});
@@ -17,11 +18,15 @@ export const agregar = async (req, res) => {
  */
 export const guardar = async (req, res) => {
     try {
-        const {codEmpleado, nombres, apellidos, rut, tel, dir, email, psw, tipo} = req.body;
+        let {codEmpleado, nombres, apellidos, rut, tel, dir, email, psw, tipo} = req.body;
+        rut = validaRut(rut);
+        if (!rut) { throw Error("Dígito verificador de RUT no es válido"); }
+        if ( email == null || email == '') { throw Error("Debe ingresar un email"); }
         await guardarEmpleado(codEmpleado,tipo,1,rut,nombres,apellidos,dir,tel,email,psw);
         req.flash('messageSuccess', 'Empleado guardado correctamente');
     } catch (error) {
         req.flash('messageError', `Error al guardar parque: ${error.message}`);
+        return res.redirect('back');
     }
     return res.redirect('/empleado/listar');
 }

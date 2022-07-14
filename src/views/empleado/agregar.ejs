@@ -38,13 +38,15 @@
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="form-outline">
         <label class="form-label" for="txtRut">Rut</label>
-        <input type="text" name="rut" id="txtRut" class="form-control" />
+        <input type="text" pattern="\d{1,2}.\d{3}.\d{3}-[\d|kK]{1}" title="Rut inválido" 
+        name="rut" id="txtRut" class="form-control" onkeyup="formatRut(this);"/>
       </div>
     </div>
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="form-outline mb-4">
         <label class="form-label" for="txtTel">Teléfono</label>
-        <input type="text" name="tel" id="txtTel" class="form-control" />
+        <input type="tel" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
+        title="Ingrese un teléfono válido" name="tel" id="txtTel" class="form-control" />
       </div>
     </div>
     <div class="col-md-12 col-lg-4 mb-4">
@@ -59,7 +61,8 @@
     <div class="col-md-12 col-lg-4 mb-4">
       <div class="form-outline mb-4">
         <label class="form-label" for="emlEmail">Email</label>
-        <input type="email" name="email" id="emlEmail" class="form-control" />
+        <input type="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        title="Ingrese un email válido" name="email" id="emlEmail" class="form-control" required/>
       </div>
     </div>
     <div class="col-md-6 col-lg-4 mb-4">
@@ -106,6 +109,11 @@
 </form>
 
 <script>
+  function formatRut(cliente) {
+      cliente.value = cliente.value.replace(/[^0-9kK]/g, '').replace( /^(\d{1,2})(\d{3})(\d{3})(\w{1})$/, '$1.$2.$3-$4');
+      cliente.value = cliente.value.toLowerCase();
+  }
+
   var clave = document.getElementById("passPsw")
   , confirm_clave = document.getElementById("passPswCheck");
 
