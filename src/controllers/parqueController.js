@@ -16,8 +16,8 @@ export const agregar = async (req, res) => {
 /**
  * Controlador para guardar parque
  * @param {Object} req Requerimiento de guardar. Los elementos vienen en body, ya que vienen por POST
- * @param {Object} res Respuesta de guardar. Siempre redirige a vista listar parques con mensaje alert de respuesta
- * @returns La respuesta de redirigir hacia lista de parques
+ * @param {Object} res Respuesta de guardar. Redirige a vista listar parques o devuelta (si hay error) con mensaje alert de respuesta
+ * @returns La respuesta
  */
 export const guardar = async (req, res) => {
     let {idParque,idTipo,nombre,direccion,telefono,email,aforo,estado,horario,paginaWeb,urlReserva,desc,long,lat} = req.body;
@@ -46,6 +46,7 @@ export const guardar = async (req, res) => {
             });
         }
         req.flash('messageError', `Error al guardar parque: ${error.message}`);
+        return res.redirect('back');
     }
     return res.redirect('/parque/listar');
 }

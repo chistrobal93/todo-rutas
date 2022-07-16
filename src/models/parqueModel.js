@@ -15,7 +15,7 @@ import logger from '../logger.js';
  * @param {String} [pagWeb] Sitio web del parque
  * @param {String} [pagReserva] Sitio web de reserva del parque
  * @param {String} [desc] Texto descriptivo del parque
- * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
+ * @returns Objeto con los resultados de la consulta
  */
 export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,estado,horario,pagWeb,pagReserva,desc,img,mapa,coords) => {
     try {
@@ -29,8 +29,8 @@ export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,es
 }
 
 /**
- * Realiza consulta por todos los elementos de la tabla 'parque' de la base de datos
- * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
+ * Función que obtiene todos los parques de la tabla 'parque' de la base de datos
+ * @returns Objeto con los resultados de la consulta
  */
 export const listarParques = async () => {
     try {
@@ -43,17 +43,37 @@ export const listarParques = async () => {
     }
 }
 
-export const listarParquesUbicacion = async (ubicacion) => {
-    try {
-        let sql = `SELECT cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa, ubicacion, ST_Distance_Sphere(POINT(${ubicacion.long}, ${ubicacion.lat}), ubicacion)/1000 AS 'km' FROM parque ORDER BY -km DESC`;
-        let [rows] = await pool.query(sql);
-        return rows;
-    } catch (error) {
-        logger.error(`LISTAR PARQUES CON UBICACION - BD: ${error}`);
-        throw (error);
-    }
-}
+/**
+ * Función que obtiene todos los parques de la base de datos ordenados por cercanía a las coordenadas indicadas
+ * @param {Object} ubicacion Coordenadas de ubicación
+ * @param {Number} ubicacion.long Longitud
+ * @param {Number} ubicacion.lat Latitud
+ * @returns Objeto con los resultados de la consulta
+ */
+// export const listarParquesUbicacion = async (ubicacion) => {
+//     try {
+//         console.log(typeof(ubicacion.long));
+//         let sql = `SELECT cod_parque,cod_tipo,nombre,direccion,telefono,email,aforo,estado,horario,pagina_web,url_reserva,descripcion,img,mapa, ubicacion, ST_Distance_Sphere(POINT(${ubicacion.long}, ${ubicacion.lat}), ubicacion)/1000 AS 'km' FROM parque ORDER BY -km DESC`;
+//         let [rows] = await pool.query(sql);
+//         return rows;
+//     } catch (error) {
+//         logger.error(`LISTAR PARQUES CON UBICACION - BD: ${error}`);
+//         throw (error);
+//     }
+// }
 
+/**
+ * Función que obtiene los parques filtrados y ordenados por cercanía a las coordenadas indicadas
+ * @param {Object} criterios Información de filtrado
+ * @param {String} criterios.nombre Nombre del parque a buscar
+ * @param {String|undefined} criterios.nacional Filtro por parques nacionales
+ * @param {String|undefined} criterios.independiente Filtro por parques independientes
+ * @param {String} criterios.orden Orden de resultados por distancia o relevancia
+ * @param {Object|undefined} criterios.ubicacion Coordenadas de ubicación
+ * @param {String|undefined} criterios.ubicacion.long Longitud
+ * @param {String|undefined} criterios.ubicacion.lat Latitud
+ * @returns Objeto con los resultados de la consulta
+ */
 export const buscarParques = async (criterios) => {
     try {
         let elementosSelect = '*';

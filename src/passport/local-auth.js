@@ -1,7 +1,7 @@
 import { Strategy as LocalStrategy} from 'passport-local';
 
 import { pool } from '../database/mysqlConnect.js';
-import { guardarEmpleado, obtenerEmpleadoAuth } from '../models/empleadoModel.js';
+import { obtenerEmpleadoAuth } from '../models/empleadoModel.js';
 
 export default (passport) => {
 
