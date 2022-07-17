@@ -6,7 +6,9 @@ import logger from '../logger.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-
+/**
+ * Constante que asigna ruta donde subir archivos y método para asignar el nombre
+ */
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../public/images/'),
     filename: (req, file, cb) => {
@@ -14,6 +16,11 @@ const storage = multer.diskStorage({
     }
 });
 
+/**
+ * Función que utiliza 'storage', y define límites de tamaño y formato del archivo.
+ * Indica que son dos archivos que debe subir, uno rescatado de algún campo llamado
+ * 'img' y otro campo llamado 'mapa'
+ */
 const uploadImgMap = multer({
     storage,
     limits: { fileSize: 4000000 },
@@ -28,6 +35,12 @@ const uploadImgMap = multer({
     }
 }).fields([{name:'img'},{name:'mapa'}]);
 
+/**
+ * Función que sube los archivos definidos en 'uploadImgMap' al servidor
+ * @param {Object} req Requerimiento de subir archivos
+ * @param {Object} res Respuesta de subir archivos
+ * @param {NextFunction} next Función que permite avanzar a siguiente middleware
+ */
 export const uploadFiles = (req, res, next) => {
     uploadImgMap(req, res, (err) => {
         if (err) {

@@ -4,16 +4,16 @@ import logger from '../logger.js';
 
 /**
  * Función que realiza inserción de empleado en tabla 'personal_app' de la base de datos
- * @param {Number} codEmpleado Codigo unico de empleado
- * @param {Number} codTipo Codigo de tipo (1:Admin)
- * @param {Number} codEstado Codigo de estado (1:Habilitado || 2:Deshabilitado)
+ * @param {Number} codEmpleado Código único de empleado
+ * @param {Number} codTipo Código de tipo (1:Admin)
+ * @param {Number} codEstado Código de estado (1:Habilitado || 2:Deshabilitado)
  * @param {Number} rut Rut del empleado
  * @param {String} nombres Nombres del empleado
  * @param {String} apellidos Apellidos del empleado
- * @param {String} dir Direccion del domicilio del empleado
- * @param {String} telefono Telefono del empleado
+ * @param {String} dir Dirección del domicilio del empleado
+ * @param {String} telefono Teléfono del empleado
  * @param {String} email Email del empleado
- * @param {String} password Contrasena del empleado
+ * @param {String} password Contraseña del empleado
  * @returns Objeto con los resultados de la consulta
  */
 export const guardarEmpleado = async (codEmpleado,codTipo,codEstado,rut,nombres,apellidos,dir,telefono,email,password) => {

@@ -2,19 +2,24 @@ import { pool } from '../database/mysqlConnect.js';
 import logger from '../logger.js';
 
 /**
- * Realiza insercion de parque en tabla 'parque' de la base de datos
- * @param {Number} codParque Codigo unico del parque
- * @param {Number} codTipo Codigo de tipo (1:Nacional || 2:Independiente)
+ * Función que guarda un parque en tabla 'parque' de la base de datos
+ * @param {Number} codParque Código único del parque
+ * @param {Number} codTipo Código de tipo (1:Nacional || 2:Independiente)
  * @param {String} nom Nombre del parque
- * @param {String} dir Direccion del parque
- * @param {String} tel Numero de telefono del parque
+ * @param {String} dir Dirección del parque
+ * @param {String} tel Número de teléfono del parque
  * @param {String} email Correo de contacto del parque
  * @param {Number} aforo Aforo permitido dentro del parque
  * @param {Number} estado Estado del parque (1:Habilitado | 2:Deshabilitado)
- * @param {String} horario Horario de atencion del parque
+ * @param {String} horario Horario de atención del parque
  * @param {String} [pagWeb] Sitio web del parque
  * @param {String} [pagReserva] Sitio web de reserva del parque
  * @param {String} [desc] Texto descriptivo del parque
+ * @param {String} img Nombre archivo imagen del parque
+ * @param {String} mapa Nombre archivo mapa del parque
+ * @param {Object} coords Coordenadas de ubicación geográfica del parque
+ * @param {String} coords.long Longitud
+ * @param {String} coords.lat Latitud
  * @returns Objeto con los resultados de la consulta
  */
 export const guardarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,estado,horario,pagWeb,pagReserva,desc,img,mapa,coords) => {
@@ -43,13 +48,13 @@ export const listarParques = async () => {
     }
 }
 
-/**
- * Función que obtiene todos los parques de la base de datos ordenados por cercanía a las coordenadas indicadas
- * @param {Object} ubicacion Coordenadas de ubicación
- * @param {Number} ubicacion.long Longitud
- * @param {Number} ubicacion.lat Latitud
- * @returns Objeto con los resultados de la consulta
- */
+// /**
+//  * Función que obtiene todos los parques de la base de datos ordenados por cercanía a las coordenadas indicadas
+//  * @param {Object} ubicacion Coordenadas de ubicación
+//  * @param {Number} ubicacion.long Longitud
+//  * @param {Number} ubicacion.lat Latitud
+//  * @returns Objeto con los resultados de la consulta
+//  */
 // export const listarParquesUbicacion = async (ubicacion) => {
 //     try {
 //         console.log(typeof(ubicacion.long));
@@ -113,9 +118,9 @@ export const buscarParques = async (criterios) => {
 }
 
 /**
- * Realiza consulta por toda la informacion de un unico parque por id
- * @param {Number} codParque Codigo unico del parque
- * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
+ * Función que obtiene los datos de un parque de tabla 'parque' de la base de datos
+ * @param {Number} codParque Código único del parque
+ * @returns Objeto con los datos del parque
  */
 export const obtenerParque = async (codParque) => {
     try {
@@ -128,6 +133,21 @@ export const obtenerParque = async (codParque) => {
     }
 }
 
+/**
+ * Función que actualiza un parque en tabla 'parque' de la base de datos
+ * @param {Number} codParque Código único del parque
+ * @param {Number} codTipo Código de tipo (1:Nacional || 2:Independiente)
+ * @param {String} nom Nombre del parque
+ * @param {String} dir Dirección del parque
+ * @param {String} tel Número de teléfono del parque
+ * @param {String} email Correo de contacto del parque
+ * @param {Number} aforo Aforo permitido dentro del parque
+ * @param {String} horario Horario de atención del parque
+ * @param {String} [pagWeb] Sitio web del parque
+ * @param {String} [pagReserva] Sitio web de reserva del parque
+ * @param {String} [desc] Textro descriptivo del parque
+ * @returns Objeto con la respuesta de la base de datos
+ */
 export const actualizarParque = async (codParque,codTipo,nom,dir,tel,email,aforo,horario,pagWeb,pagReserva,desc) => {
     try {
         let sql = `UPDATE parque SET cod_tipo=${codTipo},nombre='${nom}',direccion='${dir}',telefono='${tel}',email='${email}',aforo=${aforo},horario='${horario}',pagina_web='${pagWeb}',url_reserva='${pagReserva}',descripcion='${desc}' WHERE cod_parque=${codParque}`;
@@ -140,9 +160,10 @@ export const actualizarParque = async (codParque,codTipo,nom,dir,tel,email,aforo
 }
 
 /**
- * Realiza query para eliminar un parque de la tabla 'parque' de la base de datos por id
- * @param {Number} codParque Codigo unico del parque
- * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
+ * Función que cambia de estado a un parque (habilitado o deshabilitado)
+ * @param {Number} codParque Código único del parque
+ * @param {Number} codEstado Código del estado al que se desea cambiar
+ * @returns Objeto con los resultados de la consulta
  */
 export const cambiarEstadoParque = async (codParque,codEstado) => {
     try {

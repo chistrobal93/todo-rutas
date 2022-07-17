@@ -1,9 +1,9 @@
 import logger from '../logger.js';
    
 /**
- * Valida si un email tiene el formato correcto
- * @param {String} cadena Email ingresado para validacion
- * @returns {Boolean} Es valido o no el email ingresado
+ * Función que valida si un email tiene el formato correcto
+ * @param {String} cadena Email ingresado para validación
+ * @returns {Boolean} Es válido o no el email ingresado
  */
 export function validaFormatoCorreo(cadena) {
     if(null != cadena){
@@ -19,7 +19,7 @@ export function validaFormatoCorreo(cadena) {
 
 /**
  * Función que devuelve IP del dispositivo
- * @param {Object} req Request de alguna vista
+ * @param {Object} req Requerimiento de alguna vista
  * @returns IP del dispositivo
  */
 export function obtenerIp(req) {
@@ -41,7 +41,7 @@ export function obtenerIp(req) {
 
 /**
  * Función que valida dígito verificador de un rut
- * @param {String} rut Rut con digito verificador
+ * @param {String} rut Rut con dígito verificador
  * @returns Si DV es válido, devuelve String con solo el cuerpo, de lo contrario retorna 'false'
  */
 export function validaRut(rut) {
@@ -93,13 +93,15 @@ export function obtenerDigitoVerificador(rut){
 /**
  * Función que valida coordenadas geográficas
  * Valida si longitud está entre -180º y 180º, y latitud entre -90º y 90º
- * @param {number} long Longitud
- * @param {number} lat Latitud
+ * @param {String} long Longitud
+ * @param {String} lat Latitud
  * @returns Si coordenadas son válidas, devuelve 'true', de lo contrario retorna 'false'
  */
 export function coordenadasValidas(long, lat) {
     try {
-        if(long>-180 && long<180 && lat>-90 && lat<90) { return true; }
+        if(parseFloat(long)>-180 && parseFloat(long)<180 && parseFloat(lat)>-90 && parseFloat(lat)<90) {
+            return true; 
+        }
         return false;
     } catch (error) {
         logger.error(`Ha ocurrido un error al validar coordenadas: ${error}`);
