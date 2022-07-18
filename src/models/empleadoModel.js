@@ -3,18 +3,18 @@ import logger from '../logger.js';
 
 
 /**
- * Realiza insercion de empleado en tabla 'personal_app' de la base de datos
- * @param {Number} codEmpleado Codigo unico de empleado
- * @param {Number} codTipo Codigo de tipo (1:Admin)
- * @param {Number} codEstado Codigo de estado (1:Habilitado || 2:Deshabilitado)
+ * Función que realiza inserción de empleado en tabla 'personal_app' de la base de datos
+ * @param {Number} codEmpleado Código único de empleado
+ * @param {Number} codTipo Código de tipo (1:Admin)
+ * @param {Number} codEstado Código de estado (1:Habilitado || 2:Deshabilitado)
  * @param {Number} rut Rut del empleado
  * @param {String} nombres Nombres del empleado
  * @param {String} apellidos Apellidos del empleado
- * @param {String} dir Direccion del domicilio del empleado
- * @param {String} telefono Telefono del empleado
+ * @param {String} dir Dirección del domicilio del empleado
+ * @param {String} telefono Teléfono del empleado
  * @param {String} email Email del empleado
- * @param {String} password Contrasena del empleado
- * @returns Retorna Error si hubo un error, o un objeto con los resultados de la consulta
+ * @param {String} password Contraseña del empleado
+ * @returns Objeto con los resultados de la consulta
  */
 export const guardarEmpleado = async (codEmpleado,codTipo,codEstado,rut,nombres,apellidos,dir,telefono,email,password) => {
     try{
@@ -27,6 +27,10 @@ export const guardarEmpleado = async (codEmpleado,codTipo,codEstado,rut,nombres,
     }
 }
 
+/**
+ * Función que obtiene todos los empleados de tabla 'personal_app' de la base de datos
+ * @returns Objeto con los resultados de la consulta
+ */
 export const listarEmpleados = async () => {
     try {
         let sql = `SELECT cod_personal_app,cod_personal_app_tipo,cod_estado,rut,nombres,apellidos,telefono,email FROM personal_app ORDER BY cod_estado ASC`;
@@ -38,6 +42,11 @@ export const listarEmpleados = async () => {
     }
 }
 
+/**
+ * Función que obtiene los datos de un empleado de tabla 'personal_app' de la base de datos
+ * @param {Number} codEmpleado Código único del empleado
+ * @returns Objeto con los datos del empleado
+ */
 export const obtenerEmpleado = async (codEmpleado) => {
     try {
         let sql = `SELECT * FROM personal_app WHERE cod_personal_app=${codEmpleado}`;
@@ -49,6 +58,11 @@ export const obtenerEmpleado = async (codEmpleado) => {
     }
 }
 
+/**
+ * Función que obtiene los datos de un empleado buscando por email para autenticación
+ * @param {String} email Email del empleado. Unique en base de datos
+ * @returns Objeto con los datos del empleado
+ */
 export const obtenerEmpleadoAuth = async (email) => {
     try {
         let sql = `SELECT * FROM personal_app WHERE email = ?`;
@@ -60,6 +74,12 @@ export const obtenerEmpleadoAuth = async (email) => {
     }
 }
 
+/**
+ * Función que cambia de estado a un empleado (habilitado o deshabilitado)
+ * @param {Number} codEmpleado Código único del empleado
+ * @param {Number} codEstado Código del estado al que se desea cambiar
+ * @returns Objeto con el resultado de la consulta
+ */
 export const cambiarEstadoEmpleado = async(codEmpleado,codEstado) => {
     try {
         let sql = `UPDATE personal_app SET cod_estado=${codEstado} WHERE cod_personal_app=${codEmpleado}`;

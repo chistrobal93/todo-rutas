@@ -9,7 +9,8 @@ import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from '../config.j
  * user: usuario de conexion a base de datos
  * password: contraseña de conexion a base de datos
  * database: nombre de la base de datos
- * poolAlias: nombre del pool
+ * port: puerto para comunicación
+ * debug: si habilita debug o no
  */
 export const pool = createPool({
     connectionLimit: 100,

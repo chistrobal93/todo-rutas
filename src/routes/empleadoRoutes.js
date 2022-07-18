@@ -8,7 +8,7 @@ router.get('/', index);
 router.get('/agregar', agregar);
 router.post('/agregar', guardar);
 router.get('/listar', listar);
-//router.get('/editar/:codEmpleado', editar);
+//router.get('/editar/:codEmpleado', editar); (sin vista aún)
 router.get('/cambiarEstado/:codEmpleado/:codEstado', cambiarEstado);
 router.get('/logout', logout);
 

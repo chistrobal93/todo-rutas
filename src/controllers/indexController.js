@@ -7,21 +7,28 @@ import { listarParques, buscarParques } from '../models/parqueModel.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
- * Renderiza vista index
+ * Controlador que renderiza la vista principal
+ * @param {Object} req Requerimiento de cargar vista principal
+ * @param {Object} res Respuesta de renderizar vista 'index'
  */
 export const index = async (req, res) => {
     res.render('index', {title:'Todo Rutas'});
 }
 
 /**
- * Renderiza vista 'sobre nosotros'
+ * Controlador que renderiza la vista sobre nosotros
+ * @param {Object} req Requerimiento de cargar vista sobre nosotros
+ * @param {Object} res Respuesta de renderizar vista 'about'
  */
 export const about = async (req, res) => {
     res.render('about', {title: 'About'});
 }
 
 /**
- * Obtiene el listado de parques y renderiza la vista de Lista de parques
+ * Controlador que obtiene el listado de parques y renderiza la vista de Lista de parques
+ * @param {Object} req Requerimiento de cargar vista Listar parques
+ * @param {Object} res Respuesta de listar parques. Si pudo obtener los datos de los parques, renderiza vista listar,
+ * si no, redirige a vista index con mensaje alert de respuesta
  * @returns Vista lista de parques
  */
 export const parques = async(req, res) => {
@@ -40,7 +47,7 @@ export const parques = async(req, res) => {
 /**
  * Obtiene listado de parques con filtro de búsqueda aplicado.
  * @param {Object} req Requerimiento POST de listar parques con criterios de búsqueda, los elementos vienen en body.
-  * @param {Object} res Respuesta de listar parques filtrados. Si pudo obtener los datos de los parques, renderiza vista listar,
+ * @param {Object} res Respuesta de listar parques filtrados. Si pudo obtener los datos de los parques, renderiza vista listar,
  * si no, redirige a vista index con mensaje alert de respuesta
  * @returns Vista lista de parques filtrados
  */
@@ -68,12 +75,20 @@ export const parquesFiltrados = async(req, res) => {
 }
 
 /**
- * Renderiza vista login Empleados
+ * Controlador que renderiza la vista login para empleados
+ * @param {Object} req Requerimiento de cargar vista login de empleados
+ * @param {Object} res Respuesta de renderizar vista 'loginEmpleados'
  */
 export const loginEmpleados = async (req, res) => {
     res.render('loginEmpleados', {title: 'Login'});
 }
 
+/**
+ * Controlador que autentica a usuario usando local.signin desde /passport/local-auth.js
+ * @param {Object} req Requerimiento de autenticación
+ * @param {Object} res Respuesta de autenticación
+ * @param {NextFunction} next Función que permite avanzar a siguiente middleware
+ */
 export const authEmpleado = async (req, res, next) => {
     passport.authenticate('local.signin', {
         successRedirect: '/empleado/',
@@ -83,12 +98,19 @@ export const authEmpleado = async (req, res, next) => {
 }
 
 /**
- * Renderiza vista login Afiliados
+ * Controlador que renderiza la vista login para afiliados
+ * @param {Object} req Requerimiento de cargar vista login de afiliados
+ * @param {Object} res Respuesta de renderizar vista 'loginAfiliados'
  */
- export const loginAfiliados = async (req, res) => {
+export const loginAfiliados = async (req, res) => {
     res.render('loginAfiliados', {title: 'Login'});
 }
 
+/**
+ * Controlador para descargar el mapa de un parque
+ * @param {Object} req Requerimiento de descargar mapa. El nombre del archivo que desea descargar viene en params, ya que vienen por GET
+ * @param {Object} res Respuesta de descargar mapa. Ejecuta la función download para descargar el archivo
+ */
 export const downloadMap =  (req, res) => {
     const imgMapa = req.params.mapa;
     const directory = path.join(__dirname, '../public/images', imgMapa);
